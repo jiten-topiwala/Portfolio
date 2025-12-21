@@ -6,10 +6,38 @@
 // ===== PRELOADER =====
 window.addEventListener('load', () => {
     const preloader = document.getElementById('preloader');
-    setTimeout(() => {
-        preloader.classList.add('hidden');
-        document.body.style.overflow = 'visible';
-    }, 1500);
+    const sysText = document.getElementById('sys-text');
+    const progressBar = document.getElementById('progress-bar');
+
+    // Simulate boot sequence
+    const bootSteps = [
+        { text: 'SYSTEM CHECK...', progress: 30 },
+        { text: 'CALIBRATING SENSORS...', progress: 60 },
+        { text: 'ESTABLISHING UPLINK...', progress: 90 },
+        { text: 'ACCESS GRANTED.', progress: 100 }
+    ];
+
+    let stepIndex = 0;
+
+    const runBootSequence = () => {
+        if (stepIndex < bootSteps.length) {
+            sysText.textContent = bootSteps[stepIndex].text;
+            progressBar.style.width = `${bootSteps[stepIndex].progress}%`;
+            stepIndex++;
+
+            // Random delay for realism
+            setTimeout(runBootSequence, 400 + Math.random() * 300);
+        } else {
+            // Sequence complete
+            setTimeout(() => {
+                preloader.classList.add('hidden');
+                document.body.style.overflow = 'visible';
+            }, 500);
+        }
+    };
+
+    // Start sequence after a brief initial pause
+    setTimeout(runBootSequence, 500);
 });
 
 // ===== NAVIGATION =====
@@ -73,8 +101,7 @@ function updateActiveLink() {
     });
 }
 
-    });
-}
+
 
 // Throttled scroll listener
 let scrollTimeout;

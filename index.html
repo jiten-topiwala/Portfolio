@@ -30,16 +30,17 @@
     <div class="cursor-outline" data-cursor-outline></div>
     <!-- Preloader -->
     <div id="preloader">
-        <div class="loader">
-            <div class="gear-container">
-                <svg class="gear" viewBox="0 0 100 100">
-                    <path
-                        d="M50 10 L54 10 L56 20 L60 21 L66 13 L70 16 L67 25 L70 28 L80 25 L82 30 L73 36 L74 40 L84 43 L84 48 L74 50 L73 54 L82 60 L80 65 L70 62 L67 65 L70 74 L66 77 L60 69 L56 70 L54 80 L50 80 L48 70 L44 69 L38 77 L34 74 L37 65 L34 62 L24 65 L22 60 L31 54 L30 50 L20 48 L20 43 L30 40 L31 36 L22 30 L24 25 L34 28 L37 25 L34 16 L38 13 L44 21 L48 20 L50 10 Z"
-                        fill="currentColor" />
-                    <circle cx="50" cy="45" r="12" fill="#0a0a0f" />
-                </svg>
+        <div class="loader-content">
+            <div class="hex-loader">
+                <div class="hex-outer"></div>
+                <div class="hex-inner"></div>
             </div>
-            <span class="loader-text">INITIALIZING</span>
+            <div class="text-container">
+                <span class="sys-text" id="sys-text">INITIALIZING CORE</span>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
         </div>
     </div>
 
