@@ -392,26 +392,8 @@ filterBtns.forEach(btn => {
 });
 
 // ===== CONTACT FORM =====
-const contactForm = document.getElementById('contact-form');
-
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    // Get form data
-    const formData = new FormData(contactForm);
-    const data = Object.fromEntries(formData);
-
-    // Simple validation
-    if (!data.name || !data.email || !data.message) {
-        alert('Please fill in all required fields.');
-        return;
-    }
-
-    // Here you would typically send the data to a server
-    // For now, we'll just show a success message
-    alert('Thank you for your message! I\'ll get back to you soon.');
-    contactForm.reset();
-});
+// Form submission is handled by FormSubmit.co (see index.html)
+// No JavaScript needed - the HTML form POSTs directly to FormSubmit
 
 // ===== SMOOTH SCROLL FOR ANCHOR LINKS =====
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
