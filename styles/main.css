@@ -144,6 +144,8 @@ button {
     align-items: center;
     gap: 30px;
     width: 300px;
+    position: relative;
+    z-index: 2;
 }
 
 .hex-loader {
@@ -400,6 +402,11 @@ button {
     font-weight: 600;
     border-radius: var(--radius-full);
     transition: var(--transition-normal);
+}
+
+.btn svg {
+    width: 20px;
+    height: 20px;
 }
 
 .btn-icon {
@@ -763,7 +770,7 @@ button {
     color: var(--text-muted);
     font-size: 12px;
     font-family: var(--font-heading);
-    animation: fadeInUp 0.8s ease 0.6s forwards;
+    animation: fadeInUpScroll 0.8s ease 0.6s forwards;
     opacity: 0;
 }
 
@@ -812,6 +819,18 @@ button {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUpScroll {
+    from {
+        opacity: 0;
+        transform: translate(-50%, 30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
     }
 }
 
@@ -1387,6 +1406,7 @@ button {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
+    align-items: start;
 }
 
 .contact-card {
@@ -1419,6 +1439,7 @@ button {
 .contact-card a {
     font-size: 14px;
     color: var(--primary);
+    word-break: break-all;
 }
 
 .contact-card a:hover {

@@ -37,7 +37,21 @@ window.addEventListener('load', () => {
     };
 
     // Start sequence after a brief initial pause
-    setTimeout(runBootSequence, 500);
+    try {
+        setTimeout(runBootSequence, 500);
+    } catch (e) {
+        console.error("Boot sequence error:", e);
+        preloader.classList.add('hidden');
+        document.body.style.overflow = 'visible';
+    }
+
+    // Safety timeout: Ensure preloader is removed even if animation fails
+    setTimeout(() => {
+        if (!preloader.classList.contains('hidden')) {
+            preloader.classList.add('hidden');
+            document.body.style.overflow = 'visible';
+        }
+    }, 6000);
 });
 
 // ===== NAVIGATION =====
