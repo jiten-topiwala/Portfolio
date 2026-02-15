@@ -346,7 +346,7 @@
                             <span>SolidWorks</span>
                             <span>Computer Vision</span>
                         </div>
-                        <a href="#" class="project-link">
+                        <a href="#" class="project-link" data-project-id="manpackable">
                             <span>Learn More</span>
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M5 12h14M12 5l7 7-7 7" />
@@ -375,7 +375,8 @@
                             <span>Automation</span>
                             <span>AI</span>
                         </div>
-                        <a href="https://jiten-topiwala.github.io/LiftTerra/" class="project-link" target="_blank">
+                        <a href="https://jiten-topiwala.github.io/LiftTerra/" class="project-link" target="_blank"
+                            data-project-id="liftterra">
                             <span>View Project</span>
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M5 12h14M12 5l7 7-7 7" />
@@ -403,7 +404,7 @@
                             <span>Sensors</span>
                             <span>Control</span>
                         </div>
-                        <a href="#" class="project-link">
+                        <a href="#" class="project-link" data-project-id="pipe-inspection">
                             <span>Learn More</span>
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M5 12h14M12 5l7 7-7 7" />
@@ -431,7 +432,7 @@
                             <span>Control Theory</span>
                             <span>MATLAB</span>
                         </div>
-                        <a href="#" class="project-link">
+                        <a href="#" class="project-link" data-project-id="biped">
                             <span>Learn More</span>
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M5 12h14M12 5l7 7-7 7" />
@@ -459,7 +460,7 @@
                             <span>Cameras</span>
                             <span>LEDs</span>
                         </div>
-                        <a href="#" class="project-link">
+                        <a href="#" class="project-link" data-project-id="micro-pipe">
                             <span>Learn More</span>
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M5 12h14M12 5l7 7-7 7" />
@@ -487,7 +488,7 @@
                             <span>Automation</span>
                             <span>CAD</span>
                         </div>
-                        <a href="#" class="project-link">
+                        <a href="#" class="project-link" data-project-id="vertical-conveyor">
                             <span>Learn More</span>
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M5 12h14M12 5l7 7-7 7" />
@@ -762,6 +763,72 @@
     </footer>
 
     <!-- Scripts -->
+    <!-- Project Modal -->
+    <div id="project-modal" class="modal hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-container">
+            <button class="modal-close" aria-label="Close modal">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+            </button>
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="modal-tag" id="modal-category">Robotics</span>
+                    <h2 class="modal-title" id="modal-title">Project Title</h2>
+                    <p class="modal-subtitle" id="modal-subtitle">Project Subtitle</p>
+                </div>
+
+                <div class="modal-gallery">
+                    <div class="gallery-main">
+                        <div id="gallery-container">
+                            <!-- Helper for centering/loading -->
+                            <div class="gallery-placeholder">
+                                <span>Select Media</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-thumbs" id="gallery-thumbs">
+                        <!-- Thumbnails injected via JS -->
+                    </div>
+                </div>
+
+                <div class="modal-body">
+                    <div class="modal-description">
+                        <h3>Overview</h3>
+                        <p id="modal-description">Project description goes here...</p>
+
+                        <div class="modal-features">
+                            <h3>Key Features</h3>
+                            <ul id="modal-features-list">
+                                <!-- Features list injected via JS -->
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="modal-sidebar">
+                        <div class="sidebar-section">
+                            <h3>Technologies</h3>
+                            <div class="tech-stack" id="modal-tech">
+                                <!-- Tech tags injected via JS -->
+                            </div>
+                        </div>
+
+                        <div class="sidebar-section">
+                            <h3>Links</h3>
+                            <div class="modal-links" id="modal-links">
+                                <!-- Links injected via JS -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Deco Elements Removed -->
+        </div>
+    </div>
+
     <script src="scripts/main.js" defer></script>
 </body>
 
