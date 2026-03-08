@@ -34,6 +34,11 @@
         grid-template-columns: repeat(2, 1fr);
     }
 
+    /* Services */
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
     /* Publications */
     .publications-grid {
         grid-template-columns: 1fr;

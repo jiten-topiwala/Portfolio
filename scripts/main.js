@@ -51,7 +51,7 @@ window.addEventListener('load', () => {
             preloader.classList.add('hidden');
             document.body.style.overflow = 'visible';
         }
-    }, 6000);
+    }, 4000);
 });
 
 // ===== NAVIGATION =====
@@ -60,7 +60,7 @@ const navToggle = document.getElementById('nav-toggle');
 const navMenu = document.getElementById('nav-menu');
 const navLinks = document.querySelectorAll('.nav-link');
 
-// Scroll detection for navbar
+// Scroll detection for navbar + active link (single consolidated listener)
 let lastScroll = 0;
 let ticking = false;
 
@@ -68,12 +68,9 @@ window.addEventListener('scroll', () => {
     if (!ticking) {
         window.requestAnimationFrame(() => {
             const currentScroll = window.pageYOffset;
-            if (currentScroll > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
+            navbar.classList.toggle('scrolled', currentScroll > 50);
             lastScroll = currentScroll;
+            updateActiveLink();
             ticking = false;
         });
         ticking = true;
@@ -117,15 +114,6 @@ function updateActiveLink() {
 
 
 
-// Throttled scroll listener
-let scrollTimeout;
-window.addEventListener('scroll', () => {
-    if (scrollTimeout) return;
-    scrollTimeout = setTimeout(() => {
-        updateActiveLink();
-        scrollTimeout = null;
-    }, 100);
-});
 
 // ===== TYPEWRITER EFFECT =====
 const typewriter = document.getElementById('typewriter');
@@ -182,7 +170,6 @@ function resizeCanvas() {
     canvas.height = window.innerHeight;
 }
 resizeCanvas();
-window.addEventListener('resize', resizeCanvas);
 
 // Mouse move
 window.addEventListener('mousemove', (e) => {
@@ -245,12 +232,14 @@ class Particle {
 }
 
 // Initialize particles
-// Initialize particles
 function initParticles() {
     particles = [];
-    // Reduce particle density for mobile devices or smaller screens
     const densityDivisor = window.innerWidth < 768 ? 25000 : 15000;
-    const numberOfParticles = Math.floor((canvas.width * canvas.height) / densityDivisor);
+    const MAX_PARTICLES = window.innerWidth < 768 ? 40 : 60;
+    const numberOfParticles = Math.min(
+        Math.floor((canvas.width * canvas.height) / densityDivisor),
+        MAX_PARTICLES
+    );
 
     for (let i = 0; i < numberOfParticles; i++) {
         particles.push(new Particle());
@@ -260,20 +249,21 @@ initParticles();
 
 // Connect particles with lines
 function connectParticles() {
+    const MAX_DIST = 120;
+    const MAX_DIST_SQ = MAX_DIST * MAX_DIST;
     for (let a = 0; a < particles.length; a++) {
         for (let b = a + 1; b < particles.length; b++) {
             let dx = particles[a].x - particles[b].x;
             let dy = particles[a].y - particles[b].y;
+            // Early exit using squared distance — avoids sqrt for most pairs
+            if (dx * dx + dy * dy > MAX_DIST_SQ) continue;
             let distance = Math.sqrt(dx * dx + dy * dy);
-
-            if (distance < 120) {
-                ctx.strokeStyle = `rgba(0, 212, 255, ${0.15 - distance / 800})`;
-                ctx.lineWidth = 0.5;
-                ctx.beginPath();
-                ctx.moveTo(particles[a].x, particles[a].y);
-                ctx.lineTo(particles[b].x, particles[b].y);
-                ctx.stroke();
-            }
+            ctx.strokeStyle = `rgba(0, 212, 255, ${0.15 - distance / 800})`;
+            ctx.lineWidth = 0.5;
+            ctx.beginPath();
+            ctx.moveTo(particles[a].x, particles[a].y);
+            ctx.lineTo(particles[b].x, particles[b].y);
+            ctx.stroke();
         }
     }
 }
@@ -439,7 +429,6 @@ window.addEventListener('mousemove', (e) => {
 });
 
 function animateOutline() {
-    // Smooth trailing effect
     outlineX += (mouseX - outlineX) * 0.15;
     outlineY += (mouseY - outlineY) * 0.15;
 
@@ -448,7 +437,11 @@ function animateOutline() {
 
     requestAnimationFrame(animateOutline);
 }
-animateOutline();
+
+// Don't start cursor rAF loop on touch devices
+if (!("ontouchstart" in window) && navigator.maxTouchPoints === 0) {
+    animateOutline();
+}
 
 // Hover effects
 const interactiveElements = document.querySelectorAll('a, button, .project-card, .social-link, input, textarea, label, .nav-toggle');
@@ -482,8 +475,9 @@ if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
 
 // ===== INITIALIZE =====
 document.addEventListener('DOMContentLoaded', () => {
-    // Add loaded class to body for any CSS transitions
     document.body.classList.add('loaded');
+    const yearEl = document.getElementById('footer-year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
 });
 
 // ===== PROJECT DETAILS MODAL =====
@@ -507,9 +501,8 @@ const projectsData = {
         ],
         tech: ['ROS', 'SolidWorks', 'Python', 'OpenCV', '3D Printing'],
         media: [
-            { type: 'image', src: 'https://placehold.co/800x450/1a1a2e/00d4ff?text=Manpackable+Robot+Main', thumb: 'https://placehold.co/100x75/1a1a2e/00d4ff?text=Main' },
-            { type: 'image', src: 'https://placehold.co/800x450/1a1a2e/00d4ff?text=Transformation+Mechanism', thumb: 'https://placehold.co/100x75/1a1a2e/00d4ff?text=Mech' },
-            { type: 'image', src: 'https://placehold.co/800x450/1a1a2e/00d4ff?text=Field+Test', thumb: 'https://placehold.co/100x75/1a1a2e/00d4ff?text=Test' }
+            { type: 'image', src: 'Images/trackbeltmode.JPG', thumb: 'Images/trackbeltmode.JPG' },
+            { type: 'image', src: 'Images/WhatsApp Image 2023-10-28 at 14.19.37_9e6e37e8.jpg', thumb: 'Images/WhatsApp Image 2023-10-28 at 14.19.37_9e6e37e8.jpg' }
         ],
         links: [
             { text: 'View 3D Model', url: '#', icon: '<path d="M21 16.5c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18-.21 0-.41-.06-.57-.18l-7.9-4.44A.991.991 0 013 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.16-.12.36-.18.57-.18.21 0 .41.06.57.18l7.9 4.44c.32.17.53.5.53.88v9M12 4.15L6.04 7.5 12 10.85l5.96-3.35L12 4.15z"/>' }
@@ -529,8 +522,9 @@ const projectsData = {
         ],
         tech: ['ROS2', 'Navigation Stack', 'LIDAR', 'Industrial Design', 'React'],
         media: [
-            { type: 'image', src: 'https://placehold.co/800x450/1a1a2e/7c3aed?text=LiftTerra+Prototype', thumb: 'https://placehold.co/100x75/1a1a2e/7c3aed?text=Proto' },
-            { type: 'image', src: 'https://placehold.co/800x450/1a1a2e/7c3aed?text=Site+Navigation', thumb: 'https://placehold.co/100x75/1a1a2e/7c3aed?text=Nav' }
+            { type: 'image', src: 'Images/LiftTerra 1.jpg', thumb: 'Images/LiftTerra 1.jpg' },
+            { type: 'image', src: 'Images/LiftTerra 2.jpg', thumb: 'Images/LiftTerra 2.jpg' },
+            { type: 'image', src: 'Images/Enterprenurship.jpg', thumb: 'Images/Enterprenurship.jpg' }
         ],
         links: [
             { text: 'Visit Website', url: 'https://jiten-topiwala.github.io/LiftTerra/', icon: '<path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>' }
@@ -550,8 +544,8 @@ const projectsData = {
         ],
         tech: ['Mechanical Design', 'Arduino', 'Power Electronics', 'Video Transmission'],
         media: [
-            { type: 'image', src: 'https://placehold.co/800x450/1a1a2e/00d4ff?text=Pipe+Bot+Render', thumb: 'https://placehold.co/100x75/1a1a2e/00d4ff?text=Render' },
-            { type: 'image', src: 'https://placehold.co/800x450/1a1a2e/00d4ff?text=Mechanism+Detail', thumb: 'https://placehold.co/100x75/1a1a2e/00d4ff?text=Mech' }
+            { type: 'image', src: 'Images/Pipe Inspectoin Robot.jpg', thumb: 'Images/Pipe Inspectoin Robot.jpg' },
+            { type: 'image', src: 'Images/Pipe inspection robot 2.jpg', thumb: 'Images/Pipe inspection robot 2.jpg' }
         ],
         links: []
     },
@@ -569,7 +563,8 @@ const projectsData = {
         ],
         tech: ['Control Theory', 'MATLAB', 'C++', 'Embedded Systems'],
         media: [
-            { type: 'image', src: 'https://placehold.co/800x450/1a1a2e/a855f7?text=Biped+Robot', thumb: 'https://placehold.co/100x75/1a1a2e/a855f7?text=Robot' }
+            { type: 'image', src: 'Images/Biped 1.jpg', thumb: 'Images/Biped 1.jpg' },
+            { type: 'image', src: 'Images/Biped 2.jpg', thumb: 'Images/Biped 2.jpg' }
         ],
         links: []
     },
@@ -604,7 +599,7 @@ const projectsData = {
         ],
         tech: ['Automation', 'PLC Programming', 'CAD', 'Pneumatics'],
         media: [
-            { type: 'image', src: 'https://placehold.co/800x450/1a1a2e/00d4ff?text=Vertical+Conveyor', thumb: 'https://placehold.co/100x75/1a1a2e/00d4ff?text=Conveyor' }
+            { type: 'image', src: 'Images/Vertical_Indexing_conveyor.jpg', thumb: 'Images/Vertical_Indexing_conveyor.jpg' }
         ],
         links: []
     }
@@ -716,7 +711,7 @@ function loadMedia(item) {
         } else if (item.type === 'iframe') {
             const iframe = document.createElement('iframe');
             iframe.src = item.src;
-            iframe.frameBorder = '0';
+            iframe.style.border = 'none';
             iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
             iframe.allowFullscreen = true;
             container.appendChild(iframe);
