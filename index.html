@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<!-- Portfolio Version: 1.0.1 | Last Updated: 2024-12-21 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Jiten Topiwala - Robotics Engineer, Mechanical Designer, and Entrepreneur. Explore my projects, publications, and achievements in robotics and automation.">
+    <meta name="keywords"
+        content="Robotics Engineer, Mechanical Engineer, Jiten Topiwala, Robocon, LiftTerra, Portfolio">
+    <meta name="author" content="Jiten Topiwala">
+    <meta name="google-site-verification" content="37MTHAONhGKmH8Ze8dDyFiRhaO-V2WGtgDwmf_oLFLc" />
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://jiten-topiwala.github.io/Portfolio/">
+    <meta property="og:title" content="Jiten Topiwala | Robotics Engineer & Innovator">
+    <meta property="og:description" content="Robotics Engineer, Mechanical Designer, and Entrepreneur. Explore my award-winning projects in robotics and automation.">
+    <meta property="og:image" content="https://jiten-topiwala.github.io/Portfolio/Images/pic.jpg">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Jiten Topiwala | Robotics Engineer & Innovator">
+    <meta name="twitter:description" content="Robotics Engineer, Mechanical Designer, and Entrepreneur. Explore my award-winning projects in robotics and automation.">
+    <meta name="twitter:image" content="https://jiten-topiwala.github.io/Portfolio/Images/pic.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230a0a0f'/><text y='72' x='50' text-anchor='middle' font-size='58' font-family='monospace' font-weight='bold' fill='%2300d4ff'>G</text></svg>">
+
+    <title>Jiten Topiwala | Robotics Engineer & Innovator</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Jiten Topiwala",
+      "url": "https://jiten-topiwala.github.io/Portfolio/",
+      "jobTitle": "Robotics Engineer",
+      "sameAs": [
+        "https://linkedin.com/in/jiten-topiwala",
+        "https://github.com/jiten-topiwala"
+      ]
+    }
+    </script>
+</head>
+
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" data-cursor-dot></div>
+    <div class="cursor-outline" data-cursor-outline></div>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader-content">
+            <div class="hex-loader">
+                <div class="hex-outer"></div>
+                <div class="hex-inner"></div>
+            </div>
+            <div class="text-container">
+                <span class="sys-text" id="sys-text">INITIALIZING CORE</span>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Particle Canvas Background -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">
+                <span class="logo-text">G10</span>
+                <span class="logo-dot"></span>
+            </a>
+
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item"><a href="#home" class="nav-link active">Home</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
+                <li class="nav-item"><a href="#services" class="nav-link">Services</a></li>
+                <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
+                <li class="nav-item"><a href="#publications" class="nav-link">Publications</a></li>
+                <li class="nav-item"><a href="#achievements" class="nav-link">Achievements</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span class="hamburger"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-icon">⚡</span>
+                <span class="badge-text">Available for Freelance & Consulting</span>
+            </div>
+
+            <h1 class="hero-title">
+                <span class="title-line">Hi, I'm</span>
+                <span class="name-highlight">Jiten Topiwala</span>
+            </h1>
+
+            <div class="hero-roles">
+                <span class="role-prefix">I'm a </span>
+                <span class="typewriter" id="typewriter"></span>
+                <span class="cursor">|</span>
+            </div>
+
+            <p class="hero-description">
+                Passionate about building intelligent machines that solve real-world problems.
+                From award-winning surveillance robots to agricultural automation systems,
+                I bring mechanical precision and software intelligence together.
+            </p>
+
+            <div class="hero-cta">
+                <a href="#services" class="btn btn-primary">
+                    <span>Hire Me</span>
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+                <a href="#projects" class="btn btn-secondary">
+                    <span>View Projects</span>
+                </a>
+            </div>
+
+            <div class="hero-social">
+                <a href="https://github.com/jiten-topiwala" class="social-link" target="_blank" rel="noopener"
+                    aria-label="GitHub">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                    </svg>
+                </a>
+                <a href="https://linkedin.com/in/jiten-topiwala" class="social-link" target="_blank" rel="noopener"
+                    aria-label="LinkedIn">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                    </svg>
+                </a>
+                <a href="mailto:jitentopiwala7@gmail.com" class="social-link" aria-label="Email">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 010 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z" />
+                    </svg>
+                </a>
+                <a href="https://www.fiverr.com/jiten_topiwala" target="_blank" rel="noopener" class="social-link" aria-label="Fiverr">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M23.004 15.588a.995.995 0 10-1.99 0 .995.995 0 001.99 0zm-19.222.23h2.55V8.973h-2.55v6.845zm15.396-6.508a2.86 2.86 0 00-2.18-.798c-.889 0-1.64.384-2.144 1.003v-.737h-2.55v6.845h2.55v-3.532c0-.83.561-1.367 1.317-1.367.767 0 1.2.466 1.2 1.317v3.582h2.55V11.18a2.96 2.96 0 00-.743-2.87zM5.008 7.496a1.275 1.275 0 100-2.55 1.275 1.275 0 000 2.55z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <div class="hero-visual">
+            <div class="robot-container">
+                <div class="orbit orbit-1"></div>
+                <div class="orbit orbit-2"></div>
+                <div class="orbit orbit-3"></div>
+                <div class="hex-core">
+                    <svg viewBox="0 0 100 100" class="hex-svg">
+                        <polygon points="50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5" fill="none"
+                            stroke="url(#hexGradient)" stroke-width="2" />
+                        <defs>
+                            <linearGradient id="hexGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#00d4ff" />
+                                <stop offset="100%" stop-color="#7c3aed" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <div class="core-icon">🤖</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <span>Scroll to explore</span>
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">About Me</span>
+                <h2 class="section-title">Designing the <span class="gradient-text">Future</span> of Robotics</h2>
+            </div>
+
+            <div class="about-content">
+                <div class="about-image">
+                    <div class="image-frame">
+                        <img src="Images/pic.jpg" alt="Jiten Topiwala" class="about-photo" loading="lazy">
+                        <div class="image-glow"></div>
+                    </div>
+                    <div class="floating-badge badge-1">
+                        <span class="badge-emoji">🎯</span>
+                        <span>Problem Solver</span>
+                    </div>
+                    <div class="floating-badge badge-2">
+                        <span class="badge-emoji">🚀</span>
+                        <span>Innovator</span>
+                    </div>
+                </div>
+
+                <div class="about-text">
+                    <p class="about-intro">
+                        I'm a <strong>Robotics Engineer</strong> with a degree in Mechanical Engineering,
+                        combining hardware expertise with software intelligence to create machines that matter.
+                    </p>
+
+                    <p>
+                        My journey started with a fascination for how things work and evolved into a passion
+                        for building autonomous systems. From competing in <strong>Robocon</strong> to developing
+                        industrial inspection robots, I've been fortunate to work on projects that push boundaries.
+                    </p>
+
+                    <p>
+                        Currently focused on bridging the gap between research and real-world applications,
+                        with aspirations to launch a robotics startup that tackles meaningful challenges in
+                        construction, agriculture, and industrial automation.
+                    </p>
+
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <span class="stat-number" data-target="10">0</span>
+                            <span class="stat-plus">+</span>
+                            <span class="stat-label">Projects Built</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-target="2">0</span>
+                            <span class="stat-label">Publications</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-target="8">0</span>
+                            <span class="stat-plus">+</span>
+                            <span class="stat-label">Awards Won</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-target="3">0</span>
+                            <span class="stat-plus">+</span>
+                            <span class="stat-label">Years Experience</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section skills">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Expertise</span>
+                <h2 class="section-title">Skills & <span class="gradient-text">Technologies</span></h2>
+            </div>
+
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <div class="category-header">
+                        <div class="category-icon">⚙️</div>
+                        <h3>Mechanical Design</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">SolidWorks</span>
+                        <span class="skill-tag">Fusion 360</span>
+                        <span class="skill-tag">AutoCAD</span>
+                        <span class="skill-tag">3D Printing</span>
+                        <span class="skill-tag">CNC Machining</span>
+                        <span class="skill-tag">Sheet Metal</span>
+                        <span class="skill-tag">FEA Analysis</span>
+                        <span class="skill-tag">GD&T</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="category-header">
+                        <div class="category-icon">🤖</div>
+                        <h3>Robotics & Control</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">ROS/ROS2</span>
+                        <span class="skill-tag">MATLAB/Simulink</span>
+                        <span class="skill-tag">Motion Planning</span>
+                        <span class="skill-tag">PID Control</span>
+                        <span class="skill-tag">Kinematics</span>
+                        <span class="skill-tag">Sensor Integration</span>
+                        <span class="skill-tag">Computer Vision</span>
+                        <span class="skill-tag">SLAM</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="category-header">
+                        <div class="category-icon">💻</div>
+                        <h3>Programming</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">C/C++</span>
+                        <span class="skill-tag">Arduino</span>
+                        <span class="skill-tag">Raspberry Pi</span>
+                        <span class="skill-tag">Embedded Systems</span>
+                        <span class="skill-tag">Linux</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Docker</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="category-header">
+                        <div class="category-icon">🔧</div>
+                        <h3>Hardware & Electronics</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">PCB Design</span>
+                        <span class="skill-tag">Motor Drivers</span>
+                        <span class="skill-tag">Actuators</span>
+                        <span class="skill-tag">Sensors</span>
+                        <span class="skill-tag">Power Systems</span>
+                        <span class="skill-tag">Prototyping</span>
+                        <span class="skill-tag">Wiring</span>
+                        <span class="skill-tag">Testing</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section services">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Hire Me</span>
+                <h2 class="section-title">What I Can <span class="gradient-text">Build for You</span></h2>
+                <p class="section-subtitle">Available for freelance projects, consulting, and full-time opportunities worldwide</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">⚙️</div>
+                    <h3>CAD & 3D Modeling</h3>
+                    <p>Manufacturing-ready designs using SolidWorks, Fusion 360, and AutoCAD — from concept to detailed drawings with FEA validation.</p>
+                    <ul class="service-list">
+                        <li>3D Part & Assembly Modeling</li>
+                        <li>Engineering Drawings & GD&T</li>
+                        <li>FEA Stress Analysis</li>
+                        <li>3D Printing-Ready Files</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🤖</div>
+                    <h3>Robotics Design & Consulting</h3>
+                    <p>End-to-end robotic system design — mechanical architecture, ROS/ROS2 integration, sensor fusion, and motion planning.</p>
+                    <ul class="service-list">
+                        <li>Robot System Architecture</li>
+                        <li>ROS / ROS2 Development</li>
+                        <li>Motion Planning & Control</li>
+                        <li>Computer Vision Integration</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">💻</div>
+                    <h3>Embedded Systems & Automation</h3>
+                    <p>Custom embedded solutions for Arduino, Raspberry Pi, and industrial PLCs — motor control, sensor integration, and firmware.</p>
+                    <ul class="service-list">
+                        <li>Arduino / Raspberry Pi Projects</li>
+                        <li>Motor & Actuator Control</li>
+                        <li>Sensor Integration & Calibration</li>
+                        <li>PLC & Industrial Automation</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">📄</div>
+                    <h3>Research & Technical Writing</h3>
+                    <p>IEEE-standard research papers, technical documentation, and R&D consulting backed by two published conference papers.</p>
+                    <ul class="service-list">
+                        <li>Research Paper Writing</li>
+                        <li>Technical Documentation</li>
+                        <li>Literature Reviews</li>
+                        <li>Proof-of-Concept Development</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="services-cta">
+                <a href="https://www.fiverr.com/jiten_topiwala" target="_blank" rel="noopener" class="btn btn-primary">
+                    <span>Hire Me on Fiverr</span>
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" />
+                    </svg>
+                </a>
+                <a href="#contact" class="btn btn-secondary">
+                    <span>Discuss a Project</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section projects">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Portfolio</span>
+                <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
+            </div>
+
+            <div class="project-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="robotics">Robotics</button>
+                <button class="filter-btn" data-filter="industrial">Industrial</button>
+                <button class="filter-btn" data-filter="research">Research</button>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Project 1: Manpackable Robot -->
+                <article class="project-card" data-category="robotics">
+                    <div class="project-image">
+                        <div class="image-overlay">
+                            <span class="project-icon">🎖️</span>
+                        </div>
+                        <div class="project-badge">Award Winning</div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Manpackable Robot</h3>
+                        <p class="project-subtitle">Wheel-Track Transformable Surveillance Robot</p>
+                        <p class="project-description">
+                            A versatile surveillance robot capable of transforming between wheel and track
+                            modes for optimal terrain navigation. Winner of multiple awards for innovation.
+                        </p>
+                        <div class="project-tech">
+                            <span>ROS</span>
+                            <span>SolidWorks</span>
+                            <span>Computer Vision</span>
+                        </div>
+                        <a href="#" class="project-link" data-project-id="manpackable">
+                            <span>Learn More</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Project 2: LiftTerra -->
+                <article class="project-card featured" data-category="robotics">
+                    <div class="project-image">
+                        <div class="image-overlay">
+                            <span class="project-icon">🏗️</span>
+                        </div>
+                        <div class="project-badge">Startup</div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">LiftTerra</h3>
+                        <p class="project-subtitle">Revolutionizing Construction & Maintenance</p>
+                        <p class="project-description">
+                            An innovative robotic solution designed to transform how we approach
+                            construction and maintenance tasks, making them safer and more efficient.
+                        </p>
+                        <div class="project-tech">
+                            <span>Robotics</span>
+                            <span>Automation</span>
+                            <span>AI</span>
+                        </div>
+                        <a href="https://jiten-topiwala.github.io/LiftTerra/" class="project-link" target="_blank"
+                            data-project-id="liftterra">
+                            <span>View Project</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Project 3: Pipe Inspection Robot -->
+                <article class="project-card" data-category="industrial">
+                    <div class="project-image">
+                        <div class="image-overlay">
+                            <span class="project-icon">🔍</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Pipe Inspection Robot</h3>
+                        <p class="project-subtitle">Variable Diameter Navigation System</p>
+                        <p class="project-description">
+                            An adaptable inspection robot designed to navigate through pipes of
+                            varying diameters, enabling thorough inspection of industrial pipelines.
+                        </p>
+                        <div class="project-tech">
+                            <span>Mechanism Design</span>
+                            <span>Sensors</span>
+                            <span>Control</span>
+                        </div>
+                        <a href="#" class="project-link" data-project-id="pipe-inspection">
+                            <span>Learn More</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Project 4: Biped Robot -->
+                <article class="project-card" data-category="research">
+                    <div class="project-image">
+                        <div class="image-overlay">
+                            <span class="project-icon">🦿</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Biped Robot</h3>
+                        <p class="project-subtitle">Walking the Future</p>
+                        <p class="project-description">
+                            A bipedal walking robot exploring dynamic locomotion and balance control,
+                            pushing the boundaries of humanoid robotics research.
+                        </p>
+                        <div class="project-tech">
+                            <span>Dynamics</span>
+                            <span>Control Theory</span>
+                            <span>MATLAB</span>
+                        </div>
+                        <a href="#" class="project-link" data-project-id="biped">
+                            <span>Learn More</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Project 5: Micro Pipe Inspection -->
+                <article class="project-card" data-category="industrial">
+                    <div class="project-image">
+                        <div class="image-overlay">
+                            <span class="project-icon">🔬</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Micro Pipe Inspector</h3>
+                        <p class="project-subtitle">Exploring the Unreachable</p>
+                        <p class="project-description">
+                            A miniaturized inspection robot capable of navigating extremely narrow
+                            pipes and conduits where traditional inspection methods fail.
+                        </p>
+                        <div class="project-tech">
+                            <span>Miniaturization</span>
+                            <span>Cameras</span>
+                            <span>LEDs</span>
+                        </div>
+                        <a href="#" class="project-link" data-project-id="micro-pipe">
+                            <span>Learn More</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Project 6: Vertical Indexing Conveyor -->
+                <article class="project-card" data-category="industrial">
+                    <div class="project-image">
+                        <div class="image-overlay">
+                            <span class="project-icon">🏭</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Vertical Indexing Conveyor</h3>
+                        <p class="project-subtitle">Chain Sprocket Driven Industrial System</p>
+                        <p class="project-description">
+                            An efficient vertical conveyor system utilizing chain-sprocket mechanisms
+                            for precise indexing in industrial automation applications.
+                        </p>
+                        <div class="project-tech">
+                            <span>Mechanism Design</span>
+                            <span>Automation</span>
+                            <span>CAD</span>
+                        </div>
+                        <a href="#" class="project-link" data-project-id="vertical-conveyor">
+                            <span>Learn More</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications" class="section publications">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Research</span>
+                <h2 class="section-title">Academic <span class="gradient-text">Publications</span></h2>
+            </div>
+
+            <div class="publications-grid">
+                <article class="publication-card">
+                    <div class="publication-icon">📄</div>
+                    <div class="publication-content">
+                        <span class="publication-venue">IEEE</span>
+                        <h3 class="publication-title">Design of an Agricultural Robotic System for Farm Coverage</h3>
+                        <p class="publication-abstract">
+                            A comprehensive approach to designing autonomous agricultural robots for
+                            efficient farm coverage and crop management.
+                        </p>
+                        <a href="https://ieeexplore.ieee.org/document/10895147" class="publication-link" target="_blank"
+                            rel="noopener">
+                            <span>Read Paper</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" />
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="publication-card">
+                    <div class="publication-icon">📄</div>
+                    <div class="publication-content">
+                        <span class="publication-venue">IJIRT</span>
+                        <h3 class="publication-title">Advanced Drone Navigation and Landing with Multi-Algorithm
+                            Integration</h3>
+                        <p class="publication-abstract">
+                            Novel approach to drone navigation and precision landing using integrated
+                            multi-algorithm systems for Parrot MiniDrone platforms.
+                        </p>
+                        <a href="https://ijirt.org/publishedpaper/IJIRT167610_PAPER.pdf" class="publication-link"
+                            target="_blank" rel="noopener">
+                            <span>Read Paper</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" />
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements" class="section achievements">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Recognition</span>
+                <h2 class="section-title">Achievements & <span class="gradient-text">Competitions</span></h2>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2025</span>
+                        <h3 class="timeline-title">Robocon 2025</h3>
+                        <p class="timeline-description">
+                            Currently working on innovative robot designs for the upcoming competition.
+                        </p>
+                        <span class="timeline-badge">In Progress</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2024</span>
+                        <h3 class="timeline-title">Robocon 2024</h3>
+                        <p class="timeline-description">
+                            Multiple award-winning performance including Fusion 360 Award, TRS Top 8 Teams,
+                            and 1st place at MATLAB Modelling Award.
+                        </p>
+                        <div class="achievement-badges">
+                            <span class="timeline-badge gold">🥇 MATLAB 1st</span>
+                            <span class="timeline-badge">Fusion 360</span>
+                            <span class="timeline-badge">TRS Top 8</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2023</span>
+                        <h3 class="timeline-title">Robocon 2023</h3>
+                        <p class="timeline-description">
+                            Ranked 5th overall and secured Runners Up position at MATLAB Modelling Award.
+                        </p>
+                        <div class="achievement-badges">
+                            <span class="timeline-badge">🏅 5th Rank</span>
+                            <span class="timeline-badge silver">🥈 MATLAB Runners Up</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2023</span>
+                        <h3 class="timeline-title">Robotex Entrepreneurship Challenge</h3>
+                        <p class="timeline-description">
+                            Won 2nd place for innovative robotics project in the advanced category.
+                        </p>
+                        <span class="timeline-badge silver">🥈 2nd Place</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2023</span>
+                        <h3 class="timeline-title">Mindspark Ideathon</h3>
+                        <p class="timeline-description">
+                            1st place for Semi-autonomous Welding Solution concept.
+                        </p>
+                        <span class="timeline-badge gold">🥇 1st Place</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2022-23</span>
+                        <h3 class="timeline-title">E-Yantra Robotics Competition</h3>
+                        <p class="timeline-description">
+                            Developed a hologlyph bot using overhead camera feedback and ROS2 for
+                            simultaneous multi-bot navigation.
+                        </p>
+                        <span class="timeline-badge">ROS2 Expert</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Get In Touch</span>
+                <h2 class="section-title">Let's Build <span class="gradient-text">Together</span></h2>
+                <p class="section-subtitle">
+                    Interested in collaborating on robotics projects, discussing opportunities,
+                    or just want to say hi? I'd love to hear from you!
+                </p>
+            </div>
+
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <div class="contact-icon">📧</div>
+                        <h3>Email</h3>
+                        <a href="mailto:jitentopiwala7@gmail.com">jitentopiwala7@gmail.com</a>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-icon">💼</div>
+                        <h3>LinkedIn</h3>
+                        <a href="https://linkedin.com/in/jiten-topiwala" target="_blank" rel="noopener">Connect with
+                            me</a>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-icon">🐙</div>
+                        <h3>GitHub</h3>
+                        <a href="https://github.com/jiten-topiwala" target="_blank" rel="noopener">View my code</a>
+                    </div>
+
+                    <div class="contact-card contact-card--fiverr">
+                        <div class="contact-icon">🟢</div>
+                        <h3>Fiverr</h3>
+                        <a href="https://www.fiverr.com/jiten_topiwala" target="_blank" rel="noopener">Hire me for a gig</a>
+                    </div>
+                </div>
+
+                <form action="https://formsubmit.co/jitentopiwala7@gmail.com" method="POST" class="contact-form"
+                    id="contact-form">
+                    <!-- FormSubmit Configuration -->
+                    <input type="hidden" name="_subject" value="New Portfolio Contact!">
+                    <input type="hidden" name="_captcha" value="true">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_next" value="https://jitentopiwala.github.io/Portfolio/">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" required placeholder=" ">
+                        <label for="name">Your Name</label>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" required placeholder=" ">
+                        <label for="email">Your Email</label>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" id="subject" name="subject" required placeholder=" ">
+                        <label for="subject">Subject</label>
+                    </div>
+
+                    <div class="form-group">
+                        <textarea id="message" name="message" rows="5" required placeholder=" "></textarea>
+                        <label for="message">Your Message</label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        <span>Send Message</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="footer-logo">G10</span>
+                    <p>Building the future, one robot at a time.</p>
+                </div>
+
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#contact">Contact</a>
+                </div>
+
+                <div class="footer-social">
+                    <a href="https://github.com/jiten-topiwala" target="_blank" rel="noopener" aria-label="GitHub">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                        </svg>
+                    </a>
+                    <a href="https://linkedin.com/in/jiten-topiwala" target="_blank" rel="noopener"
+                        aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; <span id="footer-year"></span> Jiten Topiwala. All rights reserved.</p>
+                <p style="opacity: 0.3; font-size: 10px;">v1.0.1</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <!-- Project Modal -->
+    <div id="project-modal" class="modal hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-container">
+            <button class="modal-close" aria-label="Close modal">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+            </button>
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="modal-tag" id="modal-category">Robotics</span>
+                    <h2 class="modal-title" id="modal-title">Project Title</h2>
+                    <p class="modal-subtitle" id="modal-subtitle">Project Subtitle</p>
+                </div>
+
+                <div class="modal-gallery">
+                    <div class="gallery-main">
+                        <div id="gallery-container">
+                            <!-- Helper for centering/loading -->
+                            <div class="gallery-placeholder">
+                                <span>Select Media</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-thumbs" id="gallery-thumbs">
+                        <!-- Thumbnails injected via JS -->
+                    </div>
+                </div>
+
+                <div class="modal-body">
+                    <div class="modal-description">
+                        <h3>Overview</h3>
+                        <p id="modal-description">Project description goes here...</p>
+
+                        <div class="modal-features">
+                            <h3>Key Features</h3>
+                            <ul id="modal-features-list">
+                                <!-- Features list injected via JS -->
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="modal-sidebar">
+                        <div class="sidebar-section">
+                            <h3>Technologies</h3>
+                            <div class="tech-stack" id="modal-tech">
+                                <!-- Tech tags injected via JS -->
+                            </div>
+                        </div>
+
+                        <div class="sidebar-section">
+                            <h3>Links</h3>
+                            <div class="modal-links" id="modal-links">
+                                <!-- Links injected via JS -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Deco Elements Removed -->
+        </div>
+    </div>
+
+    <script src="scripts/main.js" defer></script>
+</body>
+
+</html>
