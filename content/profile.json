@@ -1,0 +1,70 @@
+{
+  "name": "Jiten Topiwala",
+  "first_name": "Jiten",
+  "last_name": "Topiwala",
+  "headline": "Robotics Engineer & Innovator",
+  "roles": [
+    "Robotics Engineer",
+    "Mechanical Designer",
+    "Founding Engineer",
+    "R&D Researcher",
+    "Entrepreneur"
+  ],
+  "tagline": "Building the future, one robot at a time.",
+  "short_bio": "Robotics Engineer with a Mechanical Engineering degree, combining hardware expertise with software intelligence to create machines that matter.",
+  "long_bio": "I'm a Robotics Engineer currently serving as Founding Robotics Engineer at Agmove Robotics, where I lead autonomous navigation, embedded systems, and control software for sub-20HP agricultural rovers. My journey blends mechanical design, robotics software (ROS2, Nav2, perception), and embedded firmware — with a portfolio spanning award-winning competition robots, industrial inspection systems, agricultural automation, surveillance robots (with a patent in process), and published research in IEEE and IJIRT. I enjoy bridging the gap between research and real-world deployable systems.",
+  "current_role": {
+    "title": "Founding Robotics Engineer",
+    "company": "Agmove Robotics",
+    "since": "2025-07"
+  },
+  "availability": {
+    "status": "available",
+    "for": ["freelance", "consulting", "full-time opportunities"],
+    "response_time": "Usually responds within 24 hours"
+  },
+  "location": {
+    "city": "Pune",
+    "state": "Maharashtra",
+    "country": "India"
+  },
+  "photo": "Images/pic.webp",
+  "logo_text": "G10",
+  "contact": {
+    "email": "jitentopiwala7@gmail.com",
+    "phone": null
+  },
+  "social": [
+    {
+      "platform": "linkedin",
+      "label": "LinkedIn",
+      "url": "https://linkedin.com/in/jiten-topiwala",
+      "handle": "jiten-topiwala"
+    },
+    {
+      "platform": "github",
+      "label": "GitHub",
+      "url": "https://github.com/jiten-topiwala",
+      "handle": "jiten-topiwala"
+    },
+    {
+      "platform": "email",
+      "label": "Email",
+      "url": "mailto:jitentopiwala7@gmail.com",
+      "handle": "jitentopiwala7@gmail.com"
+    },
+    {
+      "platform": "fiverr",
+      "label": "Fiverr",
+      "url": "https://www.fiverr.com/jiten_topiwala",
+      "handle": "jiten_topiwala",
+      "rating": "5.0"
+    }
+  ],
+  "stats": [
+    { "label": "Projects Built", "value": 10, "suffix": "+" },
+    { "label": "Publications", "value": 2, "suffix": "" },
+    { "label": "Awards Won", "value": 8, "suffix": "+" },
+    { "label": "Years Experience", "value": 3, "suffix": "+" }
+  ]
+}

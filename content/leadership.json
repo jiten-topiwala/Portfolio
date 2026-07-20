@@ -1,0 +1,81 @@
+{
+  "leadership": [
+    {
+      "id": "class-representative",
+      "order": 1,
+      "featured": true,
+      "title": "Class Representative",
+      "organization": "College of Engineering Pune (COEP)",
+      "start_date": "2021-08",
+      "end_date": "2022-06",
+      "current": false,
+      "summary": "Led the batch on multiple initiatives — coordinated between faculty and students, managed timings and schedules, and made academic processes smoother and more effective."
+    },
+    {
+      "id": "tnp-coordinator",
+      "order": 2,
+      "featured": true,
+      "title": "Training & Placement (T&P) Coordinator",
+      "organization": "College of Engineering Pune (COEP)",
+      "start_date": "2023-08",
+      "end_date": "2024-06",
+      "current": false,
+      "summary": "Organised the campus interview process during third year — managed coordination between companies, students, and faculties, and improved online workflows."
+    },
+    {
+      "id": "rsc-member",
+      "order": 3,
+      "featured": true,
+      "title": "Member — Robot Study Circle (RSC)",
+      "organization": "College of Engineering Pune (COEP)",
+      "start_date": "2021-12",
+      "end_date": null,
+      "current": true,
+      "summary": "Member of COEP's robotics club where students explore, learn, innovate, build, and manage. Built early competition robots, then participated in / led Robocon teams (2023, 2024, 2025)."
+    },
+    {
+      "id": "mindspark-robowars-head-2024",
+      "order": 4,
+      "featured": true,
+      "title": "Event Head — Robo Wars (Mindspark 2024)",
+      "organization": "Mindspark, COEP",
+      "start_date": "2024-01",
+      "end_date": "2024-03",
+      "current": false,
+      "summary": "Event head for Robo Wars at Mindspark 2024."
+    },
+    {
+      "id": "mindspark-robotica-organizer",
+      "order": 5,
+      "featured": false,
+      "title": "Organiser — Robotica module (Mindspark 2023, 2024)",
+      "organization": "Mindspark, COEP",
+      "start_date": "2023-01",
+      "end_date": "2024-03",
+      "current": false,
+      "summary": "Organised the Robotica module of Mindspark 2023 and 2024 — events including Search & Destroy, Robo Royal, Virtual Robotics, and Robo Wars."
+    },
+    {
+      "id": "robotex-2023-organizer",
+      "order": 6,
+      "featured": false,
+      "title": "Organiser — Robotex Regionals & Nationals 2023",
+      "organization": "Robotex India / COEP",
+      "start_date": "2023-09",
+      "end_date": "2023-09",
+      "current": false,
+      "summary": "Helped organise Robotex Regionals and Nationals at COEP — a nationwide STEM-promoting competition with events including line follower, mega sumo, drone racing, and more."
+    },
+    {
+      "id": "ftc-referee-2023",
+      "order": 7,
+      "featured": false,
+      "title": "Referee, Technical & Field Inspector — FIRST Tech Challenge (FTC)",
+      "organization": "FIRST Tech Challenge",
+      "start_date": "2023-03",
+      "end_date": "2023-03",
+      "current": false,
+      "summary": "Volunteered as referee and technical / field inspector at the FIRST Tech Challenge."
+    }
+  ]
+}

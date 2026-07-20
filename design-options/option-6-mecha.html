@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Option 6 — Mecha · Kinetic Neon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Anton&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#08080d;
+    --bg-2:#0e0e16;
+    --panel:#13131c;
+    --line:rgba(255,255,255,0.06);
+    --line-bold:rgba(255,255,255,0.18);
+    --ink:#f5f5fa;
+    --ink-2:#a8a8b8;
+    --ink-3:#5e5e72;
+    --magenta:#ff2bd6;
+    --cyan:#22f7ff;
+    --lime:#caff2b;
+    --red:#ff4060;
+    --orange:#ff8a3d;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Space Grotesk',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    cursor:none;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:1;
+    background:
+      radial-gradient(ellipse 1000px 600px at 80% 0%, rgba(255,43,214,0.10), transparent 60%),
+      radial-gradient(ellipse 800px 600px at 0% 80%, rgba(34,247,255,0.08), transparent 60%);
+  }
+  body::after{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:2;
+    background:repeating-linear-gradient(0deg, rgba(255,255,255,0.012) 0 1px, transparent 1px 3px);
+    mix-blend-mode:overlay;
+  }
+  a{color:inherit;text-decoration:none}
+
+  /* ============== Cursor ============== */
+  .cur,.cur-r{position:fixed;pointer-events:none;z-index:9999}
+  .cur{width:8px;height:8px;background:var(--cyan);border-radius:50%;transform:translate(-50%,-50%);box-shadow:0 0 14px var(--cyan);transition:width 0.2s, height 0.2s, background 0.2s}
+  .cur-r{width:36px;height:36px;border:1px solid var(--magenta);border-radius:50%;transform:translate(-50%,-50%);transition:transform 0.15s}
+  .cur-on{width:48px !important;height:48px !important;background:var(--magenta) !important;mix-blend-mode:difference}
+
+  /* ============== Top nav ============== */
+  .top{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:18px 36px;
+    background:linear-gradient(180deg, rgba(8,8,13,0.8), transparent);
+    backdrop-filter:blur(8px);
+  }
+  .top .mark{font-family:'Anton',sans-serif;font-size:24px;letter-spacing:0.04em;color:var(--ink);line-height:1;display:flex;align-items:center;gap:8px}
+  .top .mark span{color:var(--magenta);text-shadow:0 0 16px var(--magenta)}
+  .top nav{display:flex;gap:8px;align-items:center;padding:6px;background:rgba(15,15,22,0.6);border:1px solid var(--line-bold);border-radius:6px}
+  .top nav a{padding:8px 14px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-2);transition:all 0.25s;border-radius:4px}
+  .top nav a:hover{color:var(--ink);background:rgba(255,255,255,0.06)}
+  .top nav a.cta{background:linear-gradient(90deg, var(--magenta), var(--cyan));color:#080810;font-weight:700}
+  .top .right{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-3);display:flex;gap:18px;align-items:center}
+  .top .right .pulse{width:8px;height:8px;background:var(--lime);border-radius:50%;box-shadow:0 0 12px var(--lime);animation:pulse 1.4s infinite}
+  @keyframes pulse{50%{opacity:0.4;transform:scale(0.85)}}
+
+  /* ============== Layout ============== */
+  .container{max-width:1380px;margin:0 auto;padding:0 36px;position:relative;z-index:3}
+  section{padding:120px 0;position:relative}
+
+  /* ============== HERO ============== */
+  .hero{min-height:100vh;display:flex;align-items:center;padding-top:100px;position:relative;overflow:hidden}
+
+  /* Background grid */
+  .hero::before{
+    content:"";position:absolute;inset:0;z-index:0;
+    background-image:
+      linear-gradient(rgba(255,43,214,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(34,247,255,0.06) 1px, transparent 1px);
+    background-size:60px 60px;
+    mask-image:radial-gradient(ellipse at 50% 50%, #000 30%, transparent 80%);
+  }
+
+  .hero-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:60px;align-items:center;width:100%;position:relative;z-index:2}
+
+  .pre-h1{
+    display:inline-flex;align-items:center;gap:14px;
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.3em;text-transform:uppercase;
+    padding:8px 16px;border:1px solid var(--magenta);color:var(--magenta);background:rgba(255,43,214,0.08);
+    margin-bottom:36px;
+    clip-path:polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+    box-shadow:0 0 20px rgba(255,43,214,0.2);
+  }
+  .pre-h1::before{content:"◆";color:var(--magenta)}
+
+  .h1{
+    font-family:'Anton',sans-serif;
+    font-size:clamp(72px,12vw,200px);
+    font-weight:400;
+    line-height:0.85;
+    letter-spacing:-0.02em;
+    text-transform:uppercase;
+    margin-bottom:32px;
+    color:var(--ink);
+  }
+  .h1 .stack{display:block;position:relative}
+  .h1 .stack.outline{
+    -webkit-text-stroke:2px var(--cyan);color:transparent;
+    text-shadow:0 0 30px rgba(34,247,255,0.4);
+  }
+  .h1 .stack.glitch{
+    background:linear-gradient(90deg, var(--magenta), var(--cyan));
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    position:relative;
+  }
+  .h1 .stack.glitch::before,.h1 .stack.glitch::after{
+    content:attr(data-text);position:absolute;left:0;top:0;width:100%;height:100%;
+    -webkit-text-fill-color:transparent;background-clip:text;-webkit-background-clip:text;
+  }
+  .h1 .stack.glitch::before{
+    background:linear-gradient(90deg, var(--magenta), var(--magenta));
+    -webkit-text-fill-color:transparent;
+    transform:translate(3px,0);clip-path:inset(0 0 60% 0);opacity:0.7;mix-blend-mode:screen;
+    animation:gl1 3.6s infinite;
+  }
+  .h1 .stack.glitch::after{
+    background:linear-gradient(90deg, var(--cyan), var(--cyan));
+    -webkit-text-fill-color:transparent;
+    transform:translate(-3px,0);clip-path:inset(60% 0 0 0);opacity:0.7;mix-blend-mode:screen;
+    animation:gl2 3.6s infinite;
+  }
+  @keyframes gl1{
+    0%,90%,100%{clip-path:inset(0 0 100% 0);opacity:0}
+    91%,93%{clip-path:inset(20% 0 60% 0);opacity:0.85}
+    94%,96%{clip-path:inset(40% 0 30% 0);opacity:0.85}
+  }
+  @keyframes gl2{
+    0%,90%,100%{clip-path:inset(100% 0 0 0);opacity:0}
+    91%,93%{clip-path:inset(60% 0 20% 0);opacity:0.85}
+    94%,96%{clip-path:inset(30% 0 40% 0);opacity:0.85}
+  }
+  .h1 .slash{display:inline-block;color:var(--magenta);transform:skew(-15deg);text-shadow:0 0 16px var(--magenta)}
+
+  .h1-sub{font-size:18px;line-height:1.6;color:var(--ink-2);max-width:560px;margin-bottom:42px;font-weight:400}
+  .h1-sub b{color:var(--cyan);font-weight:600}
+
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap}
+  .btn{
+    display:inline-flex;align-items:center;gap:14px;
+    padding:18px 30px;
+    font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;
+    border:1px solid var(--ink);color:var(--ink);background:transparent;
+    position:relative;overflow:hidden;cursor:none;
+    clip-path:polygon(12px 0, 100% 0, calc(100% - 12px) 100%, 0 100%);
+    transition:all 0.3s;
+  }
+  .btn::before{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(90deg, var(--magenta), var(--cyan));
+    transform:scaleX(0);transform-origin:left;transition:transform 0.4s;z-index:-1;
+  }
+  .btn:hover::before{transform:scaleX(1)}
+  .btn:hover{color:#080810;border-color:transparent}
+  .btn.primary{background:linear-gradient(90deg, var(--magenta), var(--cyan));color:#080810;border:none;font-weight:700;padding:19px 32px}
+  .btn.primary::before{background:#fff}
+  .btn.primary:hover{color:#080810}
+
+  /* Hero MECH visual */
+  .mech{position:relative;aspect-ratio:1;width:100%;max-width:560px;margin-left:auto}
+  .mech svg{width:100%;height:100%;overflow:visible}
+  .mech-rotate{animation:slow-rot 60s linear infinite;transform-origin:center}
+  @keyframes slow-rot{to{transform:rotate(360deg)}}
+  .mech-pulse{transform-origin:center;animation:pulse-scale 4s ease infinite}
+  @keyframes pulse-scale{50%{transform:scale(1.04)}}
+
+  .mech-corners{position:absolute;width:100%;height:100%;top:0;left:0;pointer-events:none}
+  .mech-corners .c{position:absolute;width:30px;height:30px;border:2px solid var(--magenta)}
+  .mech-corners .tl{top:-2px;left:-2px;border-right:none;border-bottom:none}
+  .mech-corners .tr{top:-2px;right:-2px;border-left:none;border-bottom:none}
+  .mech-corners .bl{bottom:-2px;left:-2px;border-right:none;border-top:none}
+  .mech-corners .br{bottom:-2px;right:-2px;border-left:none;border-top:none}
+
+  .mech-label{position:absolute;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase}
+  .mech-label.tl{top:14px;left:14px;color:var(--cyan)}
+  .mech-label.tr{top:14px;right:14px;color:var(--magenta);text-align:right}
+  .mech-label.bl{bottom:14px;left:14px;color:var(--ink-3)}
+  .mech-label.br{bottom:14px;right:14px;color:var(--ink-3);text-align:right}
+  .mech-label b{display:block;color:inherit;font-size:13px;margin-top:2px;font-weight:700}
+
+  .mech-id{
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    font-family:'Anton',sans-serif;font-size:64px;letter-spacing:0.05em;
+    color:var(--ink);text-shadow:0 0 30px var(--cyan);
+    text-align:center;line-height:0.95;
+    pointer-events:none;
+  }
+  .mech-id span{display:block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.3em;color:var(--cyan);font-weight:500;margin-top:6px}
+
+  /* Live stats below hero */
+  .live{margin-top:60px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line-bold);background:rgba(15,15,22,0.4)}
+  .live > div{padding:22px 24px;border-right:1px solid var(--line-bold);position:relative}
+  .live > div:last-child{border-right:none}
+  .live > div::before{content:"";position:absolute;top:0;left:0;width:40px;height:2px;background:var(--magenta)}
+  .live .lab{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--ink-3);margin-bottom:8px}
+  .live .val{font-family:'Anton',sans-serif;font-size:42px;letter-spacing:0.02em;line-height:1;color:var(--cyan);text-shadow:0 0 14px rgba(34,247,255,0.4)}
+  .live .val small{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink-3);font-weight:400;margin-left:6px;letter-spacing:0.05em}
+
+  /* ============== Section header ============== */
+  .sh{margin-bottom:60px}
+  .sh-tag{display:inline-flex;align-items:center;gap:14px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:var(--lime);margin-bottom:18px}
+  .sh-tag::before{content:"//";color:var(--magenta)}
+  .sh-tag .id{color:var(--ink-3)}
+  .sh-title{font-family:'Anton',sans-serif;font-size:clamp(48px,7vw,108px);font-weight:400;letter-spacing:-0.005em;line-height:0.95;text-transform:uppercase}
+  .sh-title em{font-style:normal;background:linear-gradient(90deg, var(--magenta), var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .sh-title .ol{-webkit-text-stroke:2px var(--ink);color:transparent}
+  .sh-lead{margin-top:18px;font-size:17px;line-height:1.65;color:var(--ink-2);max-width:680px}
+
+  /* ============== About / Pilot card ============== */
+  .about-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:48px;align-items:start}
+  .about-card{
+    background:linear-gradient(145deg, var(--panel) 0%, var(--bg-2) 100%);
+    border:1px solid var(--line-bold);position:relative;padding:32px;
+    clip-path:polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 24px 100%, 0 calc(100% - 24px));
+  }
+  .about-card::before{content:"";position:absolute;top:0;left:0;width:100px;height:3px;background:linear-gradient(90deg, var(--magenta), transparent)}
+  .about-card .photo{aspect-ratio:1;background:radial-gradient(ellipse at 40% 35%, rgba(255,43,214,0.45), rgba(8,8,13,0.95) 60%);position:relative;overflow:hidden;margin-bottom:24px;border:1px solid var(--magenta)}
+  .about-card .photo::before{content:"";position:absolute;inset:0;background:linear-gradient(0deg, transparent 49%, rgba(34,247,255,0.5) 50%, transparent 51%);background-size:100% 8px;animation:scanl 2s linear infinite;opacity:0.4}
+  @keyframes scanl{from{background-position:0 -100%}to{background-position:0 100%}}
+  .about-card .photo .let{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Anton',sans-serif;font-size:140px;color:var(--ink);text-shadow:0 0 40px var(--magenta);letter-spacing:0.02em}
+  .about-card .photo .corner{position:absolute;width:18px;height:18px;border:1px solid var(--cyan)}
+  .about-card .photo .corner.tl{top:6px;left:6px;border-right:none;border-bottom:none}
+  .about-card .photo .corner.tr{top:6px;right:6px;border-left:none;border-bottom:none}
+  .about-card .photo .corner.bl{bottom:6px;left:6px;border-right:none;border-top:none}
+  .about-card .photo .corner.br{bottom:6px;right:6px;border-left:none;border-top:none}
+
+  .about-card .data{font-family:'JetBrains Mono',monospace;font-size:12px;line-height:2;letter-spacing:0.05em}
+  .about-card .data .row{display:flex;justify-content:space-between;border-bottom:1px dashed var(--line)}
+  .about-card .data .k{color:var(--ink-3);text-transform:uppercase;font-size:10px;letter-spacing:0.2em}
+  .about-card .data .v{color:var(--ink)}
+  .about-card .data .v.acc{color:var(--cyan)}
+  .about-card .data .v.warm{color:var(--lime)}
+  .about-card .data .v.hot{color:var(--magenta)}
+
+  .about-text p{font-family:'Space Grotesk',sans-serif;font-size:18px;line-height:1.7;color:var(--ink-2);margin-bottom:22px}
+  .about-text p strong{color:var(--ink);font-weight:600}
+  .about-text .quote{
+    font-family:'Anton',sans-serif;font-size:32px;line-height:1.2;color:var(--ink);
+    text-transform:uppercase;letter-spacing:0.005em;
+    border-left:3px solid var(--magenta);padding:16px 0 16px 24px;margin:32px 0;
+    position:relative;
+  }
+  .about-text .quote::after{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--cyan);transform:translateX(8px);opacity:0.6}
+
+  /* ============== Mecha cards (projects as trading cards) ============== */
+  .deck{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .card{
+    position:relative;background:var(--panel);border:1px solid var(--line-bold);
+    overflow:hidden;cursor:pointer;
+    clip-path:polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px));
+    transition:transform 0.6s cubic-bezier(.2,.7,.2,1), border-color 0.4s;
+  }
+  .card:hover{transform:translateY(-8px) scale(1.02);border-color:var(--magenta)}
+  .card::before{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(400px circle at var(--mx,50%) var(--my,50%), rgba(255,43,214,0.18), transparent 50%);
+    opacity:0;transition:opacity 0.4s;pointer-events:none;z-index:3;
+  }
+  .card:hover::before{opacity:1}
+
+  .card-head{padding:14px 18px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase}
+  .card-head .id{color:var(--cyan)}
+  .card-head .rare{color:var(--ink);font-family:'Anton',sans-serif;font-size:14px;letter-spacing:0.05em;padding:3px 10px;border:1px solid var(--ink);clip-path:polygon(6px 0, 100% 0, calc(100% - 6px) 100%, 0 100%)}
+  .card-head .rare.legendary{color:var(--lime);border-color:var(--lime);background:rgba(202,255,43,0.1)}
+  .card-head .rare.rare{color:var(--magenta);border-color:var(--magenta);background:rgba(255,43,214,0.1)}
+  .card-head .rare.epic{color:var(--orange);border-color:var(--orange);background:rgba(255,138,61,0.1)}
+
+  .card-art{
+    aspect-ratio:5/4;position:relative;overflow:hidden;
+    background:radial-gradient(ellipse at 50% 50%, var(--art-tint, rgba(255,43,214,0.4)), rgba(8,8,13,0.9) 70%);
+  }
+  .card-art::before{
+    content:"";position:absolute;inset:0;
+    background:
+      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size:24px 24px;
+  }
+  .card-art .glyph{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    font-family:'Anton',sans-serif;font-size:120px;letter-spacing:0.02em;color:var(--ink);
+    text-shadow:0 0 30px currentColor;
+    z-index:2;
+  }
+  .card-art .scan{position:absolute;inset:0;background:linear-gradient(180deg, transparent 49%, rgba(34,247,255,0.5) 50%, transparent 51%);background-size:100% 12px;animation:scanl 4s linear infinite;opacity:0.3;z-index:3}
+
+  .card-body{padding:20px;position:relative;z-index:4}
+  .card-body h3{font-family:'Anton',sans-serif;font-size:26px;letter-spacing:0.005em;text-transform:uppercase;color:var(--ink);margin-bottom:6px;line-height:1}
+  .card-body .sub{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;color:var(--ink-3);text-transform:uppercase;margin-bottom:14px}
+
+  .card-stats{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+  .stat-line{display:flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase}
+  .stat-line .lbl{color:var(--ink-3);width:60px}
+  .stat-line .bar{flex:1;height:6px;background:rgba(255,255,255,0.06);position:relative;overflow:hidden;clip-path:polygon(4px 0, 100% 0, calc(100% - 4px) 100%, 0 100%)}
+  .stat-line .bar::after{content:"";position:absolute;top:0;left:0;height:100%;width:var(--w,75%);background:linear-gradient(90deg, var(--magenta), var(--cyan));transform:scaleX(0);transform-origin:left;transition:transform 1s ease 0.3s}
+  .card.in .stat-line .bar::after{transform:scaleX(1)}
+  .stat-line .pct{color:var(--cyan);font-weight:600;width:32px;text-align:right}
+
+  /* ============== Skills MATRIX ============== */
+  .matrix{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+  .skill-cell{
+    aspect-ratio:1;position:relative;overflow:hidden;cursor:pointer;
+    background:linear-gradient(135deg, var(--panel), var(--bg-2));
+    border:1px solid var(--line-bold);
+    display:flex;flex-direction:column;justify-content:space-between;padding:14px;
+    transition:all 0.4s cubic-bezier(.2,.7,.2,1);
+    clip-path:polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  }
+  .skill-cell:hover{transform:translateY(-4px);background:linear-gradient(135deg, rgba(255,43,214,0.15), var(--bg-2));border-color:var(--magenta)}
+  .skill-cell .ico{font-family:'Anton',sans-serif;font-size:42px;color:var(--cyan);line-height:1;text-shadow:0 0 16px rgba(34,247,255,0.5)}
+  .skill-cell:hover .ico{color:var(--magenta);text-shadow:0 0 16px rgba(255,43,214,0.6)}
+  .skill-cell .name{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;color:var(--ink);letter-spacing:-0.005em}
+  .skill-cell .name span{display:block;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.15em;color:var(--ink-3);text-transform:uppercase;margin-top:2px;font-weight:400}
+  .skill-cell .lvl{position:absolute;top:14px;right:14px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--lime);letter-spacing:0.1em}
+
+  /* ============== Services ============== */
+  .ops-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .op{
+    background:linear-gradient(135deg, var(--panel), var(--bg-2));
+    border:1px solid var(--line-bold);padding:32px;position:relative;cursor:pointer;
+    transition:all 0.4s;
+    clip-path:polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+  }
+  .op:hover{border-color:var(--cyan);background:linear-gradient(135deg, rgba(34,247,255,0.1), var(--bg-2));transform:translateY(-3px)}
+  .op .num{position:absolute;top:18px;right:24px;font-family:'Anton',sans-serif;font-size:60px;color:rgba(255,255,255,0.06);line-height:1}
+  .op .ico{
+    width:50px;height:50px;display:flex;align-items:center;justify-content:center;
+    font-family:'Anton',sans-serif;font-size:22px;
+    background:linear-gradient(135deg, var(--magenta), var(--cyan));color:#080810;
+    margin-bottom:18px;
+    clip-path:polygon(0 0, 100% 0, 90% 100%, 10% 100%);
+  }
+  .op h3{font-family:'Anton',sans-serif;font-size:22px;letter-spacing:0.02em;text-transform:uppercase;color:var(--ink);margin-bottom:10px}
+  .op p{font-size:14px;line-height:1.65;color:var(--ink-2);margin-bottom:18px}
+  .op ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+  .op ul li{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink);display:flex;gap:10px;align-items:center;letter-spacing:0.05em}
+  .op ul li::before{content:"►";color:var(--magenta);font-size:10px}
+
+  /* ============== CTA / Footer ============== */
+  .cta-section{
+    border:1px solid var(--magenta);
+    background:linear-gradient(135deg, rgba(255,43,214,0.12) 0%, rgba(34,247,255,0.06) 100%);
+    padding:80px;position:relative;overflow:hidden;
+    clip-path:polygon(40px 0, 100% 0, 100% calc(100% - 40px), calc(100% - 40px) 100%, 0 100%, 0 40px);
+  }
+  .cta-section::before{
+    content:"";position:absolute;inset:0;
+    background:
+      linear-gradient(rgba(255,43,214,0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(34,247,255,0.08) 1px, transparent 1px);
+    background-size:30px 30px;mask-image:radial-gradient(ellipse at 50% 50%, #000 30%, transparent 80%);
+  }
+  .cta-section h2{
+    position:relative;font-family:'Anton',sans-serif;font-size:clamp(48px,7vw,108px);
+    line-height:0.92;text-transform:uppercase;letter-spacing:-0.01em;margin-bottom:24px;
+  }
+  .cta-section h2 em{font-style:normal;background:linear-gradient(90deg, var(--magenta), var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .cta-section p{position:relative;font-size:18px;line-height:1.6;color:var(--ink-2);max-width:580px;margin-bottom:36px}
+
+  .cta-section .channels{position:relative;display:flex;flex-wrap:wrap;gap:14px;margin-top:24px}
+  .ch{padding:14px 22px;border:1px solid var(--line-bold);font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink);transition:all 0.3s;display:inline-flex;gap:10px;align-items:center;cursor:none;clip-path:polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%)}
+  .ch:hover{background:var(--magenta);color:#080810;border-color:var(--magenta);transform:translateY(-2px)}
+
+  /* ============== Footer ============== */
+  footer{padding:60px 36px;text-align:center;border-top:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-3);margin-top:80px}
+  footer .fl{font-family:'Anton',sans-serif;font-size:42px;color:var(--ink);letter-spacing:0.04em;margin-bottom:12px;text-transform:uppercase}
+  footer .fl span{color:var(--magenta);text-shadow:0 0 16px var(--magenta)}
+
+  /* Reveal */
+  .rev{opacity:0;transform:translateY(40px);transition:all 1s cubic-bezier(.2,.7,.2,1)}
+  .rev.in{opacity:1;transform:translateY(0)}
+
+  @media (max-width:980px){
+    body{cursor:auto}
+    .cur,.cur-r{display:none}
+    .top{padding:14px 16px}
+    .top nav{display:none}
+    .top .right{display:none}
+    .container{padding:0 18px}
+    .hero-grid,.about-grid{grid-template-columns:1fr;gap:32px}
+    .mech{margin:0 auto;max-width:400px}
+    .live{grid-template-columns:1fr 1fr}
+    .live > div:nth-child(2){border-right:none}
+    .live > div:nth-child(1),.live > div:nth-child(2){border-bottom:1px solid var(--line-bold)}
+    .deck{grid-template-columns:1fr}
+    .matrix{grid-template-columns:repeat(3,1fr)}
+    .ops-grid{grid-template-columns:1fr}
+    .cta-section{padding:32px}
+  }
+</style>
+</head>
+<body>
+
+<div class="cur"></div>
+<div class="cur-r"></div>
+
+<header class="top">
+  <div class="mark">G<span>10</span></div>
+  <nav>
+    <a href="#hero">Index</a>
+    <a href="#about">Pilot</a>
+    <a href="#deck">Deck</a>
+    <a href="#matrix">Stack</a>
+    <a href="#ops">Ops</a>
+    <a href="#cta" class="cta">Hire ▸</a>
+  </nav>
+  <div class="right">
+    <span class="pulse"></span>
+    <span>SYS · ONLINE</span>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- ============== HERO ============== -->
+  <section class="hero" id="hero">
+    <div class="hero-grid">
+      <div>
+        <div class="pre-h1">PORTFOLIO · 2026 · PILOT G10</div>
+        <h1 class="h1">
+          <span class="stack outline">Builder of</span>
+          <span class="stack glitch" data-text="Robots.">Robots<span class="slash">/</span></span>
+          <span class="stack outline">Engineer.</span>
+        </h1>
+        <p class="h1-sub">Robotics. Mechanical. Embedded. Vision. <b>Award-winning</b> systems for surveillance, agriculture and industry — built from CAD to firmware to deployment.</p>
+        <div class="cta-row">
+          <a href="#deck" class="btn primary">► View the Deck</a>
+          <a href="#cta" class="btn">◇ Open Comms</a>
+        </div>
+
+        <div class="live">
+          <div><div class="lab">Builds</div><div class="val">10<small>+</small></div></div>
+          <div><div class="lab">Wins</div><div class="val">8<small>+</small></div></div>
+          <div><div class="lab">Papers</div><div class="val">02</div></div>
+          <div><div class="lab">Years</div><div class="val">3<small>+</small></div></div>
+        </div>
+      </div>
+
+      <div class="mech">
+        <div class="mech-corners">
+          <span class="c tl"></span><span class="c tr"></span><span class="c bl"></span><span class="c br"></span>
+        </div>
+        <span class="mech-label tl">— UNIT<b>G10-X</b></span>
+        <span class="mech-label tr">CLASS<b>MECH-01</b></span>
+        <span class="mech-label bl">— STATUS<b style="color:var(--lime)">ACTIVE</b></span>
+        <span class="mech-label br">PWR<b>100%</b></span>
+
+        <svg viewBox="0 0 500 500">
+          <defs>
+            <linearGradient id="mGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="var(--magenta)"/>
+              <stop offset="100%" stop-color="var(--cyan)"/>
+            </linearGradient>
+            <linearGradient id="mGrad2" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="var(--cyan)"/>
+              <stop offset="100%" stop-color="var(--magenta)"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Outer rotating ring -->
+          <g class="mech-rotate">
+            <circle cx="250" cy="250" r="230" stroke="url(#mGrad)" stroke-width="1" fill="none" stroke-dasharray="4 8" opacity="0.5"/>
+            <circle cx="250" cy="250" r="230" stroke="var(--magenta)" stroke-width="2" fill="none" stroke-dasharray="60 1380"/>
+          </g>
+
+          <!-- Hex frame -->
+          <polygon class="mech-pulse" points="250,80 380,150 380,290 250,360 120,290 120,150" fill="none" stroke="url(#mGrad)" stroke-width="2"/>
+          <polygon points="250,100 360,160 360,280 250,340 140,280 140,160" fill="none" stroke="var(--cyan)" stroke-width="0.5" opacity="0.5"/>
+
+          <!-- Inner core -->
+          <circle cx="250" cy="220" r="60" fill="rgba(255,43,214,0.08)" stroke="var(--magenta)" stroke-width="1.5"/>
+          <circle cx="250" cy="220" r="40" fill="none" stroke="var(--cyan)" stroke-width="1"/>
+          <circle cx="250" cy="220" r="20" fill="none" stroke="var(--magenta)" stroke-width="1"/>
+          <line x1="190" y1="220" x2="310" y2="220" stroke="var(--cyan)" stroke-width="0.5"/>
+          <line x1="250" y1="160" x2="250" y2="280" stroke="var(--cyan)" stroke-width="0.5"/>
+
+          <!-- Side mech arms -->
+          <g class="mech-pulse">
+            <rect x="60" y="200" width="60" height="40" rx="2" fill="rgba(34,247,255,0.06)" stroke="var(--cyan)" stroke-width="1"/>
+            <rect x="380" y="200" width="60" height="40" rx="2" fill="rgba(34,247,255,0.06)" stroke="var(--cyan)" stroke-width="1"/>
+            <line x1="120" y1="220" x2="140" y2="220" stroke="var(--magenta)" stroke-width="2"/>
+            <line x1="360" y1="220" x2="380" y2="220" stroke="var(--magenta)" stroke-width="2"/>
+            <circle cx="90" cy="220" r="6" fill="var(--lime)"/>
+            <circle cx="410" cy="220" r="6" fill="var(--lime)"/>
+          </g>
+
+          <!-- Lower mech parts -->
+          <rect x="180" y="370" width="50" height="80" rx="4" fill="rgba(255,43,214,0.06)" stroke="var(--magenta)" stroke-width="1.5"/>
+          <rect x="270" y="370" width="50" height="80" rx="4" fill="rgba(255,43,214,0.06)" stroke="var(--magenta)" stroke-width="1.5"/>
+          <line x1="190" y1="385" x2="220" y2="385" stroke="var(--cyan)" stroke-width="0.5"/>
+          <line x1="190" y1="400" x2="220" y2="400" stroke="var(--cyan)" stroke-width="0.5"/>
+          <line x1="190" y1="415" x2="220" y2="415" stroke="var(--cyan)" stroke-width="0.5"/>
+          <line x1="280" y1="385" x2="310" y2="385" stroke="var(--cyan)" stroke-width="0.5"/>
+          <line x1="280" y1="400" x2="310" y2="400" stroke="var(--cyan)" stroke-width="0.5"/>
+          <line x1="280" y1="415" x2="310" y2="415" stroke="var(--cyan)" stroke-width="0.5"/>
+
+          <!-- Top sensor -->
+          <circle cx="250" cy="60" r="14" fill="rgba(202,255,43,0.2)" stroke="var(--lime)" stroke-width="1.5"/>
+          <line x1="250" y1="74" x2="250" y2="90" stroke="var(--lime)" stroke-width="1.5"/>
+
+          <!-- Energy lines -->
+          <line x1="250" y1="280" x2="250" y2="370" stroke="var(--magenta)" stroke-width="1.5"/>
+          <line x1="200" y1="280" x2="200" y2="370" stroke="var(--cyan)" stroke-width="0.5" opacity="0.5"/>
+          <line x1="300" y1="280" x2="300" y2="370" stroke="var(--cyan)" stroke-width="0.5" opacity="0.5"/>
+
+          <!-- Hex small accents -->
+          <polygon points="50,250 60,230 80,230 90,250 80,270 60,270" fill="none" stroke="var(--cyan)" stroke-width="0.8" opacity="0.6"/>
+          <polygon points="410,250 420,230 440,230 450,250 440,270 420,270" fill="none" stroke="var(--cyan)" stroke-width="0.8" opacity="0.6"/>
+        </svg>
+
+        <div class="mech-id">
+          G10
+          <span>// CALLSIGN</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== ABOUT ============== -->
+  <section id="about">
+    <div class="sh rev">
+      <div class="sh-tag"><span class="id">02 //</span>Pilot</div>
+      <h2 class="sh-title">Meet the <em>operator</em>.<br><span class="ol">G10 — engineer-class.</span></h2>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-card rev">
+        <div class="photo">
+          <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+          <div class="let">JT</div>
+        </div>
+        <div class="data">
+          <div class="row"><span class="k">Callsign</span><span class="v hot">G10</span></div>
+          <div class="row"><span class="k">Class</span><span class="v acc">Engineer-Mechanic</span></div>
+          <div class="row"><span class="k">Base</span><span class="v">India · Remote</span></div>
+          <div class="row"><span class="k">Faction</span><span class="v warm">Agmove · LiftTerra</span></div>
+          <div class="row"><span class="k">Specialty</span><span class="v">CAD-to-firmware</span></div>
+          <div class="row"><span class="k">Rank</span><span class="v warm">★ ★ ★ ★ ★</span></div>
+          <div class="row"><span class="k">Status</span><span class="v warm">► AVAILABLE</span></div>
+        </div>
+      </div>
+
+      <div class="about-text rev">
+        <p>I'm a <strong>robotics engineer</strong> trained as a mechanical engineer — meaning I design the chassis, choose the actuators, integrate the sensors and close the loop in code. I do all of it because <strong>real robots demand all of it</strong>.</p>
+        <p>From <strong>award-winning Robocon platforms</strong> to industrial pipe inspectors, my work consistently lives in the field — under load, with stakeholders watching every decision.</p>
+        <div class="quote">"CAD it. Code it. Ship it. Repeat."</div>
+        <p>Currently lead robotics engineer at <strong>Agmove</strong>, building autonomous farm rovers. Quietly founding <strong>LiftTerra</strong> — a robotics startup attacking construction & maintenance.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== Trading-card project deck ============== -->
+  <section id="deck">
+    <div class="sh rev">
+      <div class="sh-tag"><span class="id">03 //</span>Deck</div>
+      <h2 class="sh-title"><em>Combat</em> log.<br><span class="ol">Selected builds.</span></h2>
+      <p class="sh-lead">Each card represents a real robot, deployed and tested. Hover to see specs.</p>
+    </div>
+
+    <div class="deck">
+
+      <article class="card rev" style="--art-tint:rgba(255,43,214,0.45)">
+        <div class="card-head">
+          <span class="id">// A-001</span>
+          <span class="rare legendary">LEGENDARY</span>
+        </div>
+        <div class="card-art"><div class="scan"></div><span class="glyph" style="color:var(--magenta)">L</span></div>
+        <div class="card-body">
+          <h3>LiftTerra</h3>
+          <div class="sub">— Construction Bot · Founder</div>
+          <div class="card-stats">
+            <div class="stat-line"><span class="lbl">PAYLOAD</span><span class="bar" style="--w:90%"></span><span class="pct">90</span></div>
+            <div class="stat-line"><span class="lbl">SPEED</span><span class="bar" style="--w:75%"></span><span class="pct">75</span></div>
+            <div class="stat-line"><span class="lbl">AUTONMY</span><span class="bar" style="--w:85%"></span><span class="pct">85</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="card rev" style="--art-tint:rgba(34,247,255,0.45)">
+        <div class="card-head">
+          <span class="id">// A-002</span>
+          <span class="rare rare">EPIC</span>
+        </div>
+        <div class="card-art"><div class="scan"></div><span class="glyph" style="color:var(--cyan)">M</span></div>
+        <div class="card-body">
+          <h3>Manpackable</h3>
+          <div class="sub">— Wheel-Track Surveillance</div>
+          <div class="card-stats">
+            <div class="stat-line"><span class="lbl">RANGE</span><span class="bar" style="--w:88%"></span><span class="pct">88</span></div>
+            <div class="stat-line"><span class="lbl">TRANSFRM</span><span class="bar" style="--w:92%"></span><span class="pct">92</span></div>
+            <div class="stat-line"><span class="lbl">STEALTH</span><span class="bar" style="--w:78%"></span><span class="pct">78</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="card rev" style="--art-tint:rgba(255,138,61,0.4)">
+        <div class="card-head">
+          <span class="id">// A-003</span>
+          <span class="rare epic">RARE</span>
+        </div>
+        <div class="card-art"><div class="scan"></div><span class="glyph" style="color:var(--orange)">P</span></div>
+        <div class="card-body">
+          <h3>Pipe Inspector</h3>
+          <div class="sub">— Variable Diameter · IP67</div>
+          <div class="card-stats">
+            <div class="stat-line"><span class="lbl">SEAL</span><span class="bar" style="--w:95%"></span><span class="pct">95</span></div>
+            <div class="stat-line"><span class="lbl">RANGE</span><span class="bar" style="--w:70%"></span><span class="pct">70</span></div>
+            <div class="stat-line"><span class="lbl">VISION</span><span class="bar" style="--w:80%"></span><span class="pct">80</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="card rev" style="--art-tint:rgba(202,255,43,0.35)">
+        <div class="card-head">
+          <span class="id">// A-004</span>
+          <span class="rare rare">EPIC</span>
+        </div>
+        <div class="card-art"><div class="scan"></div><span class="glyph" style="color:var(--lime)">B</span></div>
+        <div class="card-body">
+          <h3>Biped Walker</h3>
+          <div class="sub">— 12 DOF · ZMP Gait</div>
+          <div class="card-stats">
+            <div class="stat-line"><span class="lbl">DOF</span><span class="bar" style="--w:92%"></span><span class="pct">92</span></div>
+            <div class="stat-line"><span class="lbl">BALANCE</span><span class="bar" style="--w:78%"></span><span class="pct">78</span></div>
+            <div class="stat-line"><span class="lbl">CONTROL</span><span class="bar" style="--w:85%"></span><span class="pct">85</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="card rev" style="--art-tint:rgba(255,64,96,0.4)">
+        <div class="card-head">
+          <span class="id">// A-005</span>
+          <span class="rare legendary">LEGENDARY</span>
+        </div>
+        <div class="card-art"><div class="scan"></div><span class="glyph" style="color:var(--red)">A</span></div>
+        <div class="card-body">
+          <h3>Farm Rover</h3>
+          <div class="sub">— Sub-20HP Autonomous</div>
+          <div class="card-stats">
+            <div class="stat-line"><span class="lbl">RTK-NAV</span><span class="bar" style="--w:90%"></span><span class="pct">90</span></div>
+            <div class="stat-line"><span class="lbl">PERCPTN</span><span class="bar" style="--w:85%"></span><span class="pct">85</span></div>
+            <div class="stat-line"><span class="lbl">FUSION</span><span class="bar" style="--w:88%"></span><span class="pct">88</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="card rev" style="--art-tint:rgba(255,255,255,0.3)">
+        <div class="card-head">
+          <span class="id">// A-006</span>
+          <span class="rare epic">RARE</span>
+        </div>
+        <div class="card-art"><div class="scan"></div><span class="glyph" style="color:var(--ink)">V</span></div>
+        <div class="card-body">
+          <h3>Indexing Conveyor</h3>
+          <div class="sub">— Industrial · ±0.5mm</div>
+          <div class="card-stats">
+            <div class="stat-line"><span class="lbl">PRECSN</span><span class="bar" style="--w:96%"></span><span class="pct">96</span></div>
+            <div class="stat-line"><span class="lbl">SPEED</span><span class="bar" style="--w:70%"></span><span class="pct">70</span></div>
+            <div class="stat-line"><span class="lbl">DURBLTY</span><span class="bar" style="--w:88%"></span><span class="pct">88</span></div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============== Skills MATRIX ============== -->
+  <section id="matrix">
+    <div class="sh rev">
+      <div class="sh-tag"><span class="id">04 //</span>Stack</div>
+      <h2 class="sh-title"><em>Loadout</em><br><span class="ol">— matrix.</span></h2>
+      <p class="sh-lead">Tools calibrated, deployed, and battle-tested across every project.</p>
+    </div>
+
+    <div class="matrix">
+      <div class="skill-cell rev"><span class="lvl">99</span><span class="ico">M</span><div class="name">SolidWorks<span>— mechanical</span></div></div>
+      <div class="skill-cell rev"><span class="lvl">95</span><span class="ico">F</span><div class="name">Fusion 360<span>— design</span></div></div>
+      <div class="skill-cell rev"><span class="lvl">92</span><span class="ico">R</span><div class="name">ROS2<span>— robotics</span></div></div>
+      <div class="skill-cell rev"><span class="lvl">88</span><span class="ico">P</span><div class="name">Python<span>— code</span></div></div>
+      <div class="skill-cell rev"><span class="lvl">85</span><span class="ico">C</span><div class="name">C/C++<span>— firmware</span></div></div>
+      <div class="skill-cell rev"><span class="lvl">82</span><span class="ico">S</span><div class="name">STM32<span>— embedded</span></div></div>
+      <div class="skill-cell rev"><span class="lvl">90</span><span class="ico">M</span><div class="name">MATLAB<span>— modeling</span></div></div>
+      <div class="skill-cell rev"><span class="lvl">86</span><span class="ico">G</span><div class="name">Gazebo<span>— sim</span></div></div>
+      <div class="skill-cell rev"><span class="lvl">88</span><span class="ico">J</span><div class="name">Jetson<span>— edge AI</span></div></div>
+      <div class="skill-cell rev"><span class="lvl">84</span><span class="ico">V</span><div class="name">OpenCV<span>— vision</span></div></div>
+      <div class="skill-cell rev"><span class="lvl">80</span><span class="ico">P</span><div class="name">PCB<span>— hardware</span></div></div>
+      <div class="skill-cell rev"><span class="lvl">90</span><span class="ico">L</span><div class="name">Linux<span>— ops</span></div></div>
+    </div>
+  </section>
+
+  <!-- ============== Services / OPS ============== -->
+  <section id="ops">
+    <div class="sh rev">
+      <div class="sh-tag"><span class="id">05 //</span>Ops</div>
+      <h2 class="sh-title"><em>Ops</em> capabilities<br><span class="ol">— for hire.</span></h2>
+      <p class="sh-lead">Consulting, freelance, full-time. Worldwide. Open now.</p>
+    </div>
+
+    <div class="ops-grid">
+      <div class="op rev">
+        <span class="num">01</span>
+        <div class="ico">⚙</div>
+        <h3>CAD & 3D Modeling</h3>
+        <p>Manufacturing-ready designs from concept to drawings — with FEA validation.</p>
+        <ul><li>3D part & assembly</li><li>Engineering drawings + GD&T</li><li>FEA stress analysis</li><li>3D-print-ready files</li></ul>
+      </div>
+      <div class="op rev">
+        <span class="num">02</span>
+        <div class="ico">▲</div>
+        <h3>Robotics Consulting</h3>
+        <p>End-to-end robot design — mechanical, ROS2, sensor fusion, motion planning.</p>
+        <ul><li>Robot architecture</li><li>ROS / ROS2</li><li>Motion planning</li><li>CV integration</li></ul>
+      </div>
+      <div class="op rev">
+        <span class="num">03</span>
+        <div class="ico">{}</div>
+        <h3>Embedded & Automation</h3>
+        <p>Custom firmware for Arduino, Raspberry Pi, STM32 — sensor and motor integration.</p>
+        <ul><li>Arduino / RPi / STM32</li><li>Motor control</li><li>Sensor calibration</li><li>PLC automation</li></ul>
+      </div>
+      <div class="op rev">
+        <span class="num">04</span>
+        <div class="ico">✎</div>
+        <h3>Research & Tech Writing</h3>
+        <p>IEEE-standard papers, technical docs, R&D consulting — backed by 2 publications.</p>
+        <ul><li>Research papers</li><li>Technical docs</li><li>Lit reviews</li><li>POC dev</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== CTA ============== -->
+  <section id="cta">
+    <div class="cta-section rev">
+      <div class="sh-tag" style="color:var(--lime)"><span class="id">06 //</span>Comms</div>
+      <h2>Got a hard <em>problem</em>?<br>Let's <em>build</em> the machine.</h2>
+      <p>Open for consulting, freelance and full-time engagements. 24-hour response. Working prototypes in weeks, not months.</p>
+      <div style="display:flex;gap:14px;flex-wrap:wrap">
+        <a href="#" class="btn primary">► INITIATE COMMS</a>
+        <a href="#" class="btn">◇ SCHEDULE CALL</a>
+      </div>
+      <div class="channels">
+        <a class="ch">📧 EMAIL</a>
+        <a class="ch">⌘ LINKEDIN</a>
+        <a class="ch">{} GITHUB</a>
+        <a class="ch">★ FIVERR · 5.0</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="fl">G<span>10</span></div>
+  <p>► Building robots that ship · v3.0 · © 2026</p>
+</footer>
+
+<script>
+  // Cursor
+  const cur = document.querySelector('.cur');
+  const ring = document.querySelector('.cur-r');
+  let mx=0, my=0, rx=0, ry=0;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cur.style.left = mx+'px'; cur.style.top = my+'px';
+  });
+  function l(){
+    rx += (mx-rx)*0.18; ry += (my-ry)*0.18;
+    ring.style.left = rx+'px'; ring.style.top = ry+'px';
+    requestAnimationFrame(l);
+  }
+  l();
+  document.querySelectorAll('a, .btn, .card, .skill-cell, .op, .ch').forEach(el => {
+    el.addEventListener('mouseenter', () => ring.classList.add('cur-on'));
+    el.addEventListener('mouseleave', () => ring.classList.remove('cur-on'));
+  });
+
+  // Spotlight on cards
+  document.querySelectorAll('.card').forEach(t => {
+    t.addEventListener('mousemove', e => {
+      const r = t.getBoundingClientRect();
+      t.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      t.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  });
+
+  // Reveal
+  const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add('in')), {threshold:0.08});
+  document.querySelectorAll('.rev').forEach((el,i) => {
+    el.style.transitionDelay = (i * 30) + 'ms';
+    io.observe(el);
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Option 5 — The Robotics Issue · Magazine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=Inter:wght@200;300;400;500;600;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f5f0e6;
+    --paper-2:#ece5d4;
+    --ink:#0d0d0c;
+    --ink-2:#3a3936;
+    --ink-3:#7a7872;
+    --rule:rgba(13,13,12,0.18);
+    --rule-2:rgba(13,13,12,0.08);
+    --red:#c1272d;
+    --gold:#a07a3a;
+    --teal:#1f5d56;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    font-weight:400;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  /* Subtle paper texture */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:1000;mix-blend-mode:multiply;opacity:0.06;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'><filter id='n'><feTurbulence baseFrequency='0.95' numOctaves='3'/></filter><rect width='600' height='600' filter='url(%23n)'/></svg>");
+  }
+  a{color:inherit;text-decoration:none}
+
+  /* ===== Masthead ===== */
+  .masthead{
+    border-bottom:3px double var(--ink);
+    padding:18px 40px;
+    display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
+    background:var(--paper);
+  }
+  .masthead .left{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-2)}
+  .masthead .center{font-family:'Playfair Display',serif;font-weight:900;font-size:28px;letter-spacing:0.05em;text-transform:uppercase;text-align:center;line-height:1}
+  .masthead .center small{display:block;font-size:9px;letter-spacing:0.4em;font-weight:400;color:var(--ink-3);margin-top:4px}
+  .masthead .right{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;text-align:right;color:var(--ink-2)}
+
+  .nav{
+    border-bottom:1px solid var(--rule);
+    padding:14px 40px;display:flex;justify-content:center;gap:36px;
+    font-family:'Playfair Display',serif;font-style:italic;font-size:14px;color:var(--ink-2);
+  }
+  .nav a{position:relative;transition:color 0.3s}
+  .nav a::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform 0.4s}
+  .nav a:hover{color:var(--ink)}
+  .nav a:hover::after{transform:scaleX(1)}
+
+  /* ===== Container ===== */
+  .container{max-width:1280px;margin:0 auto;padding:0 40px;position:relative}
+
+  /* ===== Cover / hero ===== */
+  .cover{
+    padding:48px 40px 60px;
+    border-bottom:1px solid var(--rule);
+    position:relative;
+  }
+  .cover .top-meta{
+    display:flex;justify-content:space-between;align-items:end;
+    font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-3);
+    margin-bottom:36px;
+    border-bottom:1px solid var(--rule);padding-bottom:14px;
+  }
+  .cover .top-meta .feat{color:var(--red);font-weight:500}
+
+  .cover-grid{
+    display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:center;
+  }
+  .cover .kicker{
+    font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.3em;text-transform:uppercase;
+    color:var(--red);margin-bottom:28px;display:inline-flex;align-items:center;gap:14px;
+  }
+  .cover .kicker::before{content:"";width:50px;height:1px;background:var(--red)}
+
+  .cover h1{
+    font-family:'Playfair Display',serif;
+    font-size:clamp(58px,9.5vw,180px);
+    font-weight:500;
+    line-height:0.88;
+    letter-spacing:-0.025em;
+    margin-bottom:30px;
+  }
+  .cover h1 em{font-style:italic;font-weight:400}
+  .cover h1 .display-r{color:var(--red);font-style:italic;font-weight:400}
+
+  .cover .deck{
+    font-family:'Playfair Display',serif;
+    font-style:italic;font-weight:400;
+    font-size:24px;line-height:1.4;color:var(--ink-2);
+    max-width:540px;margin-bottom:36px;
+    border-left:3px solid var(--ink);padding-left:22px;
+  }
+
+  .cover .byline{
+    display:flex;gap:24px;align-items:center;
+    font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-3);
+    padding-top:24px;border-top:1px solid var(--rule);
+  }
+  .cover .byline b{color:var(--ink);font-weight:600}
+  .cover .byline .dot{width:4px;height:4px;background:var(--ink-3);border-radius:50%;display:inline-block}
+
+  /* Cover photo block */
+  .cover-photo{
+    aspect-ratio:4/5;
+    background:linear-gradient(135deg, #2a2520 0%, #0a0a08 100%);
+    position:relative;overflow:hidden;
+  }
+  .cover-photo::before{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(ellipse at 40% 35%, rgba(160,122,58,0.55), transparent 65%);
+  }
+  .cover-photo::after{
+    content:"";position:absolute;inset:0;
+    background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'><filter id='n'><feTurbulence baseFrequency='1.4' numOctaves='3'/></filter><rect width='400' height='500' filter='url(%23n)' opacity='0.12'/></svg>");
+  }
+  .cover-photo .silh{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:200px;font-weight:500;font-style:italic;color:rgba(245,240,230,0.9);letter-spacing:-0.05em;line-height:1}
+  .cover-photo .label{position:absolute;bottom:18px;left:18px;right:18px;display:flex;justify-content:space-between;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(245,240,230,0.85);z-index:2}
+  .cover-photo .frame-num{position:absolute;top:18px;left:18px;font-family:'Playfair Display',serif;font-style:italic;font-size:14px;color:rgba(245,240,230,0.8)}
+
+  .cover-pull{
+    position:absolute;right:40px;bottom:60px;max-width:280px;text-align:right;
+    font-family:'Playfair Display',serif;font-style:italic;font-weight:400;
+    font-size:18px;line-height:1.4;color:var(--ink-2);
+  }
+  .cover-pull::before{
+    content:"\"";font-size:96px;color:var(--ink);font-style:normal;font-weight:500;
+    display:block;line-height:0.5;margin-bottom:12px;
+  }
+
+  /* ===== Section header (article style) ===== */
+  .article-head{
+    text-align:center;padding:80px 0 40px;border-top:1px solid var(--rule);position:relative;
+  }
+  .article-head .num{font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:14px;color:var(--red);letter-spacing:0.3em;text-transform:uppercase;margin-bottom:14px}
+  .article-head h2{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(44px,6vw,84px);line-height:1;letter-spacing:-0.025em;margin-bottom:16px}
+  .article-head h2 em{font-style:italic;color:var(--red);font-weight:400}
+  .article-head .deck{font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:20px;color:var(--ink-2);max-width:580px;margin:0 auto;line-height:1.4}
+
+  /* ===== Feature article (about) ===== */
+  .feature{padding:60px 0 100px;border-bottom:1px solid var(--rule);position:relative}
+  .feature .body{
+    column-count:2;column-gap:48px;
+    font-family:'Playfair Display',serif;font-size:18px;line-height:1.7;color:var(--ink);
+    max-width:900px;margin:0 auto;
+  }
+  .feature .body p{margin-bottom:18px}
+  .feature .body p:first-child::first-letter{
+    font-family:'Playfair Display',serif;font-weight:500;font-size:96px;
+    float:left;line-height:0.85;padding:6px 12px 0 0;color:var(--red);
+  }
+  .feature .body p strong{font-weight:600}
+
+  .feature-stats{
+    margin:60px auto 0;max-width:900px;
+    display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+    border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);
+  }
+  .feature-stats div{padding:24px 12px;text-align:center;border-right:1px solid var(--rule)}
+  .feature-stats div:last-child{border-right:none}
+  .feature-stats div b{display:block;font-family:'Playfair Display',serif;font-weight:500;font-size:48px;line-height:1;letter-spacing:-0.02em;color:var(--ink);margin-bottom:6px}
+  .feature-stats div b em{font-style:italic;color:var(--red);font-weight:400}
+  .feature-stats div span{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-3)}
+
+  .pull-large{
+    font-family:'Playfair Display',serif;font-style:italic;font-weight:400;
+    font-size:clamp(28px,3.5vw,42px);line-height:1.25;color:var(--ink);
+    max-width:780px;margin:60px auto;text-align:center;letter-spacing:-0.01em;
+  }
+  .pull-large::before, .pull-large::after{content:"\"";color:var(--red);font-weight:500;font-size:1.2em;line-height:0.5}
+  .pull-large::before{margin-right:6px}
+  .pull-large::after{margin-left:6px}
+
+  /* ===== Photo essay / Selected works ===== */
+  .essay{padding:0 0 60px}
+  .ess-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+  .ess-item{position:relative;overflow:hidden;cursor:pointer}
+  .ess-item img,.ess-item .ph{width:100%;height:100%;object-fit:cover;display:block}
+  .ess-item .ph{aspect-ratio:1;background:linear-gradient(135deg, #2a2520, #0a0a08);position:relative;overflow:hidden;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+  .ess-item:hover .ph{transform:scale(1.04)}
+  .ess-item .ph::before{content:"";position:absolute;inset:0;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'><filter id='n'><feTurbulence baseFrequency='1.2'/></filter><rect width='400' height='400' filter='url(%23n)' opacity='0.15'/></svg>")}
+  .ess-item .ph::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%, var(--photo-tint, rgba(193,39,45,0.45)), transparent 70%)}
+  .ess-item .ph .let{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-style:italic;font-weight:500;font-size:140px;color:rgba(245,240,230,0.9);letter-spacing:-0.04em;line-height:1;z-index:2}
+
+  .ess-item .caption{padding:14px 0 0;font-family:'Playfair Display',serif;font-size:15px;line-height:1.4;color:var(--ink)}
+  .ess-item .caption b{display:block;font-weight:500;letter-spacing:-0.005em;margin-bottom:2px}
+  .ess-item .caption span{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-3);font-style:normal}
+  .ess-item .caption em{font-style:italic;color:var(--ink-2);font-size:14px}
+
+  /* asymmetric grid placement */
+  .ess-1{grid-column:span 7}
+  .ess-2{grid-column:span 5}
+  .ess-3{grid-column:span 4}
+  .ess-4{grid-column:span 4}
+  .ess-5{grid-column:span 4}
+  .ess-6{grid-column:span 6}
+  .ess-7{grid-column:span 6}
+
+  .ess-1 .ph{aspect-ratio:7/4;--photo-tint:rgba(193,39,45,0.4)}
+  .ess-2 .ph{aspect-ratio:5/4;--photo-tint:rgba(31,93,86,0.55)}
+  .ess-3 .ph{aspect-ratio:4/5;--photo-tint:rgba(160,122,58,0.55)}
+  .ess-4 .ph{aspect-ratio:4/5;--photo-tint:rgba(31,93,86,0.5)}
+  .ess-5 .ph{aspect-ratio:4/5;--photo-tint:rgba(193,39,45,0.45)}
+  .ess-6 .ph{aspect-ratio:6/4;--photo-tint:rgba(160,122,58,0.5)}
+  .ess-7 .ph{aspect-ratio:6/4;--photo-tint:rgba(13,13,12,0.5)}
+
+  /* ===== Spread / Featured ===== */
+  .spread{
+    padding:80px 0 100px;
+    background:var(--paper-2);
+    margin:0 -40px;padding-left:40px;padding-right:40px;
+    border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  }
+  .spread .container{max-width:1280px;margin:0 auto;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+  .spread .photo{aspect-ratio:3/4;background:linear-gradient(135deg, #1a2a26, #0a0a08);position:relative;overflow:hidden}
+  .spread .photo::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%, rgba(31,93,86,0.55), transparent 60%)}
+  .spread .photo::after{content:"";position:absolute;inset:0;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'><filter id='n'><feTurbulence baseFrequency='1.5'/></filter><rect width='400' height='500' filter='url(%23n)' opacity='0.1'/></svg>")}
+  .spread .photo .ico{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-style:italic;font-weight:500;font-size:240px;color:rgba(245,240,230,0.85);letter-spacing:-0.04em}
+  .spread .photo .label{position:absolute;bottom:18px;left:18px;right:18px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(245,240,230,0.8);display:flex;justify-content:space-between;z-index:2}
+
+  .spread .text .kicker{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:var(--red);margin-bottom:18px;font-weight:500}
+  .spread .text h3{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(36px,4.5vw,68px);line-height:1;letter-spacing:-0.02em;margin-bottom:24px}
+  .spread .text h3 em{font-style:italic;color:var(--teal);font-weight:400}
+  .spread .text p{font-family:'Playfair Display',serif;font-size:18px;line-height:1.7;color:var(--ink-2);margin-bottom:18px}
+  .spread .text .stats{display:flex;gap:48px;border-top:1px solid var(--rule);padding-top:24px;margin-top:32px}
+  .spread .text .stats div{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-3)}
+  .spread .text .stats div b{display:block;font-family:'Playfair Display',serif;font-weight:500;font-size:32px;color:var(--ink);margin-bottom:4px;letter-spacing:-0.01em;font-style:italic}
+
+  /* ===== Sidebar / Recognition ===== */
+  .recognition{padding:80px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+  .rec-grid{display:grid;grid-template-columns:1fr 2.2fr;gap:80px}
+  .rec-list{}
+  .rec-row{display:grid;grid-template-columns:90px 1fr 100px;align-items:start;gap:20px;padding:20px 0;border-bottom:1px solid var(--rule);transition:padding 0.4s}
+  .rec-row:hover{padding-left:14px;background:linear-gradient(90deg, rgba(193,39,45,0.05), transparent)}
+  .rec-row .yr{font-family:'Playfair Display',serif;font-style:italic;font-weight:500;font-size:22px;color:var(--red)}
+  .rec-row .ttl{font-family:'Playfair Display',serif;font-weight:500;font-size:20px;line-height:1.3}
+  .rec-row .ttl span{display:block;font-family:'Inter',sans-serif;font-weight:400;font-size:14px;color:var(--ink-3);margin-top:4px;letter-spacing:-0.005em}
+  .rec-row .pl{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-3);text-align:right;padding-top:6px}
+
+  /* ===== Closing CTA / Back cover ===== */
+  .closing{padding:120px 0;text-align:center;background:var(--ink);color:var(--paper);margin:0 -40px;padding-left:40px;padding-right:40px;position:relative;overflow:hidden}
+  .closing::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 700px 400px at 50% 50%, rgba(193,39,45,0.18), transparent 70%)}
+  .closing::after{content:"";position:absolute;inset:0;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'><filter id='n'><feTurbulence baseFrequency='0.95'/></filter><rect width='800' height='600' filter='url(%23n)' opacity='0.06'/></svg>")}
+  .closing > *{position:relative;z-index:2}
+  .closing .kicker{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.4em;text-transform:uppercase;color:rgba(245,240,230,0.7);margin-bottom:24px}
+  .closing h2{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(56px,8vw,144px);line-height:0.92;letter-spacing:-0.03em;margin-bottom:32px}
+  .closing h2 em{font-style:italic;color:#ff6064;font-weight:400}
+  .closing p{font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:22px;color:rgba(245,240,230,0.85);max-width:680px;margin:0 auto 48px;line-height:1.4}
+  .closing .row{display:inline-flex;gap:18px;flex-wrap:wrap;justify-content:center}
+  .btn{display:inline-flex;align-items:center;gap:14px;padding:20px 40px;font-family:'Playfair Display',serif;font-size:17px;font-style:italic;font-weight:500;letter-spacing:-0.005em;border-radius:0;transition:all 0.4s}
+  .btn-light{background:var(--paper);color:var(--ink)}
+  .btn-light:hover{background:#ff6064;color:var(--paper);gap:22px}
+  .btn-ghost{border:1px solid rgba(245,240,230,0.4);color:var(--paper)}
+  .btn-ghost:hover{border-color:var(--paper);background:rgba(245,240,230,0.06)}
+
+  /* Footer */
+  .colophon{padding:48px 40px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:60px;font-size:13px;color:var(--ink-3);background:var(--paper)}
+  .colophon h4{font-family:'Playfair Display',serif;font-style:italic;font-weight:500;font-size:18px;color:var(--ink);margin-bottom:14px}
+  .colophon a{display:block;padding:5px 0;color:var(--ink-2);transition:color 0.3s}
+  .colophon a:hover{color:var(--red)}
+  .colophon .bot{grid-column:1/-1;display:flex;justify-content:space-between;border-top:3px double var(--ink);padding-top:18px;margin-top:24px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase}
+
+  /* ===== Reveal ===== */
+  .rev{opacity:0;transform:translateY(30px);transition:all 1s cubic-bezier(.2,.7,.2,1)}
+  .rev.in{opacity:1;transform:translateY(0)}
+
+  @media (max-width:980px){
+    .masthead,.nav,.cover,.colophon,.spread{padding-left:20px;padding-right:20px}
+    .container{padding:0 20px}
+    .masthead{grid-template-columns:1fr}
+    .masthead .left,.masthead .right{display:none}
+    .nav{flex-wrap:wrap;gap:18px}
+    .cover-grid{grid-template-columns:1fr;gap:32px}
+    .cover-pull{position:static;margin-top:40px;text-align:left;max-width:none}
+    .feature .body{column-count:1}
+    .feature-stats{grid-template-columns:1fr 1fr}
+    .feature-stats div{border-bottom:1px solid var(--rule)}
+    .feature-stats div:nth-child(2){border-right:none}
+    .ess-grid{grid-template-columns:1fr}
+    .ess-1,.ess-2,.ess-3,.ess-4,.ess-5,.ess-6,.ess-7{grid-column:span 1}
+    .spread .container{grid-template-columns:1fr;gap:32px}
+    .rec-grid{grid-template-columns:1fr;gap:32px}
+    .rec-row{grid-template-columns:60px 1fr;gap:14px}
+    .rec-row .pl{display:none}
+    .closing{padding:60px 20px}
+    .colophon{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============== Masthead ============== -->
+<div class="masthead">
+  <div class="left">— Vol. III · No. 02</div>
+  <div class="center">G10 Quarterly<small>The Robotics Issue · Spring 2026</small></div>
+  <div class="right">May 2026 — ₹420 / $5</div>
+</div>
+
+<nav class="nav">
+  <a href="#feature">The Profile</a>
+  <a href="#works">Selected Works</a>
+  <a href="#spread">In Conversation</a>
+  <a href="#recognition">Honors</a>
+  <a href="#contact">Letters</a>
+</nav>
+
+<!-- ============== Cover ============== -->
+<section class="cover">
+  <div class="top-meta">
+    <span><span class="feat">— Cover Story</span> · The maker who builds robots that survive contact with reality</span>
+    <span>Issue 02 / 04</span>
+  </div>
+
+  <div class="cover-grid">
+    <div>
+      <div class="kicker">— Special Profile · The Innovator</div>
+      <h1>
+        The <em>Quiet</em><br>
+        <span class="display-r">Mechanic</span><br>
+        of the Future.
+      </h1>
+      <p class="deck">A profile of Jiten Topiwala — robotics engineer, mechanical designer and reluctant founder — on building the autonomous machines that will quietly transform construction, agriculture and industry.</p>
+      <div class="byline">
+        <span><b>BY THE EDITORS</b></span>
+        <span class="dot"></span>
+        <span>Photographs by — In Studio</span>
+        <span class="dot"></span>
+        <span>10 May 2026</span>
+      </div>
+    </div>
+
+    <div class="cover-photo">
+      <span class="frame-num">— Plate I</span>
+      <div class="silh"><em>J</em>.</div>
+      <span class="label"><span>— Cover Portrait</span><span>F2.8 / 1/200</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ============== Feature Article (about) ============== -->
+<section class="feature" id="feature">
+  <div class="container">
+    <div class="article-head rev">
+      <div class="num">— Feature · I</div>
+      <h2>An engineer with both <em>hands</em> on the metal.</h2>
+      <p class="deck">From Robocon competitions to industrial pilot deployments, Topiwala's work has consistently lived where most engineering doesn't: in the field, under load, with stakeholders watching.</p>
+    </div>
+
+    <div class="body rev">
+      <p>Trained as a mechanical engineer and educated by every robot that misbehaved on a competition floor, Jiten Topiwala designs machines that <strong>refuse to fall apart</strong>. He learned the craft the way roboticists used to — by drafting, machining, wiring, debugging, and watching his prototypes try to survive the real world.</p>
+      <p>His work spans the unsexy and the spectacular in equal measure: <strong>award-winning surveillance rovers</strong> that fold for transport, pipe-inspection robots sealed against pressure, biped walkers debating with gravity, and agricultural autonomy stacks that don't apologize for muddy boots.</p>
+      <p>Currently the lead robotics engineer at <strong>Agmove Robotics</strong>, he is architecting ROS2 navigation for sub-20HP agricultural rovers. Quietly, in parallel, he is also founding <strong>LiftTerra</strong> — a robotics company aimed at the brutally practical problems of construction and maintenance.</p>
+      <p>What separates him is not the breadth of tools — every roboticist juggles many — but the <strong>refusal to choose</strong> between mechanical and software disciplines. He does both because robots demand both.</p>
+    </div>
+
+    <div class="feature-stats rev">
+      <div><b>10<em>+</em></b><span>Robots Built</span></div>
+      <div><b>02</b><span>Papers Published</span></div>
+      <div><b>08<em>+</em></b><span>Awards Won</span></div>
+      <div><b>03<em>+</em></b><span>Years in Field</span></div>
+    </div>
+
+    <p class="pull-large rev">A great robot disappears into its purpose. The one you remember is the one that worked, not the one that looked clever.</p>
+  </div>
+</section>
+
+<!-- ============== Photo Essay / Selected Works ============== -->
+<section class="essay" id="works">
+  <div class="container">
+    <div class="article-head rev">
+      <div class="num">— Photo Essay · II</div>
+      <h2>A Body of <em>Work</em>.</h2>
+      <p class="deck">Seven projects. Three domains — defense, industrial, agriculture. One throughline: they were built to ship, not to demo.</p>
+    </div>
+
+    <div class="ess-grid">
+
+      <article class="ess-item ess-1 rev">
+        <div class="ph"><span class="let">L.</span></div>
+        <div class="caption">
+          <b>LiftTerra Construction Bot</b>
+          <em>The 50kg payload rover for construction and maintenance.</em>
+          <span>— No. 01 · Founder · 2024–</span>
+        </div>
+      </article>
+
+      <article class="ess-item ess-2 rev">
+        <div class="ph"><span class="let">M.</span></div>
+        <div class="caption">
+          <b>The Manpackable Surveillance Robot</b>
+          <em>Wheel-track transformable. 1km tele-op. Backpack-portable.</em>
+          <span>— No. 02 · Award winner · 2023</span>
+        </div>
+      </article>
+
+      <article class="ess-item ess-3 rev">
+        <div class="ph"><span class="let">P.</span></div>
+        <div class="caption">
+          <b>Pipe Inspection Robot</b>
+          <em>Variable diameter (50–150mm) · IP67.</em>
+          <span>— No. 03 · Industrial</span>
+        </div>
+      </article>
+
+      <article class="ess-item ess-4 rev">
+        <div class="ph"><span class="let">B.</span></div>
+        <div class="caption">
+          <b>Biped Walker</b>
+          <em>12 DOF · ZMP gait generation in MATLAB.</em>
+          <span>— No. 04 · Research</span>
+        </div>
+      </article>
+
+      <article class="ess-item ess-5 rev">
+        <div class="ph"><span class="let">A.</span></div>
+        <div class="caption">
+          <b>Sub-20HP Farm Rover</b>
+          <em>RTK-GNSS + IMU fusion · Jetson edge AI · ROS2 stack.</em>
+          <span>— No. 05 · Active · 2025–</span>
+        </div>
+      </article>
+
+      <article class="ess-item ess-6 rev">
+        <div class="ph"><span class="let">V.</span></div>
+        <div class="caption">
+          <b>Vertical Indexing Conveyor</b>
+          <em>Chain-sprocket industrial system · ±0.5mm precision · PLC.</em>
+          <span>— No. 06 · Industrial</span>
+        </div>
+      </article>
+
+      <article class="ess-item ess-7 rev">
+        <div class="ph"><span class="let">D.</span></div>
+        <div class="caption">
+          <b>Drone Navigation Research</b>
+          <em>Multi-algorithm landing on Parrot MiniDrone · IJIRT published.</em>
+          <span>— No. 07 · IJIRT 2024</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============== Spread / Featured Project ============== -->
+<section class="spread" id="spread">
+  <div class="container">
+    <div class="photo rev">
+      <div class="ico">L</div>
+      <div class="label"><span>— Featured Spread</span><span>Plate II · Founder's note</span></div>
+    </div>
+    <div class="text rev">
+      <div class="kicker">— Featured Project · LiftTerra</div>
+      <h3>The startup born from a simple <em>observation</em>.</h3>
+      <p>Construction sites haven't changed much in fifty years. The same workers, the same back injuries, the same lifting — done badly because no one made a better tool.</p>
+      <p>LiftTerra is the answer Topiwala has been quietly engineering since 2024. A 50kg-payload autonomous platform with follow-me mode, designed to survive the most punishing sites on earth.</p>
+      <p>Not a fancy robot. Not a product demo. A working, shippable machine for builders who deserve better tools.</p>
+      <div class="stats">
+        <div><b>50kg</b>Lift Capacity</div>
+        <div><b>1.2m/s</b>Cruise Speed</div>
+        <div><b>Auto.</b>Follow-Me</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== Recognition ============== -->
+<section class="recognition" id="recognition">
+  <div class="container">
+    <div class="article-head rev" style="text-align:left;border-top:none;padding-top:0">
+      <div class="num">— Honors · III</div>
+      <h2 style="text-align:left">A Record of <em>Wins</em>.</h2>
+    </div>
+    <div class="rec-grid">
+      <div class="rev">
+        <p style="font-family:'Playfair Display',serif;font-size:18px;line-height:1.7;color:var(--ink-2);font-style:italic">A list of awards, papers and milestones — annotated. Two IEEE/IJIRT publications, eight competition wins across Robocon and the Indian robotics circuit, and ongoing field deployments.</p>
+      </div>
+      <div class="rec-list rev">
+        <div class="rec-row"><span class="yr">2025</span><span class="ttl">Robotics Engineer<span>Agmove Robotics — autonomous agricultural rovers</span></span><span class="pl">Full-time</span></div>
+        <div class="rec-row"><span class="yr">2024</span><span class="ttl">MATLAB Modelling Award · 1st Place<span>Robocon 2024 — also Fusion 360 Award & TRS Top 8</span></span><span class="pl">— Winner</span></div>
+        <div class="rec-row"><span class="yr">2024</span><span class="ttl">IEEE Publication<span>Agricultural Robotic System for Farm Coverage</span></span><span class="pl">— Co-author</span></div>
+        <div class="rec-row"><span class="yr">2024</span><span class="ttl">IJIRT Publication<span>Drone Navigation & Landing — Multi-Algorithm Integration</span></span><span class="pl">— Co-author</span></div>
+        <div class="rec-row"><span class="yr">2023</span><span class="ttl">Mindspark Ideathon · 1st Place<span>Semi-autonomous welding solution</span></span><span class="pl">— Winner</span></div>
+        <div class="rec-row"><span class="yr">2023</span><span class="ttl">Robotex Entrepreneurship · 2nd Place<span>Advanced category — robotics startup pitch</span></span><span class="pl">— Runner up</span></div>
+        <div class="rec-row"><span class="yr">2022</span><span class="ttl">E-Yantra Robotics Competition<span>ROS2 multi-bot navigation with overhead camera feedback</span></span><span class="pl">— Finalist</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== Closing / Back cover ============== -->
+<section class="closing" id="contact">
+  <div class="kicker">— Letters · Editor's Note</div>
+  <h2>Build something <em>worth</em> building.</h2>
+  <p>If you have a hard, unsexy problem that deserves a machine — a real one, not a demo — then I want to hear from you.</p>
+  <div class="row">
+    <a href="#" class="btn btn-light"><span>Write to me →</span></a>
+    <a href="#" class="btn btn-ghost"><span>Schedule a call</span></a>
+  </div>
+</section>
+
+<footer class="colophon">
+  <div>
+    <h4>The Magazine</h4>
+    <a href="#">Editor's note</a>
+    <a href="#">The masthead</a>
+    <a href="#">Submissions</a>
+    <a href="#">Subscribe</a>
+  </div>
+  <div>
+    <h4>Connect</h4>
+    <a href="#">Email — jitentopiwala7@…</a>
+    <a href="#">LinkedIn</a>
+    <a href="#">GitHub</a>
+    <a href="#">Fiverr · ★ 5.0</a>
+  </div>
+  <div>
+    <h4>Currently</h4>
+    <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:15px;line-height:1.6">Engineering autonomous systems at Agmove. Founding LiftTerra in the background. Open to consulting.</p>
+  </div>
+  <div class="bot">
+    <span>© 2026 — G10 Studio · Jiten Topiwala</span>
+    <span>Vol. III · No. 02 · The Robotics Issue</span>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add('in')), {threshold:0.08});
+  document.querySelectorAll('.rev').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>

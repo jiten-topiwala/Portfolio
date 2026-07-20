@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — 10 Design Concepts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@200;300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Anton&family=Fraunces:ital,wght@0,400;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Inter',sans-serif;
+    background:#06060a;
+    color:#f5f5f7;
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+    background-image:
+      radial-gradient(ellipse 1100px 600px at 50% -10%, rgba(157,123,255,0.14), transparent 60%),
+      radial-gradient(ellipse 800px 600px at 95% 95%, rgba(34,247,255,0.08), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 5% 70%, rgba(255,43,214,0.06), transparent 60%);
+  }
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;background-image:radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);background-size:24px 24px;mask-image:radial-gradient(ellipse at 50% 30%, #000 30%, transparent 80%)}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1500px;margin:0 auto;padding:64px 32px 100px;position:relative;z-index:2}
+
+  .header{text-align:center;margin-bottom:64px}
+  .header .pre{font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:#9d7bff;font-family:'JetBrains Mono',monospace;margin-bottom:18px;display:inline-flex;align-items:center;gap:10px}
+  .header .pre::before,.header .pre::after{content:"";width:36px;height:1px;background:rgba(157,123,255,0.4)}
+  .header h1{font-family:'Instrument Serif',serif;font-size:clamp(44px,7vw,96px);font-weight:400;line-height:1;letter-spacing:-0.025em;margin-bottom:24px}
+  .header h1 em{font-style:italic;background:linear-gradient(120deg, #9d7bff, #22f7ff, #ff2bd6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .header p{font-size:17px;line-height:1.7;color:#a8a8b3;max-width:780px;margin:0 auto;font-weight:300}
+
+  .round-head{display:flex;align-items:center;gap:18px;margin:80px 0 28px}
+  .round-head .ln{flex:1;height:1px;background:linear-gradient(90deg, rgba(255,255,255,0.18), transparent)}
+  .round-head .ln.r{background:linear-gradient(-90deg, rgba(255,255,255,0.18), transparent)}
+  .round-head h2{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.4em;text-transform:uppercase;color:#9d7bff;font-weight:500;white-space:nowrap}
+
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+
+  .card{
+    background:#0e0e14;
+    border:1px solid rgba(255,255,255,0.07);
+    border-radius:20px;
+    overflow:hidden;
+    transition:all 0.5s cubic-bezier(.2,.7,.2,1);
+    position:relative;display:flex;flex-direction:column;
+  }
+  .card:hover{transform:translateY(-6px);border-color:rgba(255,255,255,0.18);box-shadow:0 30px 80px rgba(0,0,0,0.5)}
+  .card .new-badge{position:absolute;top:14px;right:14px;z-index:5;background:linear-gradient(90deg,#ff2bd6,#22f7ff);color:#080810;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;padding:5px 10px;border-radius:99px}
+  .card .latest-badge{position:absolute;top:14px;right:14px;z-index:5;background:linear-gradient(90deg,#86efac,#7dd3fc);color:#080810;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;padding:5px 10px;border-radius:99px}
+
+  .preview{aspect-ratio:4/3;position:relative;overflow:hidden;border-bottom:1px solid rgba(255,255,255,0.05)}
+
+  /* Preview 1 — Blueprint */
+  .preview-1{background:#0a1220;background-image:linear-gradient(rgba(120,180,255,0.10) 1px, transparent 1px),linear-gradient(90deg, rgba(120,180,255,0.10) 1px, transparent 1px),radial-gradient(ellipse at 60% 40%, rgba(78,168,255,0.15), transparent 60%);background-size:20px 20px, 20px 20px, 100% 100%}
+  .preview-1 svg{position:absolute;inset:20%;width:60%;height:60%}
+  .preview-1 .pl{position:absolute;font-family:'JetBrains Mono',monospace;font-size:9px;color:rgba(120,180,255,0.5);letter-spacing:0.2em;text-transform:uppercase}
+  .preview-1 .pl.tl{top:14px;left:14px}.preview-1 .pl.tr{top:14px;right:14px}.preview-1 .pl.br{bottom:14px;right:14px;color:#ffb547}
+
+  /* Preview 2 — Cinematic */
+  .preview-2{background:linear-gradient(135deg, #0b0b0c 0%, #1a1410 100%)}
+  .preview-2::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 50%, rgba(201,160,99,0.5), transparent 70%)}
+  .preview-2 .ttl{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Instrument Serif',serif;font-style:italic;font-size:42px;color:rgba(255,255,255,0.85);letter-spacing:-0.02em;line-height:1;text-align:center}
+  .preview-2 .meta{position:absolute;bottom:14px;left:14px;right:14px;display:flex;justify-content:space-between;font-size:9px;color:rgba(214,207,193,0.7);letter-spacing:0.3em;text-transform:uppercase}
+
+  /* Preview 3 — Bento */
+  .preview-3{background:#0a0a0c;padding:14px;display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:1fr;gap:6px}
+  .preview-3 .b{background:linear-gradient(135deg, #16161a, #0c0c0e);border-radius:8px;border:1px solid rgba(255,255,255,0.05);position:relative;overflow:hidden}
+  .preview-3 .b1{grid-column:span 3;grid-row:span 2;background:linear-gradient(135deg, #1a1422, #0c0c0e);display:flex;align-items:center;padding:14px;font-family:'Instrument Serif',serif;font-size:18px;line-height:1;color:#f5f5f7;letter-spacing:-0.02em}
+  .preview-3 .b1 em{color:#6ee7ff;font-style:italic;background:linear-gradient(120deg,#6ee7ff,#9d7bff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .preview-3 .b2{background:radial-gradient(ellipse at 50% 40%, rgba(157,123,255,0.6), rgba(20,20,28,0.95) 65%);font-family:'Instrument Serif',serif;font-style:italic;display:flex;align-items:center;justify-content:center;font-size:32px;color:rgba(255,255,255,0.8)}
+  .preview-3 .b3{background:linear-gradient(135deg, #0f1a2a, #0a0a0c)}
+  .preview-3 .b4{display:flex;align-items:center;justify-content:center;font-family:'Instrument Serif',serif;font-size:24px;color:#9eff6e}
+  .preview-3 .b5{display:flex;align-items:center;justify-content:center;font-size:9px;color:#a8a8b3;font-family:'JetBrains Mono',monospace;letter-spacing:0.05em}
+
+  /* Preview 4 — Mission Control */
+  .preview-4{background:#040810;background-image:repeating-linear-gradient(0deg, rgba(0,229,255,0.04) 0 1px, transparent 1px 4px),radial-gradient(ellipse at 50% 50%, rgba(0,229,255,0.12), transparent 60%);overflow:hidden}
+  .preview-4 .scope{position:absolute;inset:14% 30% 14% 30%;border:1px solid rgba(0,229,255,0.5);border-radius:50%}
+  .preview-4 .scope::before{content:"";position:absolute;inset:14%;border:1px solid rgba(0,229,255,0.3);border-radius:50%}
+  .preview-4 .scope::after{content:"";position:absolute;inset:30%;border:1px solid rgba(0,229,255,0.2);border-radius:50%}
+  .preview-4 .sweep{position:absolute;inset:14% 30% 14% 30%;background:conic-gradient(from 0deg, rgba(0,229,255,0.6), transparent 90deg);border-radius:50%;animation:sweep4 3s linear infinite}
+  @keyframes sweep4{to{transform:rotate(360deg)}}
+  .preview-4 .pl{position:absolute;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase}
+  .preview-4 .pl.tl{top:14px;left:14px;color:#00e5ff}
+  .preview-4 .pl.tl::before{content:"●";color:#00ff88;margin-right:6px}
+  .preview-4 .pl.br{bottom:14px;right:14px;color:#ffb84d}
+  .preview-4 .corner{position:absolute;width:18px;height:18px;border:1px solid #00e5ff}
+  .preview-4 .corner.tl{top:6px;left:6px;border-right:none;border-bottom:none}
+  .preview-4 .corner.tr{top:6px;right:6px;border-left:none;border-bottom:none}
+  .preview-4 .corner.bl{bottom:6px;left:6px;border-right:none;border-top:none}
+  .preview-4 .corner.br{bottom:6px;right:6px;border-left:none;border-top:none}
+
+  /* Preview 5 — Magazine */
+  .preview-5{background:#f5f0e6;color:#0d0d0c;padding:18px;display:flex;flex-direction:column;justify-content:space-between;border-bottom-color:rgba(13,13,12,0.1)}
+  .preview-5 .mast{display:flex;justify-content:space-between;align-items:center;border-bottom:2px double #0d0d0c;padding-bottom:6px;font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.18em;text-transform:uppercase}
+  .preview-5 .mast .c{font-family:'Instrument Serif',serif;font-style:italic;font-size:14px;font-weight:600;letter-spacing:0;text-transform:none}
+  .preview-5 .body{display:grid;grid-template-columns:1.4fr 1fr;gap:14px;flex:1;align-items:center;margin-top:8px}
+  .preview-5 .body h2{font-family:'Instrument Serif',serif;font-size:32px;line-height:0.9;font-weight:500;letter-spacing:-0.02em;color:#0d0d0c}
+  .preview-5 .body h2 em{font-style:italic;color:#c1272d;font-weight:400}
+  .preview-5 .body .ph{aspect-ratio:4/5;background:radial-gradient(ellipse at 40% 35%, rgba(160,122,58,0.6), #0a0a08 65%);position:relative;overflow:hidden}
+  .preview-5 .body .ph::after{content:"J.";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Instrument Serif',serif;font-style:italic;color:rgba(245,240,230,0.85);font-size:48px}
+  .preview-5 .foot{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(13,13,12,0.5);text-align:center;padding-top:6px;border-top:1px solid rgba(13,13,12,0.18)}
+
+  /* Preview 6 — Mecha */
+  .preview-6{background:#08080d;overflow:hidden}
+  .preview-6::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,43,214,0.06) 1px, transparent 1px),linear-gradient(90deg, rgba(34,247,255,0.06) 1px, transparent 1px);background-size:30px 30px;mask-image:radial-gradient(ellipse at 50% 50%, #000 30%, transparent 80%)}
+  .preview-6 .ttl{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Anton',sans-serif;font-size:38px;font-weight:400;line-height:0.85;letter-spacing:-0.02em;text-transform:uppercase;text-align:center}
+  .preview-6 .ttl .a{display:block;-webkit-text-stroke:2px #22f7ff;color:transparent}
+  .preview-6 .ttl .b{display:block;background:linear-gradient(90deg,#ff2bd6,#22f7ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .preview-6 .ttl .c{display:block;color:#ff2bd6;text-shadow:0 0 14px #ff2bd6}
+  .preview-6 .corner{position:absolute;width:22px;height:22px;border:2px solid #ff2bd6}
+  .preview-6 .corner.tl{top:8px;left:8px;border-right:none;border-bottom:none}
+  .preview-6 .corner.tr{top:8px;right:8px;border-left:none;border-bottom:none}
+  .preview-6 .corner.bl{bottom:8px;left:8px;border-right:none;border-top:none}
+  .preview-6 .corner.br{bottom:8px;right:8px;border-left:none;border-top:none}
+  .preview-6 .lbl{position:absolute;top:14px;right:34px;font-family:'JetBrains Mono',monospace;font-size:9px;color:#22f7ff;letter-spacing:0.2em;text-transform:uppercase}
+  .preview-6 .lbl2{position:absolute;bottom:14px;left:34px;font-family:'JetBrains Mono',monospace;font-size:9px;color:#caff2b;letter-spacing:0.2em;text-transform:uppercase}
+
+  /* Preview 7 — Kinetic Type */
+  .preview-7{background:#f7f6f1;color:#0a0a0a;padding:24px;display:flex;flex-direction:column;justify-content:flex-end;border-bottom-color:rgba(10,10,10,0.1)}
+  .preview-7::before{content:"";position:absolute;inset:0;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'><filter id='n'><feTurbulence baseFrequency='1.4'/></filter><rect width='600' height='600' filter='url(%23n)' opacity='0.04'/></svg>");mix-blend-mode:multiply}
+  .preview-7 .top{position:absolute;top:14px;left:14px;right:14px;display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(10,10,10,0.5)}
+  .preview-7 .top .dot{width:6px;height:6px;background:#234d3a;border-radius:50%;display:inline-block;margin-right:6px}
+  .preview-7 h2{font-family:'Inter',sans-serif;font-size:42px;font-weight:200;line-height:0.85;letter-spacing:-0.04em;line-height:0.85}
+  .preview-7 h2 em{font-family:'Fraunces',serif;font-style:italic;font-weight:300;color:#234d3a}
+  .preview-7 h2 .symbol{font-family:'Fraunces',serif;font-weight:300;color:#d94a2c;font-style:italic}
+  .preview-7 .bot{margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(10,10,10,0.5);border-top:1px solid rgba(10,10,10,0.18);padding-top:8px}
+
+  /* Preview 8 — Liquid Glass */
+  .preview-8{background:#070710;overflow:hidden}
+  .preview-8::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 50% 40% at 20% 30%, rgba(167,139,250,0.55) 0%, transparent 60%),radial-gradient(ellipse 40% 50% at 80% 20%, rgba(125,211,252,0.5) 0%, transparent 60%),radial-gradient(ellipse 50% 40% at 70% 80%, rgba(249,168,212,0.45) 0%, transparent 60%),radial-gradient(ellipse 40% 35% at 30% 75%, rgba(134,239,172,0.4) 0%, transparent 60%);filter:blur(40px) saturate(1.3);animation:aur 14s ease infinite alternate}
+  @keyframes aur{50%{transform:scale(1.1) rotate(8deg)}}
+  .preview-8 .glass{position:absolute;border-radius:20px;background:rgba(255,255,255,0.08);backdrop-filter:blur(14px) saturate(1.4);border:1px solid rgba(255,255,255,0.18);box-shadow:inset 0 1px 0 rgba(255,255,255,0.2), 0 12px 30px rgba(0,0,0,0.3)}
+  .preview-8 .g1{top:18%;left:8%;width:50%;height:60%;display:flex;align-items:center;justify-content:center;font-family:'Instrument Serif',serif;font-style:italic;font-size:90px;color:rgba(255,255,255,0.95);font-weight:300;text-shadow:0 0 30px rgba(167,139,250,0.5)}
+  .preview-8 .g2{top:24%;right:8%;width:32%;height:32%;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Instrument Serif',serif;font-style:italic;color:#fff;font-size:36px;font-weight:300;letter-spacing:-0.03em}
+  .preview-8 .g2 small{font-family:'Inter',sans-serif;font-style:normal;font-size:8px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-top:4px;font-weight:500}
+  .preview-8 .g3{bottom:8%;right:6%;width:44%;height:24%;padding:14px;color:#fff}
+  .preview-8 .g3 .dot{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.2em;text-transform:uppercase;color:#86efac}
+  .preview-8 .g3 .dot::before{content:"●";margin-right:4px}
+  .preview-8 .g3 h4{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:14px;line-height:1.1;margin-top:6px}
+
+  /* Preview 9 — Swiss */
+  .preview-9{background:#fafaf7;color:#0a0a0a;padding:18px;display:grid;grid-template-rows:auto 1fr auto;gap:10px;border-bottom-color:rgba(10,10,10,0.1)}
+  .preview-9 .top{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(10,10,10,0.5);border-bottom:1px solid rgba(10,10,10,0.18);padding-bottom:8px}
+  .preview-9 .top .m{font-family:'Inter',sans-serif;font-weight:800;font-size:12px;letter-spacing:-0.02em;text-transform:none;color:#0a0a0a;display:flex;align-items:center;gap:5px}
+  .preview-9 .top .m::after{content:"";width:6px;height:6px;background:#ff3a1d;border-radius:50%}
+  .preview-9 .top .r{text-align:right}
+  .preview-9 .body{display:flex;align-items:center;justify-content:center}
+  .preview-9 .body h2{font-family:'Inter',sans-serif;font-size:38px;font-weight:800;line-height:0.85;letter-spacing:-0.04em;text-align:left}
+  .preview-9 .body h2 em{font-family:'Fraunces',serif;font-style:italic;font-weight:500;color:#ff3a1d}
+  .preview-9 .body h2 .ol{-webkit-text-stroke:1.5px #0a0a0a;color:transparent;font-weight:300}
+  .preview-9 .bot{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(10,10,10,0.5);border-top:2px solid #0a0a0a;padding-top:8px;display:flex;justify-content:space-between}
+
+  /* Preview 10 — Machined Graphite (on-brand) */
+  .preview-10{background:#0E0F12;overflow:hidden}
+  .preview-10::before{content:"";position:absolute;inset:0;background-image:linear-gradient(#272A30 1px,transparent 1px),linear-gradient(90deg,#272A30 1px,transparent 1px);background-size:26px 26px;opacity:.55;mask-image:radial-gradient(ellipse at 50% 0%,#000,transparent 80%)}
+  .preview-10 .top{position:absolute;top:14px;left:14px;right:14px;display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#8A8F98}
+  .preview-10 .top .m{color:#F4F4F2;font-weight:600}
+  .preview-10 .top .m .d{color:#FF5A1F;font-weight:700}
+  .preview-10 .ctr{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:0 22px}
+  .preview-10 .ctr .rule{width:34px;height:3px;background:#FF5A1F;border-radius:2px;margin-bottom:12px}
+  .preview-10 .ctr h2{font-family:'Space Grotesk','Inter',sans-serif;font-weight:700;font-size:30px;line-height:.98;letter-spacing:-.03em;color:#F4F4F2}
+  .preview-10 .ctr h2 em{font-style:normal;color:#FF5A1F}
+  .preview-10 .bot{position:absolute;bottom:14px;left:14px;right:14px;display:flex;gap:16px;font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#8A8F98;border-top:1px solid #272A30;padding-top:8px}
+
+  /* ===== Card body ===== */
+  .body{padding:26px 26px 30px;flex:1;display:flex;flex-direction:column}
+  .num{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.25em;text-transform:uppercase;color:#9d7bff;margin-bottom:14px}
+  .name{font-family:'Instrument Serif',serif;font-size:28px;font-weight:400;letter-spacing:-0.015em;line-height:1.1;margin-bottom:10px}
+  .name em{font-style:italic;color:#22f7ff}
+  .desc{font-size:14px;line-height:1.65;color:#a8a8b3;margin-bottom:16px;font-weight:300}
+  .traits{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
+  .traits span{font-size:10px;font-family:'JetBrains Mono',monospace;padding:4px 10px;border-radius:999px;background:rgba(255,255,255,0.05);color:#a8a8b3;border:1px solid rgba(255,255,255,0.08);letter-spacing:0.05em}
+  .best{font-size:13px;color:#a8a8b3;line-height:1.6;border-top:1px solid rgba(255,255,255,0.06);padding-top:16px;margin-bottom:20px}
+  .best strong{display:block;margin-bottom:4px;font-weight:600;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#22f7ff}
+  .open{margin-top:auto;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:13px 22px;background:#f5f5f7;color:#0a0a0c;border-radius:999px;font-weight:600;font-size:13px;transition:all 0.3s;letter-spacing:0.005em}
+  .open:hover{background:linear-gradient(90deg,#ff2bd6,#22f7ff);color:#080810;gap:14px}
+
+  .legend{margin-top:80px;padding:36px;background:#0e0e14;border:1px solid rgba(255,255,255,0.07);border-radius:20px}
+  .legend h3{font-family:'Instrument Serif',serif;font-size:24px;font-weight:400;font-style:italic;margin-bottom:18px;color:#f5f5f7}
+  .legend p{font-size:14px;line-height:1.7;color:#a8a8b3;margin-bottom:10px;font-weight:300}
+  .legend p strong{color:#f5f5f7;font-weight:600}
+  .legend ul{list-style:none;margin-top:14px}
+  .legend li{font-size:14px;color:#a8a8b3;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.05);display:flex;gap:14px;align-items:start;line-height:1.55}
+  .legend li:last-child{border-bottom:none}
+  .legend li::before{content:"►";color:#9d7bff;font-weight:700;font-size:11px;margin-top:2px}
+  .legend li b{color:#22f7ff;font-weight:600}
+
+  @media (max-width:980px){
+    .grid{grid-template-columns:1fr}
+    .wrap{padding:32px 16px 60px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="header">
+    <div class="pre">— 10 design directions · 01 portfolio</div>
+    <h1>Pick your <em>direction</em>.</h1>
+    <p><b style="color:#f5f5f7">Round 4 (top) is your locked brand identity — Machined Graphite (Option 10).</b> Ten design languages, same content, ten personalities — built from your real project data. Open each one, scroll, hover, click — feel which one is *you*.</p>
+  </header>
+
+  <!-- ============== ROUND 4 (NEW) Your brand identity ============== -->
+  <div class="round-head">
+    <span class="ln"></span>
+    <h2>— Round 4 · Your brand identity ✦ MACHINED GRAPHITE</h2>
+    <span class="ln r"></span>
+  </div>
+
+  <div class="grid">
+    <a class="card" href="option-10-machined-graphite.html" target="_blank">
+      <span class="latest-badge" style="background:linear-gradient(90deg,#FF5A1F,#E14710);color:#fff">★ ON BRAND</span>
+      <div class="preview preview-10">
+        <div class="top"><span class="m">Jiten Topiwala <span class="d">·</span> Physical-AI</span><span>10 / 10</span></div>
+        <div class="ctr"><div class="rule"></div><h2>Robots that<br><em>work.</em></h2></div>
+        <div class="bot"><span>01 WORK</span><span>02 ABOUT</span><span>03 HIRE</span></div>
+      </div>
+      <div class="body">
+        <div class="num">— Option 10</div>
+        <div class="name">Machined <em style="color:#FF5A1F">Graphite</em></div>
+        <p class="desc">Your locked brand identity, built as a portfolio: near-monochrome graphite base, one ownable signal-orange accent, Space Grotesk + JetBrains Mono. Machined, restrained, engineer-credible — the *same* system as your proposals, invoices, and pitch decks. Shows your real project photos.</p>
+        <div class="traits"><span>On-brand</span><span>Machined</span><span>Restrained</span><span>Real images</span></div>
+        <div class="best"><strong>Best for</strong>Everything at once — premium clients, investors, and robotics peers. The only option that matches every other document you send.</div>
+        <span class="open">Open Option 10 →</span>
+      </div>
+    </a>
+  </div>
+
+  <!-- ============== ROUND 3 (NEW) Minimal + motion ============== -->
+  <div class="round-head">
+    <span class="ln"></span>
+    <h2>— Round 3 · Minimal · Motion-rich ✦ NEWEST</h2>
+    <span class="ln r"></span>
+  </div>
+
+  <div class="grid">
+
+    <!-- Card 7: Kinetic Type -->
+    <a class="card" href="option-7-kinetic-type.html" target="_blank">
+      <span class="latest-badge">★ NEW</span>
+      <div class="preview preview-7">
+        <div class="top">
+          <span><span class="dot"></span>ROBOTICS · ENGINEER</span>
+          <span>VOL 03</span>
+        </div>
+        <h2>I build<br>robots<br><em>that</em> ship.<span class="symbol">✦</span></h2>
+        <div class="bot">— SCROLL · TYPE-LED PORTFOLIO</div>
+      </div>
+      <div class="body">
+        <div class="num">— Option 07</div>
+        <div class="name">Kinetic <em>Type</em></div>
+        <p class="desc">Typography is the show. Massive thin/serif type, word-by-word reveals, marquee bands, horizontal scroll for skills, hover-follow image previews on project rows. Almost monochrome with one forest-green accent. Designer's choice for "minimal but rich."</p>
+        <div class="traits"><span>Editorial</span><span>Type-led</span><span>Hover-rich</span><span>Magnetic</span></div>
+        <div class="best"><strong>Best for</strong>Editorial-minded VCs, design-aware clients, premium consulting. Says "I have taste" before you've spoken a word.</div>
+        <span class="open">Open Option 7 →</span>
+      </div>
+    </a>
+
+    <!-- Card 8: Liquid Glass -->
+    <a class="card" href="option-8-liquid-glass.html" target="_blank">
+      <span class="latest-badge">★ NEW</span>
+      <div class="preview preview-8">
+        <div class="glass g1">J.</div>
+        <div class="glass g2">8<small>Wins</small></div>
+        <div class="glass g3">
+          <span class="dot">Building</span>
+          <h4>Farm rover</h4>
+        </div>
+      </div>
+      <div class="body">
+        <div class="num">— Option 08</div>
+        <div class="name">Liquid <em>Glass · Aurora</em></div>
+        <p class="desc">Animated mesh-gradient aurora background. Frosted glass cards (Apple Vision Pro-style) with backdrop blur, subtle floating orbs, parallax mouse-follow. Dreamlike, soft, futuristic — minimalism with rich color motion always running.</p>
+        <div class="traits"><span>Premium</span><span>Soft</span><span>Futuristic</span><span>Dreamlike</span></div>
+        <div class="best"><strong>Best for</strong>Modern startups, design-forward VCs, AI/robotics audiences. Most "premium contemporary" of the set.</div>
+        <span class="open">Open Option 8 →</span>
+      </div>
+    </a>
+
+    <!-- Card 9: Swiss -->
+    <a class="card" href="option-9-swiss.html" target="_blank">
+      <span class="latest-badge">★ NEW</span>
+      <div class="preview preview-9">
+        <div class="top">
+          <span>VOL 03 · 2026</span>
+          <span class="m">G10</span>
+          <span class="r">— AVAILABLE ●</span>
+        </div>
+        <div class="body">
+          <h2>Robots that <em>survive</em><br><span class="ol">contact</span><br>with reality.</h2>
+        </div>
+        <div class="bot">
+          <span>01 ABOUT</span>
+          <span>02 WORK</span>
+          <span>03 STACK</span>
+        </div>
+      </div>
+      <div class="body">
+        <div class="num">— Option 09</div>
+        <div class="name">Swiss <em>Editorial</em></div>
+        <p class="desc">Strict 12-column grid (press G to toggle the grid overlay). Black, off-white, one signal red. Massive Inter Bold + Fraunces italic. Magnetic interactions, hover-fills, grid overlay easter egg. Most "designer's designer" — Vignelli-meets-modern-web.</p>
+        <div class="traits"><span>Strict grid</span><span>Editorial</span><span>Bold type</span><span>Light + dark inverts</span></div>
+        <div class="best"><strong>Best for</strong>Sophisticated audiences, design firms, premium consulting clients. Most timeless of the entire set — will look great in 2030.</div>
+        <span class="open">Open Option 9 →</span>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- ============== ROUND 2 ============== -->
+  <div class="round-head">
+    <span class="ln"></span>
+    <h2>— Round 2 · Bold & out-of-box</h2>
+    <span class="ln r"></span>
+  </div>
+
+  <div class="grid">
+
+    <!-- Card 4: Mission Control -->
+    <a class="card" href="option-4-mission-control.html" target="_blank">
+      <div class="preview preview-4">
+        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+        <span class="pl tl">SYS ACTIVE</span>
+        <div class="scope"></div>
+        <div class="sweep"></div>
+        <span class="pl br">▸ INITIATE</span>
+      </div>
+      <div class="body">
+        <div class="num">— Option 04</div>
+        <div class="name">Mission <em>Control</em></div>
+        <p class="desc">A sci-fi cockpit with boot-up sequence, HUD chrome, animated radar with target blips, glitch text, telemetry tickertape, live UTC clocks. Most distinctively roboticist.</p>
+        <div class="traits"><span>Sci-fi</span><span>Operator</span><span>Atmospheric</span></div>
+        <div class="best"><strong>Best for</strong>Defense / robotics / engineering audiences who appreciate atmosphere.</div>
+        <span class="open">Open Option 4 →</span>
+      </div>
+    </a>
+
+    <!-- Card 5: Magazine -->
+    <a class="card" href="option-5-magazine.html" target="_blank">
+      <div class="preview preview-5">
+        <div class="mast"><span>VOL III</span><span class="c">G10 Quarterly</span><span>MAY 2026</span></div>
+        <div class="body">
+          <h2>The <em>Quiet</em><br>Mechanic.</h2>
+          <div class="ph"></div>
+        </div>
+        <div class="foot">— A profile · The Robotics Issue</div>
+      </div>
+      <div class="body">
+        <div class="num">— Option 05</div>
+        <div class="name">The <em>Robotics</em> Issue</div>
+        <p class="desc">Print magazine layout — masthead, drop caps, multi-column articles, photo essays, pull quotes. Reads like a feature profile *about* you.</p>
+        <div class="traits"><span>Editorial</span><span>Print-feel</span><span>Premium</span></div>
+        <div class="best"><strong>Best for</strong>VCs, journalists, non-tech clients, premium consulting.</div>
+        <span class="open">Open Option 5 →</span>
+      </div>
+    </a>
+
+    <!-- Card 6: Mecha -->
+    <a class="card" href="option-6-mecha.html" target="_blank">
+      <div class="preview preview-6">
+        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+        <span class="lbl">G10-X</span>
+        <span class="lbl2">// MECH</span>
+        <div class="ttl">
+          <span class="a">Builder of</span>
+          <span class="b">Robots/</span>
+          <span class="c">Engineer.</span>
+        </div>
+      </div>
+      <div class="body">
+        <div class="num">— Option 06</div>
+        <div class="name">Mecha · <em>Kinetic</em> Neon</div>
+        <p class="desc">Anime/gaming-inspired aggression. Glitch effects, neon, projects as collectible "trading cards" with rarity tiers and stat bars.</p>
+        <div class="traits"><span>Bold</span><span>Kinetic</span><span>Memorable</span></div>
+        <div class="best"><strong>Best for</strong>Standing out. Tech-savvy / younger / design-forward.</div>
+        <span class="open">Open Option 6 →</span>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- ============== ROUND 1 ============== -->
+  <div class="round-head">
+    <span class="ln"></span>
+    <h2>— Round 1 · Refined classics</h2>
+    <span class="ln r"></span>
+  </div>
+
+  <div class="grid">
+
+    <!-- Card 1 -->
+    <a class="card" href="option-1-blueprint.html" target="_blank">
+      <div class="preview preview-1">
+        <span class="pl tl">SHEET 01 / 04</span>
+        <span class="pl tr">REV 2.0.1</span>
+        <svg viewBox="0 0 100 100">
+          <polygon points="50,15 85,32 85,68 50,85 15,68 15,32" fill="none" stroke="#4ea8ff" stroke-width="1"/>
+          <circle cx="50" cy="50" r="14" fill="none" stroke="#4ea8ff" stroke-width="1"/>
+          <line x1="36" y1="50" x2="64" y2="50" stroke="#4ea8ff" stroke-width="0.5"/>
+          <line x1="50" y1="36" x2="50" y2="64" stroke="#4ea8ff" stroke-width="0.5"/>
+        </svg>
+        <span class="pl br">FIG.01 — HERO</span>
+      </div>
+      <div class="body">
+        <div class="num">— Option 01</div>
+        <div class="name">Engineer's <em>Blueprint</em></div>
+        <p class="desc">Your portfolio as a CAD drawing — graph paper grids, technical callouts, dimension lines.</p>
+        <div class="traits"><span>Technical</span><span>Credible</span><span>Niche</span></div>
+        <div class="best"><strong>Best for</strong>Technical recruiters, engineering clients, robotics-focused VCs.</div>
+        <span class="open">Open Option 1 →</span>
+      </div>
+    </a>
+
+    <!-- Card 2 -->
+    <a class="card" href="option-2-cinematic.html" target="_blank">
+      <div class="preview preview-2">
+        <div class="ttl">— the quiet<br><i>art</i> of building</div>
+        <div class="meta"><span>FIG. I — PORTRAIT</span><span>★ FEATURED</span></div>
+      </div>
+      <div class="body">
+        <div class="num">— Option 02</div>
+        <div class="name">Editorial <em>Cinematic</em></div>
+        <p class="desc">Apple-keynote-meets-magazine. Big serif, deep blacks, warm gold, generous whitespace.</p>
+        <div class="traits"><span>Premium</span><span>Universal</span><span>Polished</span></div>
+        <div class="best"><strong>Best for</strong>Non-tech clients, VCs, recruiters of every flavor.</div>
+        <span class="open">Open Option 2 →</span>
+      </div>
+    </a>
+
+    <!-- Card 3 -->
+    <a class="card" href="option-3-bento.html" target="_blank">
+      <div class="preview preview-3">
+        <div class="b b1">Robotics, but <em>shippable.</em></div>
+        <div class="b b2">J</div>
+        <div class="b b3"></div>
+        <div class="b b4">8+</div>
+        <div class="b b5">★ 5.0</div>
+        <div class="b b3"></div>
+      </div>
+      <div class="body">
+        <div class="num">— Option 03</div>
+        <div class="name">Interactive <em>Bento</em></div>
+        <p class="desc">Modern SaaS dashboard — every section is a tile. Live "now building" widget, terminal easter egg.</p>
+        <div class="traits"><span>Modern</span><span>Playful</span><span>Memorable</span></div>
+        <div class="best"><strong>Best for</strong>Modern VCs, product founders, dev-aware clients.</div>
+        <span class="open">Open Option 3 →</span>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="legend">
+    <h3>Decision matrix — narrowing 9 to 1</h3>
+    <p>All nine are <strong>professional</strong>, all nine have <strong>great motion</strong>. The real question is what <strong>personality</strong> you want the site to project.</p>
+    <ul>
+      <li><span><b>Want minimal but motion-rich (the 2026 standard)</b> → <b>Option 07 Kinetic Type</b>, <b>08 Liquid Glass</b>, or <b>09 Swiss</b>. These are what awwwards-tier portfolios look like today.</span></li>
+      <li><span><b>Want maximum range & timelessness</b> → <b>Option 02 Cinematic</b>, <b>05 Magazine</b>, or <b>09 Swiss</b>. Will age well, work for any audience.</span></li>
+      <li><span><b>Want to be unforgettable</b> → <b>Option 04 Mission Control</b>, <b>06 Mecha</b>, or <b>03 Bento</b>. High screenshot-rate.</span></li>
+      <li><span><b>Want maximum engineering credibility</b> → <b>Option 01 Blueprint</b> or <b>04 Mission Control</b>. Tech audiences will love both.</span></li>
+      <li><span><b>Want premium soft modern</b> → <b>Option 08 Liquid Glass</b>. Most "Apple Vision Pro" of the set.</span></li>
+      <li><span><b>Want designer's-designer minimalism</b> → <b>Option 09 Swiss</b> or <b>07 Kinetic Type</b>. Most sophisticated.</span></li>
+      <li><span><b>Hybrids work</b> — pick a primary + a secondary, e.g., Swiss landing + Cinematic case-study pages, or Glass landing + Kinetic project pages. Once you commit, I'll build the full site with your real content.</span></li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>

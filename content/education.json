@@ -1,0 +1,24 @@
+{
+  "education": [
+    {
+      "id": "coep-btech",
+      "order": 1,
+      "featured": true,
+      "degree": "B.Tech in Mechanical Engineering",
+      "institution": "College of Engineering Pune (COEP Technological University)",
+      "location": "Pune, India",
+      "start_date": "2021-08",
+      "end_date": "2025-06",
+      "current": false,
+      "batch": "2021-25",
+      "summary": "Four-year undergraduate programme in mechanical engineering with deep involvement in robotics across the Robot Study Circle (RSC), national-level competitions, research, and student leadership.",
+      "highlights": [
+        "Joined the Robot Study Circle (RSC) in December 2021; participated and led across Robocon 2023, Robocon 2024, and Robocon 2025 cycles.",
+        "Class Representative from first year — coordinated between faculty and students, managed schedules and processes.",
+        "Training & Placement (T&P) Coordinator in third year — organised company interview processes, improved online workflows.",
+        "Event head and organiser for Robotex regionals/nationals (Sep 2023) and Mindspark Robotica module (2023, 2024)."
+      ],
+      "gpa": null
+    }
+  ]
+}

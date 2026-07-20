@@ -1,0 +1,132 @@
+{
+  "experience": [
+    {
+      "id": "agmove-founding",
+      "order": 1,
+      "featured": true,
+      "role": "Founding Robotics Engineer",
+      "company": "Agmove Robotics",
+      "company_url": "https://agmove.in/",
+      "type": "full-time",
+      "location": "Pune, India",
+      "start_date": "2025-07",
+      "end_date": null,
+      "current": true,
+      "summary": "Spearheading the development of autonomous navigation and control systems for sub-20HP agricultural rovers to automate labor-intensive farming tasks.",
+      "highlights": [
+        "Led initial mechanical design, then expanded scope to robotics software and electronics ownership.",
+        "Architected and implemented ROS2 (Humble/Jazzy) navigation stacks using GNSS RTK, IMU, camera, and odometry for precise path planning in unstructured farm environments.",
+        "Used Nav2 with Livox Mid-360, VSLAM (incl. NVIDIA Isaac ROS VSLAM), and FAST-LIO2; designed reliable robot architecture, sensor fusion for obstacle detection, image-processing-based human follow, vineyard row-following autonomous and semi-autonomous navigation.",
+        "Integrated Cube Orange Plus with PX4 / ArduPilot and MAVROS for flight-controller-style telemetry on ground rovers.",
+        "Developed STM32 firmware to interface motor drivers, linear actuators, and sensors via CAN, RS485, and I2C.",
+        "Integrated NVIDIA Jetson platforms for sensor fusion and high-level decision-making.",
+        "Validated robot behaviours in Gazebo and Ignition simulation (Docker-based workflows) to accelerate hardware deployment cycles.",
+        "Designed modular software pipelines connecting high-level ROS2 nodes with low-level embedded hardware via CAN and micro-ROS.",
+        "Built a web interface for robot control with an MQTT bridge (Mosquitto), full frontend and backend for fleet management and a robot cockpit / mission planner."
+      ],
+      "tech": ["ROS2 Humble/Jazzy", "Nav2", "FAST-LIO2", "VSLAM", "NVIDIA Isaac ROS", "Livox Mid-360", "Cube Orange Plus", "PX4", "ArduPilot", "MAVROS", "micro-ROS", "STM32", "CAN", "RS485", "I2C", "NVIDIA Jetson", "Gazebo", "Ignition", "Docker", "MQTT", "Mosquitto"],
+      "image": null,
+      "links": []
+    },
+    {
+      "id": "peppermint-mech-design",
+      "order": 2,
+      "featured": true,
+      "role": "Mechanical Design Intern",
+      "company": "Peppermint Robotics",
+      "company_url": "https://www.peppermintrobotics.com/europe",
+      "type": "internship",
+      "location": "Pune, India",
+      "start_date": "2025-01",
+      "end_date": "2025-06",
+      "current": false,
+      "summary": "Worked across flagship and next-gen platforms — docking station, advance float-kit, SD45 / SD20 / Gen 3 robots, and a clean-room-certified variant — leading mechanical design with quantified production and reliability gains.",
+      "highlights": [
+        "Developed a docking station for autonomous robots in collaboration with cross-functional teams — increased uptime by 300%, reduced human intervention by 80%, and lowered costs by 25%.",
+        "Resolved design issues and upgraded key robots based on customer feedback — cut failure rates by 60%, sped up production by 30%, reduced maintenance by 20%, and boosted satisfaction and feature adoption.",
+        "Contributed to mechanical design of plastic components and electronics enclosures, integrating PCBA and sensors; supported DFM, tolerance analysis, and design traceability through PLM.",
+        "Worked on the advance float-kit and the next-generation (Gen 3) of Peppermint's flagship SD45 (Scrubber Dryer 45) and SD20 robots.",
+        "Contributed to development of a clean-room-certified robot variant.",
+        "Designed parts and assemblies across 3D-printing, sheet-metal, moulding, and FRP processes."
+      ],
+      "tech": ["SolidWorks", "Fusion 360", "Sheet Metal", "3D Printing", "Moulding", "FRP", "DFM", "Tolerance Analysis", "PLM"],
+      "image": null,
+      "links": []
+    },
+    {
+      "id": "rsc-senior-engineer",
+      "order": 3,
+      "featured": true,
+      "role": "Senior Engineer",
+      "company": "Robot Study Circle (RSC), COEP",
+      "company_url": "https://www.coeprobotics.com/",
+      "type": "club",
+      "location": "Pune, India",
+      "start_date": "2021-12",
+      "end_date": "2025-06",
+      "current": false,
+      "summary": "Four-year journey at COEP's robotics club — from hands-on builder to senior engineer leading mechanical design, simulation, and team management across national-level competitions.",
+      "highlights": [
+        "Spearheaded the design and prototyping of robotic systems and mechanisms, overseeing mechanical design and simulation for real-world applications and national-level competitions including Robocon (2023–2025).",
+        "Contributed to technical workshops and seminars under The Robotics Society India; organised large-scale events (Robotex, Robotica) with 500+ participants.",
+        "Ensured compliance with quality standards at national competitions including the FIRST Tech Challenge.",
+        "Led and managed team activities, guiding 50+ junior members in system integration, design validation, and iterative prototyping.",
+        "Oversaw project planning, task delegation, financial management, and key decision-making — fostering technical leadership, collaboration, and sustainable knowledge transfer within the club."
+      ],
+      "tech": ["SolidWorks", "Fusion 360", "MATLAB", "Simulink", "ROS2", "Gazebo", "Manufacturing", "Team Leadership"],
+      "image": null,
+      "links": []
+    },
+    {
+      "id": "iit-roorkee-research",
+      "order": 4,
+      "featured": true,
+      "role": "Research Intern — Robotics & Controls Lab",
+      "company": "IIT Roorkee",
+      "company_url": "https://shorturl.at/VY5E7",
+      "supervisor": "Prof. Pushparaj Pathak",
+      "type": "research",
+      "location": "Roorkee, India",
+      "start_date": "2024-05",
+      "end_date": "2024-07",
+      "current": false,
+      "summary": "Developed pipe-inspection robots — a versatile system for 400–900 mm pipes (scissor mechanism) and a miniature variant for 35–95 mm pipes (gear-based transformation, ATtiny85 controller).",
+      "highlights": [
+        "Researched a wide range of pipe-inspection robot architectures, then designed a versatile system for navigation across pipelines of varying characteristics, diameters, and fluid dynamics.",
+        "Did conceptual design of the full-scale (scissor-mechanism) and miniature (gear-based transformation) variants and validated through analysis and simulation.",
+        "Designed the conceptual layout and feedback-controller PCB schematic in EasyEDA using an ATtiny85 microcontroller for the miniature 35–95 mm robot — focused on compactness and control precision.",
+        "Developed control system using Raspberry Pi as navigator-controller and Xbox controller as remote operator; used ArduSub for setup/control and QGroundControl for vehicle configuration.",
+        "Studied and tested multiple actuator-control strategies: sign-magnitude PWM (e.g. Cytron motor driver), locked anti-phase PWM (e.g. brushed ESCs), relay switching, and direct MOSFET drive.",
+        "Built operator interface with joystick key-mapping and QGroundControl parameter tuning; used BlueOS and Cockpit for navigation and mission management.",
+        "Performed MATLAB simulations and CFD analysis to optimise motion dynamics and thrust force requirements.",
+        "Integrated sensors for real-time imaging and fault detection within complex pipe networks."
+      ],
+      "tech": ["Raspberry Pi", "ATtiny85", "EasyEDA", "ArduSub", "QGroundControl", "BlueOS", "Cockpit", "MATLAB", "CFD", "PCB Design", "Cytron Motor Driver", "BLDC", "Brushed ESC"],
+      "image": "Images/Pipe Inspectoin Robot.webp",
+      "links": []
+    },
+    {
+      "id": "agmove-rd-intern",
+      "order": 5,
+      "featured": false,
+      "role": "Research & Development Intern",
+      "company": "Agmove Robotics",
+      "company_url": "https://agmove.in/",
+      "type": "internship",
+      "location": "Pune, India",
+      "start_date": "2023-12",
+      "end_date": "2024-01",
+      "current": false,
+      "summary": "Designed and developed a conceptual product through to a manufacturing-feasible prototype, coordinating vendors, simplifying processes, and running on-field testing.",
+      "highlights": [
+        "Designed and developed a conceptual product, making the initial prototype manufacturing-feasible.",
+        "Got the prototype fabricated through different vendors — managed contacts and deadlines and simplified manufacturing processes.",
+        "Conducted on-field testing to assess performance under real-world conditions.",
+        "Delivered technical documentation and contributed to post-testing analysis and improvements."
+      ],
+      "tech": ["CAD", "Prototyping", "Vendor Management", "Field Testing"],
+      "image": null,
+      "links": []
+    }
+  ]
+}

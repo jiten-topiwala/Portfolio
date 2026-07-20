@@ -9,12 +9,9 @@ window.addEventListener('load', () => {
     const sysText = document.getElementById('sys-text');
     const progressBar = document.getElementById('progress-bar');
 
-    // Simulate boot sequence
     const bootSteps = [
-        { text: 'SYSTEM CHECK...', progress: 30 },
-        { text: 'CALIBRATING SENSORS...', progress: 60 },
-        { text: 'ESTABLISHING UPLINK...', progress: 90 },
-        { text: 'ACCESS GRANTED.', progress: 100 }
+        { text: 'Loading...', progress: 60 },
+        { text: 'Ready.', progress: 100 }
     ];
 
     let stepIndex = 0;
@@ -25,8 +22,7 @@ window.addEventListener('load', () => {
             progressBar.style.width = `${bootSteps[stepIndex].progress}%`;
             stepIndex++;
 
-            // Random delay for realism
-            setTimeout(runBootSequence, 400 + Math.random() * 300);
+            setTimeout(runBootSequence, 400);
         } else {
             // Sequence complete
             setTimeout(() => {
@@ -64,6 +60,23 @@ const navLinks = document.querySelectorAll('.nav-link');
 let lastScroll = 0;
 let ticking = false;
 
+// ===== FLOATING CONTACT BUTTON =====
+const floatContact = document.getElementById('float-contact');
+const contactSection = document.getElementById('contact');
+
+function updateFloatContact(scrollY) {
+    if (!floatContact || !contactSection) return;
+    const heroHeight = document.getElementById('home')?.offsetHeight ?? 400;
+    const contactTop = contactSection.offsetTop;
+    const contactBottom = contactTop + contactSection.offsetHeight;
+
+    const pastHero = scrollY > heroHeight * 0.6;
+    const inContact = scrollY + window.innerHeight > contactTop + 60 && scrollY < contactBottom;
+
+    floatContact.classList.toggle('visible', pastHero && !inContact);
+    floatContact.classList.toggle('hidden-in-contact', inContact);
+}
+
 window.addEventListener('scroll', () => {
     if (!ticking) {
         window.requestAnimationFrame(() => {
@@ -71,6 +84,7 @@ window.addEventListener('scroll', () => {
             navbar.classList.toggle('scrolled', currentScroll > 50);
             lastScroll = currentScroll;
             updateActiveLink();
+            updateFloatContact(currentScroll);
             ticking = false;
         });
         ticking = true;
@@ -501,8 +515,8 @@ const projectsData = {
         ],
         tech: ['ROS', 'SolidWorks', 'Python', 'OpenCV', '3D Printing'],
         media: [
-            { type: 'image', src: 'Images/trackbeltmode.JPG', thumb: 'Images/trackbeltmode.JPG' },
-            { type: 'image', src: 'Images/WhatsApp Image 2023-10-28 at 14.19.37_9e6e37e8.jpg', thumb: 'Images/WhatsApp Image 2023-10-28 at 14.19.37_9e6e37e8.jpg' }
+            { type: 'image', src: 'Images/trackbeltmode.webp', thumb: 'Images/trackbeltmode.webp' },
+            { type: 'image', src: 'Images/WhatsApp Image 2023-10-28 at 14.19.37_9e6e37e8.webp', thumb: 'Images/WhatsApp Image 2023-10-28 at 14.19.37_9e6e37e8.webp' }
         ],
         links: [
             { text: 'View 3D Model', url: '#', icon: '<path d="M21 16.5c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18-.21 0-.41-.06-.57-.18l-7.9-4.44A.991.991 0 013 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.16-.12.36-.18.57-.18.21 0 .41.06.57.18l7.9 4.44c.32.17.53.5.53.88v9M12 4.15L6.04 7.5 12 10.85l5.96-3.35L12 4.15z"/>' }
@@ -522,9 +536,9 @@ const projectsData = {
         ],
         tech: ['ROS2', 'Navigation Stack', 'LIDAR', 'Industrial Design', 'React'],
         media: [
-            { type: 'image', src: 'Images/LiftTerra 1.jpg', thumb: 'Images/LiftTerra 1.jpg' },
-            { type: 'image', src: 'Images/LiftTerra 2.jpg', thumb: 'Images/LiftTerra 2.jpg' },
-            { type: 'image', src: 'Images/Enterprenurship.jpg', thumb: 'Images/Enterprenurship.jpg' }
+            { type: 'image', src: 'Images/LiftTerra 1.webp', thumb: 'Images/LiftTerra 1.webp' },
+            { type: 'image', src: 'Images/LiftTerra 2.webp', thumb: 'Images/LiftTerra 2.webp' },
+            { type: 'image', src: 'Images/Enterprenurship.webp', thumb: 'Images/Enterprenurship.webp' }
         ],
         links: [
             { text: 'Visit Website', url: 'https://jiten-topiwala.github.io/LiftTerra/', icon: '<path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>' }
@@ -544,8 +558,8 @@ const projectsData = {
         ],
         tech: ['Mechanical Design', 'Arduino', 'Power Electronics', 'Video Transmission'],
         media: [
-            { type: 'image', src: 'Images/Pipe Inspectoin Robot.jpg', thumb: 'Images/Pipe Inspectoin Robot.jpg' },
-            { type: 'image', src: 'Images/Pipe inspection robot 2.jpg', thumb: 'Images/Pipe inspection robot 2.jpg' }
+            { type: 'image', src: 'Images/Pipe Inspectoin Robot.webp', thumb: 'Images/Pipe Inspectoin Robot.webp' },
+            { type: 'image', src: 'Images/Pipe inspection robot 2.webp', thumb: 'Images/Pipe inspection robot 2.webp' }
         ],
         links: []
     },
@@ -563,8 +577,8 @@ const projectsData = {
         ],
         tech: ['Control Theory', 'MATLAB', 'C++', 'Embedded Systems'],
         media: [
-            { type: 'image', src: 'Images/Biped 1.jpg', thumb: 'Images/Biped 1.jpg' },
-            { type: 'image', src: 'Images/Biped 2.jpg', thumb: 'Images/Biped 2.jpg' }
+            { type: 'image', src: 'Images/Biped 1.webp', thumb: 'Images/Biped 1.webp' },
+            { type: 'image', src: 'Images/Biped 2.webp', thumb: 'Images/Biped 2.webp' }
         ],
         links: []
     },
@@ -599,7 +613,7 @@ const projectsData = {
         ],
         tech: ['Automation', 'PLC Programming', 'CAD', 'Pneumatics'],
         media: [
-            { type: 'image', src: 'Images/Vertical_Indexing_conveyor.jpg', thumb: 'Images/Vertical_Indexing_conveyor.jpg' }
+            { type: 'image', src: 'Images/Vertical_Indexing_conveyor.webp', thumb: 'Images/Vertical_Indexing_conveyor.webp' }
         ],
         links: []
     }

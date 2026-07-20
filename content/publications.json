@@ -1,0 +1,48 @@
+{
+  "publications": [
+    {
+      "id": "ieee-punecon-drone-2024",
+      "order": 1,
+      "featured": true,
+      "ref_code": "C.1",
+      "type": "conference",
+      "venue": "IEEE PuneCon 2024",
+      "venue_full": "2024 IEEE Pune Section International Conference (PuneCon)",
+      "publisher": "IEEE",
+      "title": "Advanced Drone Navigation and Landing with Multi-Algorithm Integration for Parrot MiniDrone",
+      "authors": ["Jiten Topiwala", "et al."],
+      "year": 2024,
+      "month": 12,
+      "location": "Pune, India",
+      "pages": "1-6",
+      "doi": "10.1109/PuneCon63413.2024.10895147",
+      "url": "https://ieeexplore.ieee.org/document/10895147",
+      "abstract": "Novel approach to drone navigation and precision landing using integrated multi-algorithm systems for Parrot MiniDrone platforms.",
+      "citation": "Jiten Topiwala, et al. (2024). Advanced Drone Navigation and Landing with Multi-Algorithm Integration for Parrot MiniDrone. In Proceedings of the 2024 IEEE Pune Section International Conference (PuneCon), pp. 1-6. IEEE. December 2024, Pune, India. DOI: 10.1109/PuneCon63413.2024.10895147.",
+      "project_id": "drone-navigation"
+    },
+    {
+      "id": "ijirt-agri-gantry-2024",
+      "order": 2,
+      "featured": true,
+      "ref_code": "J.1",
+      "type": "journal",
+      "venue": "IJIRT",
+      "venue_full": "International Journal of Innovative Research in Technology",
+      "publisher": "IJIRT",
+      "title": "Design of an Agricultural Robotic System for Farm Coverage",
+      "authors": ["Jiten Topiwala", "et al."],
+      "year": 2024,
+      "month": null,
+      "volume": "11",
+      "issue": "4",
+      "pages": "109-115",
+      "paper_id": "167610",
+      "doi": null,
+      "url": "https://ijirt.org/publishedpaper/IJIRT167610_PAPER.pdf",
+      "abstract": "A comprehensive approach to designing autonomous agricultural robots for efficient farm coverage and crop management using a gantry system with rope-driven and base-drive axes.",
+      "citation": "Jiten Topiwala, et al. (2024). Design of an Agricultural Robotic System for Farm Coverage. International Journal of Innovative Research in Technology, Vol. 11, Issue 4, pp. 109-115. Unique Paper ID: 167610.",
+      "project_id": "agricultural-gantry"
+    }
+  ]
+}
