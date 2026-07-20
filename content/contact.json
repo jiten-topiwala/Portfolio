@@ -1,0 +1,145 @@
+{
+  "section": {
+    "tag": "Get In Touch",
+    "title": "Let's Build Together",
+    "title_highlight": "Together",
+    "subtitle": "Interested in collaborating on robotics projects, discussing opportunities, or just want to say hi? I'd love to hear from you!",
+    "availability_line": "Open to new projects · Usually responds within 24 hours"
+  },
+  "methods": [
+    {
+      "id": "email-card",
+      "order": 1,
+      "label": "Email",
+      "icon": "fa-envelope",
+      "ref_social_platform": "email",
+      "card_subtext": null
+    },
+    {
+      "id": "linkedin-card",
+      "order": 2,
+      "label": "LinkedIn",
+      "icon": "fa-linkedin",
+      "icon_lib": "fab",
+      "ref_social_platform": "linkedin",
+      "card_subtext": "Connect with me"
+    },
+    {
+      "id": "github-card",
+      "order": 3,
+      "label": "GitHub",
+      "icon": "fa-github",
+      "icon_lib": "fab",
+      "ref_social_platform": "github",
+      "card_subtext": "View my code"
+    },
+    {
+      "id": "fiverr-card",
+      "order": 4,
+      "label": "Fiverr",
+      "icon": "fiverr-svg",
+      "ref_social_platform": "fiverr",
+      "card_subtext": "Work with me on a project",
+      "show_rating": true
+    }
+  ],
+  "form": {
+    "enabled": true,
+    "provider": "formsubmit",
+    "action_url": "https://formsubmit.co/jitentopiwala7@gmail.com",
+    "method": "POST",
+    "recipient": "jitentopiwala7@gmail.com",
+    "hidden_fields": [
+      { "name": "_subject", "value": "New Portfolio Contact!" },
+      { "name": "_captcha", "value": "true" },
+      { "name": "_template", "value": "table" },
+      { "name": "_next", "value": "https://jitentopiwala.github.io/Portfolio/" }
+    ],
+    "fields": [
+      {
+        "name": "name",
+        "label": "Your Name",
+        "type": "text",
+        "required": true,
+        "placeholder": " ",
+        "autocomplete": "name"
+      },
+      {
+        "name": "email",
+        "label": "Your Email",
+        "type": "email",
+        "required": true,
+        "placeholder": " ",
+        "autocomplete": "email"
+      },
+      {
+        "name": "subject",
+        "label": "Subject",
+        "type": "text",
+        "required": true,
+        "placeholder": " ",
+        "autocomplete": "off"
+      },
+      {
+        "name": "message",
+        "label": "Your Message",
+        "type": "textarea",
+        "rows": 5,
+        "required": true,
+        "placeholder": " ",
+        "autocomplete": "off"
+      }
+    ],
+    "submit_button": {
+      "label": "Send Message",
+      "icon": "send"
+    }
+  },
+  "messages": {
+    "success": "Thanks — your message has been sent. I'll reply within 24 hours.",
+    "error": "Something went wrong sending your message. Please email me directly at jitentopiwala7@gmail.com.",
+    "validation": {
+      "name_required": "Please enter your name.",
+      "email_required": "Please enter your email.",
+      "email_invalid": "Please enter a valid email address.",
+      "subject_required": "Please enter a subject.",
+      "message_required": "Please enter a message."
+    }
+  },
+  "cta_buttons": [
+    {
+      "id": "hire-fiverr",
+      "label": "Hire Me on Fiverr",
+      "url": "https://www.fiverr.com/jiten_topiwala",
+      "primary": true,
+      "external": true,
+      "icon": "external-link"
+    },
+    {
+      "id": "discuss-project",
+      "label": "Discuss a Project",
+      "url": "#contact",
+      "primary": false,
+      "external": false,
+      "icon": null
+    }
+  ],
+  "hero_ctas": [
+    {
+      "id": "hire-me",
+      "label": "Hire Me",
+      "url": "#services",
+      "primary": true,
+      "external": false,
+      "icon": "arrow-right"
+    },
+    {
+      "id": "view-projects",
+      "label": "View Projects",
+      "url": "#projects",
+      "primary": false,
+      "external": false,
+      "icon": null
+    }
+  ]
+}

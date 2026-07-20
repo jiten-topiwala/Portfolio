@@ -1,0 +1,76 @@
+{
+  "certifications": [
+    {
+      "id": "ros-beginners-udemy",
+      "order": 1,
+      "title": "ROS for Beginners",
+      "issuer": "Udemy",
+      "year": null,
+      "category": "robotics",
+      "url": null
+    },
+    {
+      "id": "matlab-onramp",
+      "order": 2,
+      "title": "MATLAB Onramp",
+      "issuer": "MathWorks",
+      "year": null,
+      "category": "simulation",
+      "url": null
+    },
+    {
+      "id": "simulink-onramp",
+      "order": 3,
+      "title": "Simulink Onramp",
+      "issuer": "MathWorks",
+      "year": null,
+      "category": "simulation",
+      "url": null
+    },
+    {
+      "id": "simscape-onramp",
+      "order": 4,
+      "title": "Simscape Onramp",
+      "issuer": "MathWorks",
+      "year": null,
+      "category": "simulation",
+      "url": null
+    },
+    {
+      "id": "fusion360-essential",
+      "order": 5,
+      "title": "Fusion 360 Essential Training",
+      "issuer": "LinkedIn Learning",
+      "year": null,
+      "category": "cad",
+      "url": null
+    },
+    {
+      "id": "solidworks-2022-essential",
+      "order": 6,
+      "title": "SolidWorks 2022 Essential",
+      "issuer": "LinkedIn Learning",
+      "year": null,
+      "category": "cad",
+      "url": null
+    },
+    {
+      "id": "python-essential",
+      "order": 7,
+      "title": "Python Essential Training",
+      "issuer": "LinkedIn Learning",
+      "year": null,
+      "category": "programming",
+      "url": null
+    },
+    {
+      "id": "excel-advanced-formulas",
+      "order": 8,
+      "title": "Excel: Advanced Formulas and Functions",
+      "issuer": "LinkedIn Learning",
+      "year": null,
+      "category": "data",
+      "url": null
+    }
+  ]
+}

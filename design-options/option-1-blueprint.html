@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Option 1 — Engineer's Blueprint</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a1220;
+    --bg-2:#0d1828;
+    --paper:rgba(255,255,255,0.02);
+    --line:rgba(120,180,255,0.10);
+    --line-bold:rgba(120,180,255,0.22);
+    --ink:#e8eef8;
+    --ink-dim:#8aa0bf;
+    --blue:#4ea8ff;
+    --amber:#ffb547;
+    --green:#5ee9b5;
+    --red:#ff6b6b;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;overflow-x:hidden}
+  /* ---- Background grid (graph paper) ---- */
+  body::before{
+    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px),
+      linear-gradient(var(--line-bold) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line-bold) 1px, transparent 1px);
+    background-size: 24px 24px, 24px 24px, 120px 120px, 120px 120px;
+    mask-image: radial-gradient(ellipse at 50% 30%, #000 30%, transparent 90%);
+  }
+  body::after{
+    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:radial-gradient(ellipse 800px 400px at 80% 10%, rgba(78,168,255,0.08), transparent 60%),
+               radial-gradient(ellipse 600px 300px at 10% 80%, rgba(255,181,71,0.05), transparent 60%);
+  }
+  /* ---- Layout ---- */
+  .page{position:relative;z-index:2}
+  .container{max-width:1320px;margin:0 auto;padding:0 40px}
+
+  /* ---- Top frame: like a CAD drawing border ---- */
+  .frame-top{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:14px 32px;font-family:'JetBrains Mono',monospace;font-size:11px;
+    letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-dim);
+    background:linear-gradient(180deg, rgba(10,18,32,0.85), rgba(10,18,32,0.4));
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line-bold);
+  }
+  .frame-top .left,.frame-top .right{display:flex;gap:24px;align-items:center}
+  .frame-top .dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green);animation:pulse 2s infinite}
+  @keyframes pulse{50%{opacity:0.4}}
+
+  /* ---- Side rulers (like CAD drawing tick marks) ---- */
+  .ruler{position:fixed;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--ink-dim);opacity:0.5;z-index:5;letter-spacing:0.2em}
+  .ruler.left{left:8px;top:50%;transform:rotate(-90deg) translateX(-50%);transform-origin:left center}
+  .ruler.right{right:8px;top:50%;transform:rotate(90deg) translateX(50%);transform-origin:right center}
+
+  /* ---- Hero ---- */
+  .hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:60px;padding-top:120px;padding-bottom:80px}
+  .meta-tag{display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.25em;text-transform:uppercase;color:var(--blue);margin-bottom:32px}
+  .meta-tag .num{color:var(--ink-dim)}
+  .meta-tag .bracket{color:var(--amber)}
+
+  .hero-title{font-family:'Fraunces',serif;font-size:clamp(48px,7vw,108px);line-height:0.95;font-weight:500;letter-spacing:-0.025em;margin-bottom:24px}
+  .hero-title em{font-style:italic;color:var(--blue);font-weight:400}
+  .hero-title .annot{position:relative;display:inline-block}
+  .hero-title .annot::after{
+    content:attr(data-dim);position:absolute;bottom:-22px;left:0;right:0;text-align:center;
+    font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--amber);font-weight:400;font-style:normal;
+    letter-spacing:0.15em;
+  }
+  .hero-title .annot::before{
+    content:"";position:absolute;bottom:-8px;left:5%;right:5%;height:1px;background:var(--amber);
+  }
+  .hero-sub{font-size:17px;line-height:1.7;color:var(--ink-dim);max-width:520px;margin-bottom:40px;font-weight:300}
+  .hero-sub strong{color:var(--ink);font-weight:500}
+
+  .cta-row{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;text-decoration:none;border:1px solid var(--line-bold);transition:all 0.3s ease;cursor:pointer;background:transparent;color:var(--ink)}
+  .btn.primary{background:var(--blue);color:#0a1220;border-color:var(--blue);font-weight:600}
+  .btn.primary:hover{background:transparent;color:var(--blue);box-shadow:inset 0 0 0 1px var(--blue), 0 0 30px rgba(78,168,255,0.3)}
+  .btn:hover{border-color:var(--blue);color:var(--blue)}
+  .btn .arr{transition:transform 0.3s}
+  .btn:hover .arr{transform:translateX(4px)}
+
+  /* ---- Hero schematic ---- */
+  .schematic{position:relative;aspect-ratio:1;width:100%;max-width:520px;margin-left:auto}
+  .sch-svg{width:100%;height:100%;overflow:visible}
+  .sch-label{font-family:'JetBrains Mono',monospace;font-size:10px;fill:var(--amber);letter-spacing:0.1em;text-transform:uppercase}
+  .sch-label-dim{font-family:'JetBrains Mono',monospace;font-size:9px;fill:var(--ink-dim);letter-spacing:0.1em}
+  .sch-arrow{stroke:var(--amber);stroke-width:1;fill:none}
+  .sch-grid{stroke:var(--line);stroke-width:0.5;fill:none}
+  .sch-part{stroke:var(--blue);stroke-width:1.5;fill:none;stroke-linejoin:round;stroke-linecap:round}
+  .sch-part.thin{stroke-width:1}
+  .sch-fill{fill:rgba(78,168,255,0.08);stroke:var(--blue);stroke-width:1}
+  .sch-cross{stroke:var(--ink-dim);stroke-width:0.5;stroke-dasharray:4 3}
+  .draw{stroke-dasharray:1000;stroke-dashoffset:1000;animation:draw 2.5s ease forwards}
+  .draw.d2{animation-delay:0.4s}
+  .draw.d3{animation-delay:0.8s}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  .fade-in{opacity:0;animation:fade 0.8s ease forwards}
+  .fade-in.d1{animation-delay:1.5s}
+  .fade-in.d2{animation-delay:1.8s}
+  .fade-in.d3{animation-delay:2.1s}
+  .fade-in.d4{animation-delay:2.4s}
+  @keyframes fade{to{opacity:1}}
+
+  .corner-info{position:absolute;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-dim);letter-spacing:0.2em;text-transform:uppercase}
+  .corner-info.tl{top:-10px;left:-10px}
+  .corner-info.tr{top:-10px;right:-10px;text-align:right}
+  .corner-info.bl{bottom:-10px;left:-10px}
+  .corner-info.br{bottom:-10px;right:-10px;text-align:right}
+  .corner-info span{color:var(--blue);display:block;font-size:9px;opacity:0.7}
+
+  /* ---- Sections ---- */
+  section.block{padding:120px 0;position:relative}
+  .section-num{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:var(--amber);margin-bottom:18px;display:flex;align-items:center;gap:14px}
+  .section-num::before{content:"";width:30px;height:1px;background:var(--amber)}
+  .section-title{font-family:'Fraunces',serif;font-size:clamp(36px,4.5vw,64px);font-weight:500;letter-spacing:-0.02em;line-height:1.05;max-width:720px;margin-bottom:24px}
+  .section-title em{color:var(--blue);font-style:italic}
+  .section-lead{font-size:17px;line-height:1.7;color:var(--ink-dim);max-width:640px;font-weight:300}
+
+  /* ---- Project grid (technical sheet style) ---- */
+  .sheet{margin-top:64px;border:1px solid var(--line-bold);background:linear-gradient(180deg, rgba(20,30,50,0.4), rgba(15,25,42,0.2));position:relative}
+  .sheet-header{display:grid;grid-template-columns:1fr 2fr 1fr 1fr;padding:18px 24px;border-bottom:1px solid var(--line-bold);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-dim)}
+  .row{display:grid;grid-template-columns:1fr 2fr 1fr 1fr;padding:24px;border-bottom:1px solid var(--line);align-items:center;transition:all 0.4s ease;cursor:pointer;position:relative}
+  .row:last-child{border-bottom:none}
+  .row:hover{background:rgba(78,168,255,0.04);padding-left:32px}
+  .row::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--blue);transform:scaleY(0);transform-origin:bottom;transition:transform 0.4s ease}
+  .row:hover::before{transform:scaleY(1);transform-origin:top}
+  .row .id{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--amber);letter-spacing:0.2em}
+  .row .name{font-family:'Fraunces',serif;font-size:24px;font-weight:500;letter-spacing:-0.01em}
+  .row .name span{display:block;font-family:'Inter',sans-serif;font-size:13px;color:var(--ink-dim);font-weight:400;margin-top:4px}
+  .row .tag{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--blue);letter-spacing:0.15em;text-transform:uppercase}
+  .row .stat{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink);text-align:right}
+  .row .stat span{display:block;font-size:9px;color:var(--ink-dim);letter-spacing:0.2em;margin-top:2px}
+
+  /* ---- Specs / about layout ---- */
+  .specs{display:grid;grid-template-columns:1fr 1.4fr;gap:80px;margin-top:64px;align-items:start}
+  .spec-list{border-top:1px solid var(--line-bold)}
+  .spec-row{display:flex;justify-content:space-between;padding:18px 0;border-bottom:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:13px}
+  .spec-row .k{color:var(--ink-dim);letter-spacing:0.15em;text-transform:uppercase;font-size:11px}
+  .spec-row .v{color:var(--ink);font-weight:500}
+  .spec-row .v.accent{color:var(--amber)}
+  .copy p{font-size:17px;line-height:1.8;color:var(--ink-dim);margin-bottom:20px;font-weight:300}
+  .copy p strong{color:var(--ink);font-weight:500}
+  .pull{font-family:'Fraunces',serif;font-size:28px;line-height:1.4;color:var(--ink);font-style:italic;border-left:2px solid var(--amber);padding-left:24px;margin:32px 0;font-weight:400}
+
+  /* ---- Footer / contact ---- */
+  .footer{padding:120px 0 60px;border-top:1px solid var(--line-bold);position:relative;overflow:hidden}
+  .footer::before{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(ellipse 600px 200px at 50% 0%, rgba(78,168,255,0.08), transparent 70%);
+  }
+  .foot-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:80px;align-items:end;position:relative;z-index:2}
+  .foot-headline{font-family:'Fraunces',serif;font-size:clamp(36px,5vw,72px);line-height:1.05;font-weight:500;letter-spacing:-0.02em}
+  .foot-headline em{color:var(--blue);font-style:italic}
+  .foot-headline .small{display:block;font-size:14px;font-family:'JetBrains Mono',monospace;color:var(--amber);letter-spacing:0.25em;text-transform:uppercase;margin-bottom:18px;font-weight:400;font-style:normal}
+
+  .foot-meta{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-dim);letter-spacing:0.2em;text-transform:uppercase;line-height:2.2}
+  .foot-meta .v{color:var(--ink);display:block}
+  .foot-meta .row-2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+
+  .foot-bottom{margin-top:80px;display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-dim);letter-spacing:0.2em;text-transform:uppercase;padding-top:24px;border-top:1px solid var(--line)}
+
+  /* ---- Cursor crosshair ---- */
+  .crosshair{position:fixed;pointer-events:none;z-index:100;width:30px;height:30px;border:1px solid var(--blue);border-radius:50%;transform:translate(-50%,-50%);transition:width 0.2s, height 0.2s, opacity 0.2s;mix-blend-mode:screen;opacity:0.6}
+  .crosshair::before,.crosshair::after{content:"";position:absolute;background:var(--blue)}
+  .crosshair::before{top:50%;left:-8px;right:-8px;height:1px;transform:translateY(-50%)}
+  .crosshair::after{left:50%;top:-8px;bottom:-8px;width:1px;transform:translateX(-50%)}
+
+  /* ---- Floating callout (annotation style) ---- */
+  .callout{position:absolute;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);letter-spacing:0.2em;text-transform:uppercase;padding:6px 12px;border:1px solid var(--amber);background:rgba(10,18,32,0.85);backdrop-filter:blur(6px)}
+
+  /* ---- Reveal on scroll ---- */
+  .reveal{opacity:0;transform:translateY(30px);transition:all 0.9s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:translateY(0)}
+
+  @media (max-width:900px){
+    .hero{grid-template-columns:1fr;padding-top:100px}
+    .schematic{margin:0 auto;max-width:380px}
+    .specs{grid-template-columns:1fr;gap:48px}
+    .foot-grid{grid-template-columns:1fr;gap:40px}
+    .row,.sheet-header{grid-template-columns:60px 1fr;gap:8px}
+    .row .tag,.row .stat,.sheet-header > :nth-child(3),.sheet-header > :nth-child(4){display:none}
+    .frame-top{padding:10px 16px;font-size:10px}
+    .frame-top .left .item:nth-child(n+3){display:none}
+    .container{padding:0 20px}
+  }
+</style>
+</head>
+<body>
+
+<!-- Top technical frame -->
+<div class="frame-top">
+  <div class="left">
+    <span class="item"><span class="dot"></span> SYSTEM ONLINE</span>
+    <span class="item">REV — 2.0.1</span>
+    <span class="item">SHEET 01 / 04</span>
+    <span class="item">SCALE 1:1</span>
+  </div>
+  <div class="right">
+    <span class="item">PROJECTS</span>
+    <span class="item">ABOUT</span>
+    <span class="item">CONTACT →</span>
+  </div>
+</div>
+
+<div class="ruler left">— 0 — 100 — 200 — 300 — 400 — 500 — 600 — 700 — 800mm</div>
+<div class="ruler right">— 0 — 100 — 200 — 300 — 400 — 500 — 600 — 700 — 800mm</div>
+
+<div class="page">
+  <div class="container">
+
+    <!-- ============== HERO ============== -->
+    <section class="hero">
+      <div>
+        <div class="meta-tag">
+          <span class="bracket">[</span>
+          <span class="num">001 /</span>
+          <span>Robotics Engineer · Mechanical · Founder</span>
+          <span class="bracket">]</span>
+        </div>
+        <h1 class="hero-title">
+          Designing
+          <em>machines</em><br>
+          that move<br>
+          <span class="annot" data-dim="01 — purpose">the world.</span>
+        </h1>
+        <p class="hero-sub">
+          A portfolio of <strong>award-winning robotic systems</strong> — surveillance, inspection,
+          and agricultural automation — engineered from first principles. Open for consulting,
+          freelance and full-time engagements.
+        </p>
+        <div class="cta-row">
+          <a href="#" class="btn primary">
+            <span>Start a Project</span>
+            <span class="arr">→</span>
+          </a>
+          <a href="#" class="btn">
+            <span>Download Spec Sheet</span>
+            <span class="arr">↓</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Schematic illustration -->
+      <div class="schematic">
+        <span class="corner-info tl">FIG.01<span>HERO ASSEMBLY</span></span>
+        <span class="corner-info tr">DRAWN BY: G10<span>2026.05</span></span>
+        <span class="corner-info bl">MATERIAL: AL-6061<span>QTY 1</span></span>
+        <span class="corner-info br">UNITS: METRIC<span>TOL ±0.05</span></span>
+
+        <svg class="sch-svg" viewBox="0 0 400 400">
+          <defs>
+            <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--amber)"/>
+            </marker>
+          </defs>
+
+          <!-- Grid -->
+          <g class="sch-grid">
+            <path d="M0 100 H400 M0 200 H400 M0 300 H400 M100 0 V400 M200 0 V400 M300 0 V400"/>
+          </g>
+
+          <!-- Center reference cross -->
+          <g class="sch-cross">
+            <line x1="0" y1="200" x2="400" y2="200"/>
+            <line x1="200" y1="0" x2="200" y2="400"/>
+          </g>
+
+          <!-- Robot body — exploded schematic of a tracked rover -->
+          <!-- Hex frame -->
+          <polygon class="sch-part draw" points="200,90 290,140 290,260 200,310 110,260 110,140"/>
+          <!-- Inner core -->
+          <circle class="sch-part draw d2" cx="200" cy="200" r="38"/>
+          <circle class="sch-part thin draw d2" cx="200" cy="200" r="20"/>
+          <line class="sch-part thin draw d2" x1="170" y1="200" x2="230" y2="200"/>
+          <line class="sch-part thin draw d2" x1="200" y1="170" x2="200" y2="230"/>
+
+          <!-- Side tracks -->
+          <rect class="sch-part draw d2" x="60" y="170" width="34" height="60" rx="4"/>
+          <rect class="sch-part draw d2" x="306" y="170" width="34" height="60" rx="4"/>
+          <line class="sch-part thin draw d3" x1="64" y1="180" x2="64" y2="220"/>
+          <line class="sch-part thin draw d3" x1="74" y1="180" x2="74" y2="220"/>
+          <line class="sch-part thin draw d3" x1="84" y1="180" x2="84" y2="220"/>
+          <line class="sch-part thin draw d3" x1="316" y1="180" x2="316" y2="220"/>
+          <line class="sch-part thin draw d3" x1="326" y1="180" x2="326" y2="220"/>
+          <line class="sch-part thin draw d3" x1="336" y1="180" x2="336" y2="220"/>
+
+          <!-- Sensor on top -->
+          <circle class="sch-part draw d3" cx="200" cy="80" r="14"/>
+          <circle class="sch-part thin draw d3" cx="200" cy="80" r="6"/>
+          <line class="sch-part thin draw d3" x1="200" y1="94" x2="200" y2="110"/>
+
+          <!-- Connection arms -->
+          <line class="sch-part draw d3" x1="110" y1="200" x2="94" y2="200"/>
+          <line class="sch-part draw d3" x1="290" y1="200" x2="306" y2="200"/>
+
+          <!-- Highlighted area -->
+          <rect class="sch-fill fade-in d2" x="180" y="180" width="40" height="40" opacity="0.5"/>
+
+          <!-- Dimension lines -->
+          <g class="fade-in d3">
+            <line class="sch-arrow" x1="60" y1="350" x2="340" y2="350" marker-end="url(#arr)" marker-start="url(#arr)"/>
+            <text class="sch-label-dim" x="200" y="368" text-anchor="middle">280.0</text>
+          </g>
+          <g class="fade-in d3">
+            <line class="sch-arrow" x1="370" y1="80" x2="370" y2="320" marker-end="url(#arr)" marker-start="url(#arr)"/>
+            <text class="sch-label-dim" x="380" y="200" text-anchor="middle" transform="rotate(90,380,200)">240.0</text>
+          </g>
+
+          <!-- Callout: sensor -->
+          <g class="fade-in d4">
+            <line class="sch-arrow" x1="200" y1="80" x2="270" y2="40"/>
+            <circle cx="200" cy="80" r="2.5" fill="var(--amber)"/>
+            <text class="sch-label" x="275" y="42">A — LIDAR / 360°</text>
+          </g>
+
+          <!-- Callout: core -->
+          <g class="fade-in d4">
+            <line class="sch-arrow" x1="220" y1="200" x2="370" y2="200"/>
+            <circle cx="220" cy="200" r="2.5" fill="var(--amber)"/>
+          </g>
+
+          <!-- Callout: track -->
+          <g class="fade-in d4">
+            <line class="sch-arrow" x1="74" y1="200" x2="20" y2="240"/>
+            <circle cx="74" cy="200" r="2.5" fill="var(--amber)"/>
+            <text class="sch-label" x="20" y="255">B — DRIVE</text>
+          </g>
+        </svg>
+
+        <div class="callout fade-in d4" style="top:38%;right:-20px">B — Compute · Jetson</div>
+      </div>
+    </section>
+
+    <!-- ============== SECTION 02 — Featured projects sheet ============== -->
+    <section class="block">
+      <div class="reveal">
+        <div class="section-num">SECTION 02 / FEATURED ASSEMBLIES</div>
+        <h2 class="section-title">Field-tested systems, <em>built from scratch.</em></h2>
+        <p class="section-lead">Every project listed here was designed, fabricated and validated end-to-end — mechanical CAD, electronics, firmware and high-level software.</p>
+      </div>
+
+      <div class="sheet reveal">
+        <div class="sheet-header">
+          <div>ID</div><div>ASSEMBLY</div><div>DOMAIN</div><div style="text-align:right">METRIC</div>
+        </div>
+        <div class="row">
+          <div class="id">A-001</div>
+          <div class="name">LiftTerra <span>Construction & maintenance robot · Founder</span></div>
+          <div class="tag">▲ Robotics</div>
+          <div class="stat">50kg<span>PAYLOAD</span></div>
+        </div>
+        <div class="row">
+          <div class="id">A-002</div>
+          <div class="name">Manpackable Surveillance <span>Wheel ↔ Track transformable rover</span></div>
+          <div class="tag">▲ Defense</div>
+          <div class="stat">1.0km<span>RANGE</span></div>
+        </div>
+        <div class="row">
+          <div class="id">A-003</div>
+          <div class="name">Pipe Inspection Robot <span>Variable diameter · IP67 sealed</span></div>
+          <div class="tag">◇ Industrial</div>
+          <div class="stat">50–150mm<span>Ø RANGE</span></div>
+        </div>
+        <div class="row">
+          <div class="id">A-004</div>
+          <div class="name">Biped Walker <span>12-DOF · ZMP gait generation</span></div>
+          <div class="tag">◯ Research</div>
+          <div class="stat">12 DOF<span>ARTICULATION</span></div>
+        </div>
+        <div class="row">
+          <div class="id">A-005</div>
+          <div class="name">Vertical Indexing Conveyor <span>Chain-sprocket industrial system</span></div>
+          <div class="tag">◇ Industrial</div>
+          <div class="stat">±0.5mm<span>PRECISION</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== SECTION 03 — About specs ============== -->
+    <section class="block">
+      <div class="reveal">
+        <div class="section-num">SECTION 03 / ABOUT</div>
+        <h2 class="section-title">An engineer with <em>both hands</em> on the metal.</h2>
+      </div>
+
+      <div class="specs">
+        <div class="reveal">
+          <div class="spec-list">
+            <div class="spec-row"><span class="k">Role</span><span class="v">Robotics Engineer</span></div>
+            <div class="spec-row"><span class="k">Domain</span><span class="v accent">Mechanical · Robotics · Embedded</span></div>
+            <div class="spec-row"><span class="k">Currently</span><span class="v">Agmove Robotics</span></div>
+            <div class="spec-row"><span class="k">Founder</span><span class="v">LiftTerra</span></div>
+            <div class="spec-row"><span class="k">Publications</span><span class="v">2 — IEEE / IJIRT</span></div>
+            <div class="spec-row"><span class="k">Awards</span><span class="v accent">8+</span></div>
+            <div class="spec-row"><span class="k">Status</span><span class="v">▲ Open to work</span></div>
+          </div>
+        </div>
+        <div class="copy reveal">
+          <p>Mechanical engineer by training, roboticist by obsession. I bridge <strong>CAD-to-code</strong> — designing the chassis, choosing the actuators, integrating the sensors, and closing the loop in software.</p>
+          <p class="pull">"The best robots aren't the most complicated — they're the ones that survive contact with the real world."</p>
+          <p>From <strong>Robocon competition floors</strong> to <strong>industrial pilot deployments</strong>, my work has lived where it matters: in the field, under load, with stakeholders watching.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== FOOTER / CTA ============== -->
+    <section class="footer reveal">
+      <div class="foot-grid">
+        <div>
+          <h2 class="foot-headline">
+            <span class="small">— SECTION 04 / CONTACT</span>
+            Have a problem worth <em>building a machine</em> for?
+          </h2>
+        </div>
+        <div class="foot-meta">
+          <div>STATUS<span class="v" style="color:var(--green)">● AVAILABLE</span></div>
+          <div class="row-2">
+            <div>EMAIL<span class="v">hello@…</span></div>
+            <div>RESPONSE<span class="v">&lt; 24h</span></div>
+          </div>
+          <div style="margin-top:32px">
+            <a href="#" class="btn primary">Initiate Contact →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="foot-bottom">
+        <span>© 2026 — All rights reserved</span>
+        <span>DRAWING: HERO.dwg</span>
+        <span>REV 2.0.1 · 2026.05.09</span>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<div class="crosshair" id="cross"></div>
+
+<script>
+  // Crosshair cursor
+  const cross = document.getElementById('cross');
+  document.addEventListener('mousemove', e => {
+    cross.style.left = e.clientX + 'px';
+    cross.style.top = e.clientY + 'px';
+  });
+  document.addEventListener('mouseenter', ()=>cross.style.opacity='0.6');
+  document.addEventListener('mouseleave', ()=>cross.style.opacity='0');
+
+  // Reveal on scroll
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => e.isIntersecting && e.target.classList.add('in'));
+  }, {threshold:0.1});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>

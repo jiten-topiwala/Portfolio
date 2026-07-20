@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Option 4 — Mission Control HQ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#040810;
+    --bg-2:#0a1224;
+    --panel:rgba(10,18,36,0.6);
+    --panel-2:rgba(15,28,52,0.7);
+    --line:rgba(0,200,255,0.15);
+    --line-bold:rgba(0,200,255,0.35);
+    --cyan:#00e5ff;
+    --cyan-d:#0098b8;
+    --amber:#ffb84d;
+    --green:#00ff88;
+    --red:#ff3860;
+    --magenta:#ff2bff;
+    --ink:#cce8ff;
+    --ink-dim:#5e7a99;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--ink);font-family:'Rajdhani',sans-serif;font-weight:400;overflow-x:hidden}
+  body{
+    background:
+      radial-gradient(ellipse 1200px 800px at 50% 0%, rgba(0,200,255,0.08), transparent 60%),
+      radial-gradient(ellipse 800px 600px at 100% 100%, rgba(255,184,77,0.04), transparent 60%),
+      var(--bg);
+  }
+  /* CRT scanlines */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:1000;
+    background:repeating-linear-gradient(0deg, rgba(0,229,255,0.025) 0 1px, transparent 1px 3px);
+    mix-blend-mode:overlay;
+    opacity:0.7;
+  }
+  /* Vignette */
+  body::after{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:999;
+    background:radial-gradient(ellipse at 50% 50%, transparent 50%, rgba(0,0,0,0.5) 100%);
+  }
+  a{color:inherit;text-decoration:none}
+
+  /* ===================== BOOT SCREEN ===================== */
+  .boot{position:fixed;inset:0;background:#000;z-index:9999;display:flex;align-items:center;justify-content:center;font-family:'Share Tech Mono',monospace;font-size:13px;color:var(--cyan);transition:opacity 0.6s ease,visibility 0.6s ease;letter-spacing:0.1em}
+  .boot.done{opacity:0;visibility:hidden;pointer-events:none}
+  .boot .b-content{width:90%;max-width:540px}
+  .boot .logo{font-family:'Orbitron',sans-serif;font-size:42px;font-weight:900;letter-spacing:0.25em;text-align:center;margin-bottom:32px;color:var(--ink);text-shadow:0 0 30px var(--cyan)}
+  .boot .logo span{color:var(--cyan)}
+  .boot .lines{font-size:12px;line-height:1.9;color:var(--ink-dim)}
+  .boot .lines b{color:var(--green)}
+  .boot .lines em{color:var(--amber);font-style:normal}
+  .boot .bar{margin-top:24px;height:3px;background:rgba(0,229,255,0.15);position:relative;overflow:hidden}
+  .boot .bar::after{content:"";position:absolute;top:0;left:0;height:100%;width:0;background:var(--cyan);box-shadow:0 0 12px var(--cyan);animation:fill 2.4s ease forwards}
+  @keyframes fill{to{width:100%}}
+  .boot .pct{margin-top:12px;text-align:right;font-size:11px;color:var(--ink-dim)}
+
+  /* ===================== HUD CHROME ===================== */
+  .hud-corner{position:fixed;width:60px;height:60px;border:1px solid var(--cyan);z-index:50;pointer-events:none}
+  .hud-corner.tl{top:14px;left:14px;border-right:none;border-bottom:none}
+  .hud-corner.tr{top:14px;right:14px;border-left:none;border-bottom:none}
+  .hud-corner.bl{bottom:14px;left:14px;border-right:none;border-top:none}
+  .hud-corner.br{bottom:14px;right:14px;border-left:none;border-top:none}
+
+  /* Top status strip */
+  .hud-top{
+    position:fixed;top:0;left:0;right:0;z-index:40;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:14px 36px;
+    font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;
+    background:linear-gradient(180deg, rgba(4,8,16,0.95), rgba(4,8,16,0.6));
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+    color:var(--ink-dim);
+  }
+  .hud-top .grp{display:flex;gap:24px;align-items:center}
+  .hud-top .pill{padding:4px 10px;border:1px solid var(--cyan);color:var(--cyan);background:rgba(0,229,255,0.08)}
+  .hud-top .ok{color:var(--green)}
+  .hud-top .ok::before{content:"●";margin-right:6px;animation:blip 1.4s infinite}
+  @keyframes blip{50%{opacity:0.3}}
+
+  /* Bottom telemetry strip */
+  .hud-bot{
+    position:fixed;bottom:0;left:0;right:0;z-index:40;
+    padding:10px 36px;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;
+    background:linear-gradient(0deg, rgba(4,8,16,0.95), rgba(4,8,16,0.6));backdrop-filter:blur(10px);
+    border-top:1px solid var(--line);color:var(--ink-dim);
+    display:flex;justify-content:space-between;
+  }
+  .hud-bot .ticker{flex:1;overflow:hidden;margin:0 24px;white-space:nowrap}
+  .hud-bot .ticker span{display:inline-block;padding-right:60px;animation:scroll 32s linear infinite}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* Side rail nav */
+  .rail{position:fixed;left:24px;top:50%;transform:translateY(-50%);z-index:40;display:flex;flex-direction:column;gap:18px;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase}
+  .rail a{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--ink-dim);transition:color 0.3s;padding:10px 6px;border-left:2px solid transparent}
+  .rail a .num{color:var(--cyan);font-size:11px}
+  .rail a:hover, .rail a.active{color:var(--cyan);border-left-color:var(--cyan)}
+  .rail a.active{background:linear-gradient(90deg, rgba(0,229,255,0.1), transparent)}
+
+  /* ===================== LAYOUT ===================== */
+  .container{max-width:1380px;margin:0 auto;padding:0 80px;position:relative;z-index:2}
+  section{padding:120px 0;position:relative}
+
+  /* ===================== HERO ===================== */
+  .hero{min-height:100vh;display:flex;align-items:center;padding-top:80px;position:relative}
+  .hero-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:80px;width:100%;align-items:center}
+
+  .hero-pre{display:inline-flex;align-items:center;gap:14px;font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:var(--cyan);margin-bottom:32px;padding:8px 16px;border:1px solid var(--cyan);background:rgba(0,229,255,0.05)}
+  .hero-pre::before{content:"";width:8px;height:8px;background:var(--cyan);box-shadow:0 0 12px var(--cyan);animation:blip 1.2s infinite}
+
+  .hero h1{
+    font-family:'Orbitron',sans-serif;
+    font-size:clamp(56px,8.5vw,128px);
+    font-weight:800;
+    line-height:0.92;
+    letter-spacing:0.005em;
+    text-transform:uppercase;
+    margin-bottom:32px;
+    color:var(--ink);
+  }
+  .hero h1 .gl{
+    background:linear-gradient(135deg, var(--cyan), var(--magenta));
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    position:relative;display:inline-block;
+  }
+  .hero h1 .gl::after{
+    content:attr(data-text);position:absolute;left:0;top:0;
+    background:none;-webkit-text-fill-color:rgba(255,43,255,0.5);
+    transform:translate(2px,0);mix-blend-mode:screen;animation:glitch 4s infinite;
+  }
+  @keyframes glitch{
+    0%,90%,100%{clip-path:inset(0 0 0 0);transform:translate(0,0)}
+    91%{clip-path:inset(20% 0 60% 0);transform:translate(-2px,1px)}
+    93%{clip-path:inset(40% 0 30% 0);transform:translate(2px,-1px)}
+    95%{clip-path:inset(60% 0 10% 0);transform:translate(-1px,0)}
+  }
+
+  .hero .lede{font-size:19px;line-height:1.6;color:var(--ink-dim);max-width:540px;margin-bottom:42px;font-weight:400}
+  .hero .lede b{color:var(--ink);font-weight:600}
+
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+  .btn{
+    display:inline-flex;align-items:center;gap:12px;padding:16px 32px;
+    font-family:'Orbitron',sans-serif;font-size:12px;letter-spacing:0.25em;text-transform:uppercase;font-weight:600;
+    border:1px solid var(--cyan);color:var(--cyan);background:transparent;cursor:pointer;
+    position:relative;overflow:hidden;transition:all 0.3s;
+    clip-path:polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+  }
+  .btn::before{content:"";position:absolute;inset:0;background:var(--cyan);transform:translateX(-101%);transition:transform 0.4s ease;z-index:-1}
+  .btn:hover::before{transform:translateX(0)}
+  .btn:hover{color:var(--bg)}
+  .btn.primary{background:var(--cyan);color:var(--bg)}
+  .btn.primary::before{background:var(--magenta)}
+  .btn.primary:hover{color:#fff}
+
+  /* Hero radar/scope */
+  .scope{aspect-ratio:1;width:100%;max-width:480px;margin-left:auto;position:relative}
+  .scope svg{width:100%;height:100%}
+  .scope-ring{stroke:var(--cyan);stroke-width:1;fill:none;opacity:0.3}
+  .scope-ring.bold{opacity:0.7;stroke-width:1.5}
+  .scope-cross{stroke:var(--cyan);stroke-width:0.5;opacity:0.4}
+  .scope-sweep{stroke:none;fill:url(#sweepGrad);transform-origin:center;animation:sweep 3.5s linear infinite}
+  @keyframes sweep{to{transform:rotate(360deg)}}
+  .scope-blip{fill:var(--amber);opacity:0;animation:popblip 3.5s ease infinite}
+  .scope-blip.b1{animation-delay:0.3s}
+  .scope-blip.b2{animation-delay:1.1s}
+  .scope-blip.b3{animation-delay:2.2s}
+  @keyframes popblip{0%,30%{opacity:0;r:0}40%{opacity:1;r:6}80%{opacity:0.4;r:6}100%{opacity:0;r:6}}
+
+  .scope-label{font-family:'Share Tech Mono',monospace;font-size:9px;fill:var(--cyan);opacity:0.7;letter-spacing:0.2em;text-transform:uppercase}
+  .scope-tick{stroke:var(--cyan);stroke-width:1;opacity:0.5}
+
+  .scope-meta{position:absolute;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--cyan)}
+  .scope-meta.tl{top:-4px;left:-4px;color:var(--ink-dim)}
+  .scope-meta.tl b{color:var(--cyan)}
+  .scope-meta.tr{top:-4px;right:-4px;text-align:right;color:var(--ink-dim)}
+  .scope-meta.bl{bottom:-4px;left:-4px;color:var(--ink-dim)}
+  .scope-meta.br{bottom:-4px;right:-4px;text-align:right;color:var(--ink-dim)}
+
+  .scope-hex{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:60px;height:60px;display:flex;align-items:center;justify-content:center;font-family:'Orbitron',sans-serif;font-weight:900;color:var(--cyan);font-size:18px;letter-spacing:0.05em;border:1px solid var(--cyan);background:rgba(0,229,255,0.1);clip-path:polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%)}
+
+  /* Quick stats below hero */
+  .quick-stats{margin-top:60px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;border-top:1px solid var(--line-bold);padding-top:28px}
+  .qs-item .lab{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:6px}
+  .qs-item .val{font-family:'Orbitron',sans-serif;font-size:32px;font-weight:700;color:var(--cyan);line-height:1}
+  .qs-item .val small{font-family:'Share Tech Mono',monospace;font-size:13px;font-weight:400;color:var(--ink-dim);letter-spacing:0.1em;margin-left:6px}
+
+  /* ===================== SECTION HEADER ===================== */
+  .sec-head{margin-bottom:60px;position:relative}
+  .sec-tag{display:inline-flex;align-items:center;gap:14px;font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:var(--amber);margin-bottom:18px}
+  .sec-tag::before{content:"//"; color:var(--cyan)}
+  .sec-tag .id{color:var(--ink-dim)}
+  .sec-title{font-family:'Orbitron',sans-serif;font-size:clamp(36px,5vw,72px);font-weight:700;text-transform:uppercase;letter-spacing:0.005em;line-height:1;margin-bottom:18px}
+  .sec-title em{color:var(--cyan);font-style:normal}
+  .sec-lead{font-size:17px;line-height:1.65;color:var(--ink-dim);max-width:640px}
+
+  /* ===================== PILOT PROFILE (about) ===================== */
+  .pilot-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:60px;align-items:start}
+
+  .pilot-card{
+    border:1px solid var(--line-bold);
+    background:linear-gradient(180deg, var(--panel), var(--panel-2));
+    padding:32px;position:relative;
+    clip-path:polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
+  }
+  .pilot-card::before{
+    content:"";position:absolute;top:0;left:20px;right:0;height:1px;background:var(--cyan);
+  }
+  .pilot-id{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--cyan);margin-bottom:18px;display:flex;justify-content:space-between}
+  .pilot-photo{aspect-ratio:1;background:radial-gradient(ellipse at 50% 40%, rgba(0,229,255,0.4), rgba(4,8,16,0.95) 65%);position:relative;margin-bottom:24px;overflow:hidden;border:1px solid var(--cyan)}
+  .pilot-photo::before{content:"";position:absolute;inset:0;background:linear-gradient(0deg, transparent, rgba(0,229,255,0.15) 50%, transparent 50.1%);background-size:100% 6px;animation:scan 3s linear infinite;opacity:0.5}
+  @keyframes scan{from{background-position:0 -100%}to{background-position:0 100%}}
+  .pilot-photo .silh{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Orbitron',sans-serif;font-size:120px;font-weight:900;color:rgba(255,255,255,0.6);text-shadow:0 0 40px rgba(0,229,255,0.6)}
+  .pilot-photo .corner{position:absolute;width:18px;height:18px;border:1px solid var(--cyan)}
+  .pilot-photo .corner.tl{top:6px;left:6px;border-right:none;border-bottom:none}
+  .pilot-photo .corner.tr{top:6px;right:6px;border-left:none;border-bottom:none}
+  .pilot-photo .corner.bl{bottom:6px;left:6px;border-right:none;border-top:none}
+  .pilot-photo .corner.br{bottom:6px;right:6px;border-left:none;border-top:none}
+
+  .pilot-data{font-family:'Share Tech Mono',monospace;font-size:12px;line-height:1.9;letter-spacing:0.05em}
+  .pilot-data .row{display:flex;justify-content:space-between;border-bottom:1px dashed var(--line);padding:6px 0}
+  .pilot-data .row .k{color:var(--ink-dim);text-transform:uppercase;font-size:10px;letter-spacing:0.18em}
+  .pilot-data .row .v{color:var(--ink)}
+  .pilot-data .row .v.ok{color:var(--green)}
+  .pilot-data .row .v.acc{color:var(--cyan)}
+  .pilot-data .row .v.warm{color:var(--amber)}
+
+  .pilot-text p{font-size:17px;line-height:1.75;color:var(--ink);margin-bottom:20px;font-weight:400}
+  .pilot-text p strong{color:var(--cyan)}
+  .pilot-text .quote{
+    font-family:'Orbitron',sans-serif;font-weight:500;font-size:24px;line-height:1.4;color:var(--ink);
+    border-left:2px solid var(--amber);padding:16px 0 16px 24px;margin:32px 0;
+    background:linear-gradient(90deg, rgba(255,184,77,0.05), transparent);
+  }
+
+  /* ===================== INSTRUMENTATION (skills) ===================== */
+  .inst-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:30px}
+  .inst{
+    border:1px solid var(--line-bold);
+    background:linear-gradient(180deg, var(--panel-2), rgba(10,18,36,0.4));
+    padding:24px;position:relative;transition:all 0.4s ease;
+    clip-path:polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%);
+  }
+  .inst:hover{border-color:var(--cyan);transform:translateY(-4px);background:linear-gradient(180deg, rgba(0,229,255,0.08), rgba(10,18,36,0.4))}
+  .inst-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+  .inst-h .ico{width:38px;height:38px;border:1px solid var(--cyan);display:flex;align-items:center;justify-content:center;color:var(--cyan);font-family:'Orbitron',sans-serif;font-weight:700;font-size:14px;clip-path:polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%);background:rgba(0,229,255,0.1)}
+  .inst-h .id{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:var(--ink-dim)}
+  .inst h3{font-family:'Orbitron',sans-serif;font-size:16px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink);margin-bottom:6px}
+  .inst .sub{font-size:13px;color:var(--ink-dim);margin-bottom:18px}
+  .inst .stat-row{display:flex;justify-content:space-between;align-items:center;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:6px}
+  .inst .stat-row b{color:var(--cyan)}
+  .inst .gauge{height:4px;background:rgba(0,229,255,0.1);position:relative;overflow:hidden;margin-bottom:14px}
+  .inst .gauge::after{content:"";position:absolute;top:0;left:0;height:100%;width:var(--w,75%);background:linear-gradient(90deg, var(--cyan), var(--magenta));box-shadow:0 0 12px var(--cyan);transform:scaleX(0);transform-origin:left;transition:transform 1.4s ease}
+  .inst.in .gauge::after{transform:scaleX(1)}
+  .inst .tags{display:flex;flex-wrap:wrap;gap:5px}
+  .inst .tags span{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;padding:3px 8px;background:rgba(0,229,255,0.08);border:1px solid var(--line);color:var(--cyan-d)}
+
+  /* ===================== MISSION LOG (projects) ===================== */
+  .missions{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:30px}
+  .mission{
+    border:1px solid var(--line-bold);background:linear-gradient(180deg, var(--panel-2), rgba(8,14,28,0.7));
+    position:relative;overflow:hidden;transition:all 0.5s;
+    clip-path:polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px));
+    cursor:pointer;
+  }
+  .mission:hover{transform:translateY(-4px);border-color:var(--cyan)}
+  .mission .vis{aspect-ratio:16/8;position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 50%, rgba(0,229,255,0.3), rgba(4,8,16,0.95) 70%)}
+  .mission .vis::before{content:"";position:absolute;inset:0;background-image:linear-gradient(0deg, var(--line) 1px, transparent 1px),linear-gradient(90deg, var(--line) 1px, transparent 1px);background-size:24px 24px}
+  .mission .vis .glyph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Orbitron',sans-serif;font-size:80px;font-weight:900;color:var(--cyan);text-shadow:0 0 30px var(--cyan);opacity:0.85}
+  .mission .vis .stamp{position:absolute;top:14px;right:14px;font-family:'Orbitron',sans-serif;font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:var(--amber);border:1px solid var(--amber);padding:4px 10px;background:rgba(255,184,77,0.1)}
+  .mission .vis .stamp.green{color:var(--green);border-color:var(--green);background:rgba(0,255,136,0.08)}
+  .mission .vis .stamp.red{color:var(--red);border-color:var(--red);background:rgba(255,56,96,0.08)}
+
+  .mission .info{padding:24px;position:relative}
+  .mission .info::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg, transparent, var(--cyan), transparent)}
+  .mission .id{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--cyan);margin-bottom:8px}
+  .mission h3{font-family:'Orbitron',sans-serif;font-size:22px;font-weight:600;text-transform:uppercase;letter-spacing:0.02em;color:var(--ink);margin-bottom:6px;line-height:1.1}
+  .mission .desc{font-size:14px;color:var(--ink-dim);line-height:1.55;margin-bottom:18px}
+  .mission .specs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase}
+  .mission .specs div{padding:8px;background:rgba(0,229,255,0.05);border:1px solid var(--line);text-align:center}
+  .mission .specs div b{display:block;color:var(--cyan);font-size:14px;font-weight:600;margin-bottom:2px}
+  .mission .specs div span{color:var(--ink-dim)}
+
+  .mission.featured{grid-column:span 2}
+  .mission.featured .vis{aspect-ratio:24/8}
+  .mission.featured .vis .glyph{font-size:110px}
+
+  /* ===================== OPERATIONAL CAPABILITIES (services) ===================== */
+  .ops-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .op{
+    border:1px solid var(--line-bold);background:linear-gradient(135deg, var(--panel), rgba(8,14,28,0.4));
+    padding:32px;position:relative;transition:all 0.4s ease;cursor:pointer;
+  }
+  .op::before{
+    content:"";position:absolute;top:0;left:0;width:60px;height:1px;background:var(--cyan);transition:width 0.4s
+  }
+  .op:hover::before{width:100%}
+  .op:hover{background:linear-gradient(135deg, rgba(0,229,255,0.08), rgba(8,14,28,0.4));transform:translateY(-3px)}
+  .op .num{font-family:'Orbitron',sans-serif;font-size:42px;font-weight:900;color:rgba(0,229,255,0.15);line-height:1;letter-spacing:0.02em;position:absolute;top:18px;right:24px}
+  .op .ico{font-family:'Orbitron',sans-serif;font-size:20px;font-weight:700;color:var(--cyan);width:48px;height:48px;border:1px solid var(--cyan);display:inline-flex;align-items:center;justify-content:center;clip-path:polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%);background:rgba(0,229,255,0.08);margin-bottom:18px}
+  .op h3{font-family:'Orbitron',sans-serif;font-size:18px;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;color:var(--ink);margin-bottom:10px}
+  .op p{font-size:14px;line-height:1.6;color:var(--ink-dim);margin-bottom:18px}
+  .op ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+  .op ul li{font-family:'Share Tech Mono',monospace;font-size:12px;letter-spacing:0.05em;color:var(--ink);display:flex;align-items:center;gap:10px}
+  .op ul li::before{content:"▸";color:var(--cyan);font-size:14px}
+
+  /* ===================== COMMS (contact) ===================== */
+  .comms{
+    border:1px solid var(--cyan);
+    background:linear-gradient(135deg, rgba(0,229,255,0.08), rgba(8,14,28,0.6));
+    padding:60px;position:relative;overflow:hidden;
+    clip-path:polygon(28px 0, 100% 0, 100% calc(100% - 28px), calc(100% - 28px) 100%, 0 100%, 0 28px);
+  }
+  .comms::before{
+    content:"";position:absolute;inset:0;
+    background-image:linear-gradient(0deg, var(--line) 1px, transparent 1px),linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:30px 30px;mask-image:radial-gradient(ellipse at 50% 50%, #000 30%, transparent 80%);opacity:0.6;
+  }
+  .comms-inner{position:relative;z-index:2;display:grid;grid-template-columns:1.4fr 1fr;gap:60px;align-items:center}
+  .comms .stamp{position:absolute;top:20px;right:30px;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--green);display:flex;align-items:center;gap:8px;z-index:3}
+  .comms .stamp::before{content:"";width:8px;height:8px;background:var(--green);border-radius:50%;box-shadow:0 0 10px var(--green);animation:blip 1.2s infinite}
+  .comms h2{font-family:'Orbitron',sans-serif;font-size:clamp(32px,4vw,56px);font-weight:700;text-transform:uppercase;letter-spacing:0.005em;line-height:0.95;margin-bottom:18px}
+  .comms h2 em{color:var(--cyan);font-style:normal}
+  .comms p{font-size:16px;color:var(--ink-dim);line-height:1.6;margin-bottom:32px;max-width:480px}
+  .comms .ch-list{display:flex;flex-direction:column;gap:12px}
+  .ch-item{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border:1px solid var(--line-bold);background:rgba(0,0,0,0.4);font-family:'Share Tech Mono',monospace;font-size:12px;letter-spacing:0.1em;transition:all 0.3s;cursor:pointer}
+  .ch-item:hover{border-color:var(--cyan);background:rgba(0,229,255,0.06);padding-left:28px}
+  .ch-item .lab{color:var(--ink-dim);text-transform:uppercase;font-size:10px;letter-spacing:0.25em}
+  .ch-item .val{color:var(--cyan)}
+  .ch-item .arr{color:var(--cyan);transition:transform 0.3s}
+  .ch-item:hover .arr{transform:translateX(4px)}
+
+  /* ===================== Reveal ===================== */
+  .rev{opacity:0;transform:translateY(30px);transition:all 0.9s cubic-bezier(.2,.7,.2,1)}
+  .rev.in{opacity:1;transform:translateY(0)}
+
+  @media (max-width:980px){
+    .rail,.hud-corner{display:none}
+    .container{padding:0 24px}
+    .hero-grid{grid-template-columns:1fr;gap:48px}
+    .pilot-grid{grid-template-columns:1fr}
+    .inst-grid{grid-template-columns:1fr 1fr}
+    .missions{grid-template-columns:1fr}
+    .mission.featured{grid-column:span 1}
+    .ops-grid{grid-template-columns:1fr}
+    .comms{padding:30px}
+    .comms-inner{grid-template-columns:1fr;gap:32px}
+    .quick-stats{grid-template-columns:1fr 1fr;gap:18px}
+    .hud-top,.hud-bot{padding-left:14px;padding-right:14px;font-size:8px}
+    .hud-top .grp:first-child .pill:nth-child(n+2),.hud-top .grp:last-child .grp{display:none}
+    .scope{max-width:340px;margin:0 auto}
+  }
+</style>
+</head>
+<body>
+
+<!-- Boot Screen -->
+<div class="boot" id="boot">
+  <div class="b-content">
+    <div class="logo">G<span>10</span></div>
+    <div class="lines">
+      <div>&gt; INIT MISSION CONTROL <em>2.0</em>...</div>
+      <div>&gt; MOUNTING SUBSYSTEMS  <b>[OK]</b></div>
+      <div>&gt; CALIBRATING SENSORS <b>[OK]</b></div>
+      <div>&gt; LINKING UPLINK ........ <b>[OK]</b></div>
+      <div>&gt; PILOT AUTHENTICATED: <em>JITEN.T</em></div>
+      <div>&gt; LOADING PORTFOLIO STREAM...</div>
+    </div>
+    <div class="bar"></div>
+    <div class="pct" id="pct">— 0%</div>
+  </div>
+</div>
+
+<!-- HUD chrome -->
+<div class="hud-corner tl"></div>
+<div class="hud-corner tr"></div>
+<div class="hud-corner bl"></div>
+<div class="hud-corner br"></div>
+
+<header class="hud-top">
+  <div class="grp">
+    <span class="pill">JT-2026</span>
+    <span class="ok">SYSTEM ACTIVE</span>
+    <span>UPLINK 100%</span>
+    <span>TELEMETRY ON</span>
+  </div>
+  <div class="grp">
+    <span id="time-utc">UTC 00:00:00</span>
+    <span>LAT 22.30 N · LON 73.18 E</span>
+  </div>
+</header>
+
+<aside class="rail">
+  <a href="#hero" class="active"><span class="num">01</span>OVERVIEW</a>
+  <a href="#pilot"><span class="num">02</span>PILOT</a>
+  <a href="#inst"><span class="num">03</span>INSTRMNT</a>
+  <a href="#log"><span class="num">04</span>LOG</a>
+  <a href="#ops"><span class="num">05</span>OPS</a>
+  <a href="#comms"><span class="num">06</span>COMMS</a>
+</aside>
+
+<div class="container">
+
+  <!-- ============== HERO ============== -->
+  <section class="hero" id="hero">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-pre">// PILOT FILE — ACTIVE COMMAND</div>
+        <h1>
+          <span class="gl" data-text="Robotics">Robotics</span><br>
+          Engineered<br>
+          for impact.
+        </h1>
+        <p class="lede">Designing autonomous systems that survive contact with the real world. <b>Mechanical · Embedded · ROS2 · Vision.</b> Currently piloting agricultural autonomy at Agmove and founding LiftTerra.</p>
+        <div class="hero-cta">
+          <a href="#log" class="btn primary"><span>Initiate Mission</span><span>▸</span></a>
+          <a href="#comms" class="btn"><span>Open Comms</span><span>◇</span></a>
+        </div>
+
+        <div class="quick-stats">
+          <div class="qs-item"><div class="lab">PROJECTS</div><div class="val">10<small>+</small></div></div>
+          <div class="qs-item"><div class="lab">AWARDS</div><div class="val">8<small>+</small></div></div>
+          <div class="qs-item"><div class="lab">PAPERS</div><div class="val">02</div></div>
+          <div class="qs-item"><div class="lab">YEARS</div><div class="val">3<small>+</small></div></div>
+        </div>
+      </div>
+
+      <div class="scope">
+        <span class="scope-meta tl"><b>SCOPE-01</b><br>RADAR / 360°</span>
+        <span class="scope-meta tr">RANGE 1.0 KM<br>BEARING 042°</span>
+        <span class="scope-meta bl">TARGETS: <b>03</b><br>STATUS: <b style="color:var(--green)">LOCKED</b></span>
+        <span class="scope-meta br">CYCLE 3.5s<br>MODE: ACTIVE</span>
+
+        <svg viewBox="0 0 400 400">
+          <defs>
+            <radialGradient id="sweepGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="var(--cyan)" stop-opacity="0"/>
+              <stop offset="60%" stop-color="var(--cyan)" stop-opacity="0"/>
+              <stop offset="100%" stop-color="var(--cyan)" stop-opacity="0.4"/>
+            </radialGradient>
+          </defs>
+
+          <!-- Sweep wedge -->
+          <path class="scope-sweep" d="M 200 200 L 200 0 A 200 200 0 0 1 340 60 Z"/>
+
+          <!-- Rings -->
+          <circle class="scope-ring" cx="200" cy="200" r="60"/>
+          <circle class="scope-ring" cx="200" cy="200" r="120"/>
+          <circle class="scope-ring bold" cx="200" cy="200" r="180"/>
+          <circle class="scope-ring" cx="200" cy="200" r="195"/>
+
+          <!-- Crosshairs -->
+          <line class="scope-cross" x1="200" y1="0" x2="200" y2="400"/>
+          <line class="scope-cross" x1="0" y1="200" x2="400" y2="200"/>
+          <line class="scope-cross" x1="60" y1="60" x2="340" y2="340"/>
+          <line class="scope-cross" x1="340" y1="60" x2="60" y2="340"/>
+
+          <!-- Tick marks at edges -->
+          <g>
+            <line class="scope-tick" x1="200" y1="0" x2="200" y2="10"/>
+            <line class="scope-tick" x1="200" y1="390" x2="200" y2="400"/>
+            <line class="scope-tick" x1="0" y1="200" x2="10" y2="200"/>
+            <line class="scope-tick" x1="390" y1="200" x2="400" y2="200"/>
+          </g>
+
+          <!-- Cardinal labels -->
+          <text class="scope-label" x="200" y="-6" text-anchor="middle">N · 000</text>
+          <text class="scope-label" x="408" y="204" text-anchor="start">E · 090</text>
+          <text class="scope-label" x="200" y="412" text-anchor="middle">S · 180</text>
+          <text class="scope-label" x="-8" y="204" text-anchor="end">W · 270</text>
+
+          <!-- Blips -->
+          <circle class="scope-blip b1" cx="280" cy="140" r="0"/>
+          <circle class="scope-blip b2" cx="120" cy="240" r="0"/>
+          <circle class="scope-blip b3" cx="240" cy="290" r="0"/>
+
+          <!-- Range labels -->
+          <text class="scope-label" x="206" y="142" font-size="8">200m</text>
+          <text class="scope-label" x="206" y="82" font-size="8">600m</text>
+          <text class="scope-label" x="206" y="22" font-size="8">1.0km</text>
+        </svg>
+
+        <div class="scope-hex">G10</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== PILOT PROFILE (about) ============== -->
+  <section id="pilot">
+    <div class="sec-head rev">
+      <div class="sec-tag"><span class="id">02</span>PILOT FILE / IDENT</div>
+      <h2 class="sec-title">Pilot <em>Profile</em></h2>
+      <p class="sec-lead">Mechanical engineer turned roboticist. CAD, code, control loops — all from one chair, all shipped to the field.</p>
+    </div>
+
+    <div class="pilot-grid">
+      <div class="pilot-card rev">
+        <div class="pilot-id"><span>// ID-CARD</span><span>v2.0</span></div>
+        <div class="pilot-photo">
+          <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+          <div class="silh">JT</div>
+        </div>
+        <div class="pilot-data">
+          <div class="row"><span class="k">Callsign</span><span class="v acc">G10</span></div>
+          <div class="row"><span class="k">Name</span><span class="v">Jiten Topiwala</span></div>
+          <div class="row"><span class="k">Class</span><span class="v">Robotics Engineer</span></div>
+          <div class="row"><span class="k">Base</span><span class="v">Agmove · India</span></div>
+          <div class="row"><span class="k">Founder</span><span class="v warm">LiftTerra</span></div>
+          <div class="row"><span class="k">Clearance</span><span class="v ok">LEVEL-08 ★</span></div>
+          <div class="row"><span class="k">Status</span><span class="v ok">● AVAILABLE</span></div>
+        </div>
+      </div>
+
+      <div class="pilot-text rev">
+        <p>I'm a <strong>robotics engineer</strong> with a mechanical engineering core, building autonomous machines that hold up under field conditions — not just simulations.</p>
+        <p>From <strong>award-winning Robocon platforms</strong> to industrial inspection robots, my work has lived where it matters: in factories, on farms, and in deployment scenarios with stakeholders watching every decision.</p>
+        <div class="quote">"The best robots aren't the most clever. They're the ones that survive contact with reality."</div>
+        <p>Currently piloting <strong>autonomy stacks</strong> for sub-20HP agricultural rovers at Agmove — and quietly building <strong>LiftTerra</strong>, a robotics startup attacking construction & maintenance.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== INSTRUMENTATION (skills) ============== -->
+  <section id="inst">
+    <div class="sec-head rev">
+      <div class="sec-tag"><span class="id">03</span>INSTRUMENTATION / LOADOUT</div>
+      <h2 class="sec-title"><em>Stack</em> Manifest</h2>
+      <p class="sec-lead">Tools calibrated, tested, and field-deployed across robotics, CAD, embedded firmware and ML perception.</p>
+    </div>
+
+    <div class="inst-grid">
+      <div class="inst rev" style="--w:90%">
+        <div class="inst-h"><div class="ico">M</div><span class="id">01 / MECH</span></div>
+        <h3>Mechanical Design</h3>
+        <p class="sub">CAD, FEA, manufacturing</p>
+        <div class="stat-row"><span>EXPERTISE</span><b>EXPERT · 90%</b></div>
+        <div class="gauge"></div>
+        <div class="tags"><span>SolidWorks</span><span>Fusion 360</span><span>FEA</span><span>GD&T</span><span>3D Print</span></div>
+      </div>
+
+      <div class="inst rev" style="--w:85%">
+        <div class="inst-h"><div class="ico">R</div><span class="id">02 / ROBO</span></div>
+        <h3>Robotics & Control</h3>
+        <p class="sub">ROS2, motion, vision</p>
+        <div class="stat-row"><span>EXPERTISE</span><b>EXPERT · 85%</b></div>
+        <div class="gauge"></div>
+        <div class="tags"><span>ROS2</span><span>SLAM</span><span>Computer Vision</span><span>Sensor Fusion</span></div>
+      </div>
+
+      <div class="inst rev" style="--w:80%">
+        <div class="inst-h"><div class="ico">P</div><span class="id">03 / PROG</span></div>
+        <h3>Programming</h3>
+        <p class="sub">Python, C++, Embedded</p>
+        <div class="stat-row"><span>EXPERTISE</span><b>ADVANCED · 80%</b></div>
+        <div class="gauge"></div>
+        <div class="tags"><span>Python</span><span>C/C++</span><span>STM32</span><span>Linux</span><span>Docker</span></div>
+      </div>
+
+      <div class="inst rev" style="--w:78%">
+        <div class="inst-h"><div class="ico">E</div><span class="id">04 / ELEC</span></div>
+        <h3>Electronics</h3>
+        <p class="sub">PCBs, motor drivers, sensors</p>
+        <div class="stat-row"><span>EXPERTISE</span><b>ADVANCED · 78%</b></div>
+        <div class="gauge"></div>
+        <div class="tags"><span>PCB</span><span>Power</span><span>Drivers</span><span>Sensors</span></div>
+      </div>
+
+      <div class="inst rev" style="--w:82%">
+        <div class="inst-h"><div class="ico">A</div><span class="id">05 / AI</span></div>
+        <h3>AI & Perception</h3>
+        <p class="sub">CV, ML, autonomy</p>
+        <div class="stat-row"><span>EXPERTISE</span><b>ADVANCED · 82%</b></div>
+        <div class="gauge"></div>
+        <div class="tags"><span>OpenCV</span><span>Jetson</span><span>YOLO</span><span>RTK-GNSS</span></div>
+      </div>
+
+      <div class="inst rev" style="--w:75%">
+        <div class="inst-h"><div class="ico">S</div><span class="id">06 / SIM</span></div>
+        <h3>Simulation & R&D</h3>
+        <p class="sub">Modeling, validation, papers</p>
+        <div class="stat-row"><span>EXPERTISE</span><b>ADVANCED · 75%</b></div>
+        <div class="gauge"></div>
+        <div class="tags"><span>Gazebo</span><span>MATLAB</span><span>Simulink</span><span>IEEE</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== MISSION LOG (projects) ============== -->
+  <section id="log">
+    <div class="sec-head rev">
+      <div class="sec-tag"><span class="id">04</span>MISSION LOG / DEPLOYED</div>
+      <h2 class="sec-title">Mission <em>Log</em></h2>
+      <p class="sec-lead">A record of robots, rovers, and autonomous systems shipped into the field. Click any mission for the full debrief.</p>
+    </div>
+
+    <div class="missions">
+
+      <article class="mission featured rev">
+        <div class="vis">
+          <span class="stamp green">FEATURED · ACTIVE</span>
+          <div class="glyph">L</div>
+        </div>
+        <div class="info">
+          <div class="id">// MISSION A-001 · LIFTTERRA</div>
+          <h3>LiftTerra Construction Bot</h3>
+          <p class="desc">Founder + lead engineer. Autonomous robotic platform for 50kg+ payload handling on construction sites — follow-me mode, autonomous nav, rugged chassis.</p>
+          <div class="specs">
+            <div><b>50kg</b><span>Payload</span></div>
+            <div><b>1.2m/s</b><span>Cruise</span></div>
+            <div><b>Auto.</b><span>Follow</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="mission rev">
+        <div class="vis">
+          <span class="stamp">CLASSIFIED · DEFENSE</span>
+          <div class="glyph">M</div>
+        </div>
+        <div class="info">
+          <div class="id">// MISSION A-002 · SURVEILLANCE</div>
+          <h3>Manpackable Rover</h3>
+          <p class="desc">Wheel-track transformable surveillance robot, packs into a backpack. 1km tele-op range with onboard vision.</p>
+          <div class="specs">
+            <div><b>1.0km</b><span>Range</span></div>
+            <div><b>2-mode</b><span>Locomotion</span></div>
+            <div><b>4.5kg</b><span>Weight</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="mission rev">
+        <div class="vis">
+          <span class="stamp">INDUSTRIAL · IP67</span>
+          <div class="glyph">P</div>
+        </div>
+        <div class="info">
+          <div class="id">// MISSION A-003 · INSPECTION</div>
+          <h3>Pipe Inspection Robot</h3>
+          <p class="desc">Variable diameter navigation system for industrial pipe inspection — sealed, expandable, sensor-instrumented.</p>
+          <div class="specs">
+            <div><b>50–150</b><span>mm Ø</span></div>
+            <div><b>IP67</b><span>Sealed</span></div>
+            <div><b>4K</b><span>Vision</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="mission rev">
+        <div class="vis">
+          <span class="stamp red">RESEARCH · 12-DOF</span>
+          <div class="glyph">B</div>
+        </div>
+        <div class="info">
+          <div class="id">// MISSION A-004 · DYNAMICS</div>
+          <h3>Biped Walker</h3>
+          <p class="desc">12-DOF humanoid lower body with real-time ZMP gait generation. Pure dynamics, pure control theory.</p>
+          <div class="specs">
+            <div><b>12 DOF</b><span>Articulation</span></div>
+            <div><b>ZMP</b><span>Gait</span></div>
+            <div><b>MATLAB</b><span>Stack</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="mission rev">
+        <div class="vis">
+          <span class="stamp green">AGRICULTURE · ACTIVE</span>
+          <div class="glyph">F</div>
+        </div>
+        <div class="info">
+          <div class="id">// MISSION A-005 · AUTONOMY</div>
+          <h3>Sub-20HP Farm Rover</h3>
+          <p class="desc">Lead engineer at Agmove — ROS2 nav stack, RTK-GNSS + IMU fusion, STM32 firmware over CAN/RS485, Jetson perception.</p>
+          <div class="specs">
+            <div><b>RTK</b><span>cm-precision</span></div>
+            <div><b>Jetson</b><span>Edge AI</span></div>
+            <div><b>ROS2</b><span>Stack</span></div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============== OPS (services) ============== -->
+  <section id="ops">
+    <div class="sec-head rev">
+      <div class="sec-tag"><span class="id">05</span>OPS CAPABILITIES / FOR HIRE</div>
+      <h2 class="sec-title">Operational <em>Capabilities</em></h2>
+      <p class="sec-lead">What I can deploy for you — consulting, freelance, full-time. Worldwide engagements.</p>
+    </div>
+
+    <div class="ops-grid">
+
+      <div class="op rev">
+        <span class="num">01</span>
+        <div class="ico">⚙</div>
+        <h3>CAD & 3D Modeling</h3>
+        <p>Manufacturing-ready designs from concept to drawings — SolidWorks, Fusion 360, AutoCAD with FEA validation.</p>
+        <ul>
+          <li>3D part & assembly modeling</li>
+          <li>Engineering drawings + GD&T</li>
+          <li>FEA stress analysis</li>
+          <li>3D-printing-ready files</li>
+        </ul>
+      </div>
+
+      <div class="op rev">
+        <span class="num">02</span>
+        <div class="ico">▲</div>
+        <h3>Robotics & Consulting</h3>
+        <p>End-to-end robot design — mechanical, ROS2, sensor fusion, motion planning. From sketch to live deployment.</p>
+        <ul>
+          <li>Robot system architecture</li>
+          <li>ROS / ROS2 development</li>
+          <li>Motion planning & control</li>
+          <li>Computer vision integration</li>
+        </ul>
+      </div>
+
+      <div class="op rev">
+        <span class="num">03</span>
+        <div class="ico">{}</div>
+        <h3>Embedded & Automation</h3>
+        <p>Custom firmware for Arduino, Raspberry Pi, STM32 — motor control, sensor integration, industrial automation.</p>
+        <ul>
+          <li>Arduino / RPi / STM32 projects</li>
+          <li>Motor & actuator control</li>
+          <li>Sensor calibration</li>
+          <li>PLC & industrial automation</li>
+        </ul>
+      </div>
+
+      <div class="op rev">
+        <span class="num">04</span>
+        <div class="ico">✎</div>
+        <h3>Research & Tech Writing</h3>
+        <p>IEEE-standard papers, technical documentation, R&D consulting — backed by 2 published papers and field deployments.</p>
+        <ul>
+          <li>Research paper writing</li>
+          <li>Technical documentation</li>
+          <li>Literature reviews</li>
+          <li>POC development</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============== COMMS (contact) ============== -->
+  <section id="comms">
+    <div class="sec-head rev">
+      <div class="sec-tag"><span class="id">06</span>COMMS / OPEN CHANNEL</div>
+      <h2 class="sec-title">Open <em>Channel</em></h2>
+    </div>
+
+    <div class="comms rev">
+      <span class="stamp">UPLINK READY</span>
+      <div class="comms-inner">
+        <div>
+          <h2>Got a hard <em>problem</em> worth building a machine for?</h2>
+          <p>Open to consulting, freelance and full-time engagements. Response within 24 hours, working prototypes within weeks.</p>
+          <a href="#" class="btn primary"><span>Initiate Comms</span><span>▸▸</span></a>
+        </div>
+
+        <div class="ch-list">
+          <a class="ch-item">
+            <div><div class="lab">CHANNEL.01 / EMAIL</div><div class="val">jitentopiwala7@…</div></div>
+            <span class="arr">▸</span>
+          </a>
+          <a class="ch-item">
+            <div><div class="lab">CHANNEL.02 / LINKEDIN</div><div class="val">linkedin.com/in/…</div></div>
+            <span class="arr">▸</span>
+          </a>
+          <a class="ch-item">
+            <div><div class="lab">CHANNEL.03 / GITHUB</div><div class="val">github.com/…</div></div>
+            <span class="arr">▸</span>
+          </a>
+          <a class="ch-item">
+            <div><div class="lab">CHANNEL.04 / FIVERR ★ 5.0</div><div class="val">fiverr.com/jiten_…</div></div>
+            <span class="arr">▸</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="hud-bot">
+  <span>// END OF TRANSMISSION</span>
+  <div class="ticker">
+    <span>
+      ◆ ROBOTICS ENGINEER · MECHANICAL DESIGN · ROS2 · STM32 · COMPUTER VISION · SENSOR FUSION · IEEE PUBLISHED · 8+ AWARDS · LIFTTERRA FOUNDER · AGMOVE LEAD ENGINEER · OPEN FOR CONSULTING ·
+      ◆ ROBOTICS ENGINEER · MECHANICAL DESIGN · ROS2 · STM32 · COMPUTER VISION · SENSOR FUSION · IEEE PUBLISHED · 8+ AWARDS · LIFTTERRA FOUNDER · AGMOVE LEAD ENGINEER · OPEN FOR CONSULTING ·
+    </span>
+  </div>
+  <span>v2.0 · UTC <span id="time-bot">00:00</span></span>
+</footer>
+
+<script>
+  // Boot screen
+  let p = 0;
+  const boot = document.getElementById('boot'), pct = document.getElementById('pct');
+  const btmr = setInterval(() => {
+    p += 4 + Math.random()*8;
+    if(p >= 100){ p = 100; clearInterval(btmr); setTimeout(()=>boot.classList.add('done'), 400); }
+    pct.textContent = '— ' + Math.floor(p) + '%';
+  }, 80);
+
+  // Live clocks
+  function tick(){
+    const d = new Date();
+    const u = d.toUTCString().split(' ')[4];
+    document.getElementById('time-utc').textContent = 'UTC ' + u;
+    document.getElementById('time-bot').textContent = u.slice(0,5);
+  }
+  setInterval(tick, 1000); tick();
+
+  // Reveal + section observe
+  const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add('in')), {threshold:0.08});
+  document.querySelectorAll('.rev, .inst').forEach(el => io.observe(el));
+
+  // Rail nav highlight
+  const links = document.querySelectorAll('.rail a');
+  const sections = ['hero','pilot','inst','log','ops','comms'].map(id=>document.getElementById(id));
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY + window.innerHeight/3;
+    let active = 0;
+    sections.forEach((s,i) => { if(s && s.offsetTop <= y) active = i; });
+    links.forEach((l,i) => l.classList.toggle('active', i === active));
+  });
+</script>
+
+</body>
+</html>

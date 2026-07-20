@@ -1,0 +1,15 @@
+{
+  "memberships": [
+    {
+      "id": "trs-india",
+      "order": 1,
+      "featured": true,
+      "organization": "The Robotics Society (TRS) of India",
+      "role": "Member",
+      "since": "2022-05",
+      "until": null,
+      "current": true,
+      "summary": "Member of TRS India since May 2022. Attended numerous TRS events on robotics and helped organise these events at COEP — open for all and aimed at promoting robotics and STEM."
+    }
+  ]
+}

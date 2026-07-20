@@ -1,0 +1,153 @@
+{
+  "categories": [
+    {
+      "id": "robotics-software",
+      "order": 1,
+      "label": "Robotics & Autonomy",
+      "icon": "fa-robot",
+      "skills": [
+        "ROS",
+        "ROS2 (Humble / Jazzy)",
+        "Nav2",
+        "NVIDIA Isaac ROS",
+        "FAST-LIO2",
+        "VSLAM",
+        "SLAM",
+        "Motion Planning",
+        "Path Planning",
+        "Sensor Fusion",
+        "Kinematics & Dynamics",
+        "Inverse Kinematics",
+        "PID Control",
+        "Reinforcement Learning",
+        "micro-ROS",
+        "MoveIt"
+      ]
+    },
+    {
+      "id": "simulation",
+      "order": 2,
+      "label": "Simulation & Modelling",
+      "icon": "fa-cube",
+      "skills": [
+        "MATLAB",
+        "Simulink",
+        "Simscape",
+        "Gazebo",
+        "Gazebo 11",
+        "Ignition Gazebo",
+        "RViz",
+        "Foxglove",
+        "MuJoCo",
+        "CFD",
+        "MotionGen",
+        "FEA",
+        "Abaqus"
+      ]
+    },
+    {
+      "id": "mechanical-design",
+      "order": 3,
+      "label": "Mechanical Design",
+      "icon": "fa-gears",
+      "skills": [
+        "SolidWorks",
+        "Fusion 360",
+        "AutoCAD",
+        "GD&T",
+        "DFMA",
+        "DFM",
+        "Tolerance Analysis",
+        "PLM",
+        "Sheet Metal",
+        "3D Printing",
+        "Ultimaker Cura",
+        "CNC Machining",
+        "Moulding",
+        "FRP"
+      ]
+    },
+    {
+      "id": "embedded-electronics",
+      "order": 4,
+      "label": "Embedded & Electronics",
+      "icon": "fa-microchip",
+      "skills": [
+        "STM32",
+        "Arduino",
+        "Raspberry Pi",
+        "Cube Orange Plus",
+        "PX4",
+        "ArduPilot",
+        "MAVROS",
+        "ArduSub",
+        "QGroundControl",
+        "BlueOS",
+        "CAN",
+        "RS485",
+        "I2C",
+        "Motor Drivers (Cytron, BLDC ESCs)",
+        "PCB Design",
+        "EasyEDA",
+        "ATtiny85",
+        "ESP32 / ESP32-CAM",
+        "Sensor Integration"
+      ]
+    },
+    {
+      "id": "perception",
+      "order": 5,
+      "label": "Perception & Computer Vision",
+      "icon": "fa-camera",
+      "skills": [
+        "OpenCV",
+        "ArUco Markers",
+        "Image Processing",
+        "Pose Estimation",
+        "Livox Mid-360",
+        "LIDAR",
+        "Cameras",
+        "GNSS RTK",
+        "IMU"
+      ]
+    },
+    {
+      "id": "compute-platforms",
+      "order": 6,
+      "label": "Compute & Platforms",
+      "icon": "fa-server",
+      "skills": [
+        "NVIDIA Jetson",
+        "Linux",
+        "Docker",
+        "Git",
+        "GitHub"
+      ]
+    },
+    {
+      "id": "programming",
+      "order": 7,
+      "label": "Programming",
+      "icon": "fa-laptop-code",
+      "skills": [
+        "Python",
+        "C",
+        "C++",
+        "MATLAB Scripting",
+        "Bash"
+      ]
+    },
+    {
+      "id": "web-cloud",
+      "order": 8,
+      "label": "Web & Cloud",
+      "icon": "fa-globe",
+      "skills": [
+        "MQTT (Mosquitto)",
+        "Frontend (HTML/CSS/JS)",
+        "Backend / Fleet Management",
+        "Robot Cockpit / Mission Planner UI"
+      ]
+    }
+  ]
+}

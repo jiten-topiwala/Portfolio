@@ -1,0 +1,97 @@
+{
+  "intro": "Available for consulting, freelance projects, and full-time opportunities worldwide.",
+  "services": [
+    {
+      "id": "legged-physical-ai",
+      "order": 1,
+      "title": "Legged & Physical-AI Robotics",
+      "icon": "fa-robot",
+      "description": "Gait and locomotion control, RL policies, and sim-to-real for quadrupeds and humanoids — in MuJoCo, Isaac Sim, or on your hardware.",
+      "deliverables": [
+        "Locomotion & balance controllers",
+        "RL / policy training & tuning",
+        "Sim-to-real deployment",
+        "MuJoCo / Isaac Sim environments"
+      ]
+    },
+    {
+      "id": "ros2-sim-nav",
+      "order": 2,
+      "title": "ROS 2 Simulation & Navigation",
+      "icon": "fa-diagram-project",
+      "description": "Gazebo / Isaac Sim worlds, Nav2 stacks, SLAM, and the sim-to-real pipeline that gets your robot navigating reliably — validated before hardware.",
+      "deliverables": [
+        "Gazebo / Isaac Sim worlds",
+        "Nav2 navigation & SLAM",
+        "Sensor fusion & perception",
+        "URDF / robot modelling"
+      ]
+    },
+    {
+      "id": "full-stack-robot",
+      "order": 3,
+      "title": "Full-Stack Robot Development",
+      "icon": "fa-gears",
+      "description": "Mechanical design + embedded (STM32 / Jetson) + control, taken from an idea or a stalled prototype to a tested, documented, deployed system.",
+      "deliverables": [
+        "Mechanical design & CAD",
+        "STM32 / Jetson firmware (CAN, RS485)",
+        "Control & motion systems",
+        "Integration & field testing"
+      ]
+    },
+    {
+      "id": "rnd-consulting",
+      "order": 4,
+      "title": "Robotics R&D & Technical Consulting",
+      "icon": "fa-file-lines",
+      "description": "Architecture reviews, technology selection, proof-of-concept builds, and IEEE-standard documentation — backed by published research.",
+      "deliverables": [
+        "System architecture reviews",
+        "Proof-of-concept builds",
+        "Research papers & documentation",
+        "Tech-stack & feasibility advisory"
+      ]
+    }
+  ],
+  "process": [
+    {
+      "step": 1,
+      "title": "Understand",
+      "icon": "fa-comments",
+      "description": "Deep-dive into your requirements, constraints, and goals — so we build the right thing from day one."
+    },
+    {
+      "step": 2,
+      "title": "Design",
+      "icon": "fa-compass-drafting",
+      "description": "CAD models, simulations, and system architecture validated before a single part is ordered or a line of code is written."
+    },
+    {
+      "step": 3,
+      "title": "Build & Test",
+      "icon": "fa-screwdriver-wrench",
+      "description": "Iterative prototyping with regular progress updates — you stay informed at every milestone."
+    },
+    {
+      "step": 4,
+      "title": "Deliver",
+      "icon": "fa-circle-check",
+      "description": "Fully documented, tested deliverable handed over cleanly — with post-delivery support included."
+    }
+  ],
+  "cta": [
+    {
+      "label": "Hire Me on Fiverr",
+      "url": "https://www.fiverr.com/jiten_topiwala",
+      "primary": true,
+      "external": true
+    },
+    {
+      "label": "Discuss a Project",
+      "url": "#contact",
+      "primary": false,
+      "external": false
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "meta": {
+    "title": "Jiten Topiwala | Robotics Engineer & Innovator",
+    "description": "Jiten Topiwala - Robotics Engineer, Mechanical Designer, and Entrepreneur. Explore my projects, publications, and achievements in robotics and automation.",
+    "keywords": "Robotics Engineer, Mechanical Engineer, Jiten Topiwala, Robocon, LiftTerra, Portfolio",
+    "author": "Jiten Topiwala",
+    "canonical_url": "https://jiten-topiwala.github.io/Portfolio/",
+    "language": "en",
+    "google_site_verification": "37MTHAONhGKmH8Ze8dDyFiRhaO-V2WGtgDwmf_oLFLc",
+    "og": {
+      "type": "website",
+      "url": "https://jiten-topiwala.github.io/Portfolio/",
+      "title": "Jiten Topiwala | Robotics Engineer & Innovator",
+      "description": "Robotics Engineer, Mechanical Designer, and Entrepreneur. Explore my award-winning projects in robotics and automation.",
+      "image": "https://jiten-topiwala.github.io/Portfolio/Images/pic.webp"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "Jiten Topiwala | Robotics Engineer & Innovator",
+      "description": "Robotics Engineer, Mechanical Designer, and Entrepreneur. Explore my award-winning projects in robotics and automation.",
+      "image": "https://jiten-topiwala.github.io/Portfolio/Images/pic.webp"
+    }
+  },
+  "favicon": {
+    "type": "image/svg+xml",
+    "inline_svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230a0a0f'/><text y='72' x='50' text-anchor='middle' font-size='58' font-family='monospace' font-weight='bold' fill='%2300d4ff'>G</text></svg>"
+  },
+  "structured_data": {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Jiten Topiwala",
+    "url": "https://jiten-topiwala.github.io/Portfolio/",
+    "jobTitle": "Robotics Engineer",
+    "sameAs": [
+      "https://linkedin.com/in/jiten-topiwala",
+      "https://github.com/jiten-topiwala"
+    ]
+  },
+  "fonts": [
+    {
+      "family": "Orbitron",
+      "weights": [400, 500, 600, 700, 800, 900],
+      "source": "google"
+    },
+    {
+      "family": "Rajdhani",
+      "weights": [300, 400, 500, 600, 700],
+      "source": "google"
+    },
+    {
+      "family": "Space Grotesk",
+      "weights": [300, 400, 500, 600, 700],
+      "source": "google"
+    }
+  ],
+  "icon_libraries": [
+    {
+      "name": "Font Awesome",
+      "version": "6.5.1",
+      "url": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    }
+  ],
+  "theme": {
+    "color_primary": "#00d4ff",
+    "color_secondary": "#7c3aed",
+    "color_bg": "#0a0a0f",
+    "gradient_accent": "linear-gradient(135deg, #00d4ff 0%, #7c3aed 100%)"
+  },
+  "nav": {
+    "logo_text": "G10",
+    "items": [
+      { "label": "Home", "href": "#home", "external": false },
+      { "label": "About", "href": "#about", "external": false },
+      { "label": "Skills", "href": "#skills", "external": false },
+      { "label": "Services", "href": "#services", "external": false },
+      { "label": "Projects", "href": "#projects", "external": false },
+      { "label": "Publications", "href": "#publications", "external": false },
+      { "label": "Contact", "href": "#contact", "external": false }
+    ]
+  },
+  "footer": {
+    "brand_text": "G10",
+    "tagline": "Building the future, one robot at a time.",
+    "copyright_owner": "Jiten Topiwala",
+    "copyright_suffix": "All rights reserved.",
+    "version": "1.0.1",
+    "links": [
+      { "label": "Home", "href": "#home" },
+      { "label": "About", "href": "#about" },
+      { "label": "Projects", "href": "#projects" },
+      { "label": "Contact", "href": "#contact" }
+    ],
+    "show_social": true
+  },
+  "ui": {
+    "preloader_text": "INITIALIZING CORE",
+    "scroll_indicator_text": "Scroll to explore",
+    "hero_badge_text": "Available for Freelance & Consulting",
+    "floating_contact_label": "Get in Touch"
+  }
+}

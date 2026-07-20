@@ -1,0 +1,19 @@
+{
+  "patents": [
+    {
+      "id": "transformable-surveillance-robot",
+      "order": 1,
+      "featured": true,
+      "title": "Modified Watt II Six-Bar Linkage for Wheel-Track Transformable Manpackable Robot",
+      "short_title": "Modified Watt II Six-Bar Linkage Mechanism",
+      "ref_code": "P.1",
+      "status": "in-progress",
+      "filed_through": "COEP Technological University",
+      "filing_year": 2024,
+      "patent_number": null,
+      "inventors": ["Jiten Topiwala"],
+      "abstract": "A compact, man-packable surveillance robot that transforms between wheel mode and track-belt mode using a single-actuator Modified Watt II six-bar linkage mechanism — enabling reliable traversal across diverse terrains for search-and-rescue, reconnaissance, and disaster-response applications.",
+      "project_id": "manpackable"
+    }
+  ]
+}

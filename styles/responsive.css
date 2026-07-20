@@ -9,6 +9,10 @@
         --section-padding: 80px 0;
     }
 
+    .section.services { padding-bottom: 44px; }
+    .section.process { padding: 44px 0; }
+    .section.projects { padding-top: 44px; }
+
     /* About */
     .about-content {
         grid-template-columns: 1fr;
@@ -33,6 +37,12 @@
     .projects-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    /* Process */
+    .process-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .process-grid::before { display: none; }
 
     /* Services */
     .services-grid {
@@ -121,7 +131,8 @@
     }
 
     .hero-roles {
-        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
         gap: 4px;
     }
 
@@ -157,6 +168,11 @@
         grid-template-columns: 1fr;
     }
 
+    /* Process */
+    .process-grid {
+        grid-template-columns: 1fr;
+    }
+
     .project-filters {
         gap: 8px;
     }
@@ -187,6 +203,21 @@
         height: 16px;
     }
 
+    /* Hero social: ensure 44px touch targets */
+    .social-link {
+        min-width: 44px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Achievement badges */
+    .achievement-badges {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
     /* Contact */
     .contact-info {
         grid-template-columns: repeat(2, 1fr);
@@ -205,6 +236,10 @@
     :root {
         --section-padding: 60px 0;
     }
+
+    .section.services { padding-bottom: 32px; }
+    .section.process { padding: 32px 0; }
+    .section.projects { padding-top: 32px; }
 
     .container {
         padding: 0 16px;
@@ -285,9 +320,22 @@
         font-size: 14px;
     }
 
+    /* Services */
+    .service-card {
+        padding: 24px 20px;
+    }
+
+    .service-list li {
+        font-size: 13px;
+    }
+
     /* Publications */
     .publication-card {
         padding: 20px;
+    }
+
+    .publication-title {
+        word-break: break-word;
     }
 
     .publication-icon {
@@ -375,6 +423,20 @@ input:focus-visible,
 textarea:focus-visible {
     outline: 2px solid var(--primary);
     outline-offset: 2px;
+}
+
+/* ===== FLOATING CONTACT BUTTON ===== */
+@media (max-width: 768px) {
+    .float-contact {
+        bottom: 20px;
+        right: 20px;
+        padding: 12px 16px;
+        font-size: 14px;
+    }
+
+    .float-contact i {
+        font-size: 16px;
+    }
 }
 
 /* ===== DARK MODE OVERRIDE (if needed later) ===== */
