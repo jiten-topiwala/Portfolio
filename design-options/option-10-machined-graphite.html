@@ -24,6 +24,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jiten Topiwala · Physical-AI Systems</title>
+<!--SEO:HEAD:START--><!--SEO:HEAD:END-->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -77,8 +78,9 @@
   .badge .dot{width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 3px rgba(30,158,106,.18)}
   .hero h1{font-family:var(--fhead);font-weight:700;font-size:clamp(42px,6.4vw,86px);line-height:1.02;letter-spacing:-.03em;margin:24px 0 8px;text-wrap:balance}
   .hero h1 .o{color:var(--orange)}
-  .hero .roles{font-family:var(--fmono);font-size:clamp(15px,2vw,20px);color:var(--soft);min-height:1.4em}
-  .hero .roles .tw{color:var(--orange)} .hero .roles .cur{color:var(--orange);animation:blink 1s steps(1) infinite}
+  .hero .ident{font-family:var(--fmono);font-size:clamp(15px,1.9vw,21px);color:var(--soft);margin-top:16px;min-height:1.4em;overflow-wrap:anywhere}
+  .ident b{color:var(--text);font-family:var(--fhead);font-weight:600}
+  .ident .tw{color:var(--orange)} .ident .cur{color:var(--orange);animation:blink 1s steps(1) infinite}
   @keyframes blink{50%{opacity:0}}
   .hero .desc{font-size:clamp(15px,1.6vw,18px);color:var(--soft);max-width:62ch;margin-top:20px}
   .hero-now{display:inline-flex;align-items:center;gap:10px;margin-top:18px;font-size:15px;color:var(--soft);background:var(--panel-2);border:1px solid var(--line);border-left:3px solid var(--orange);border-radius:0 10px 10px 0;padding:11px 18px}
@@ -148,6 +150,7 @@
   .proj{background:var(--panel-2);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:transform .4s cubic-bezier(.2,.7,.2,1),border-color .4s} .proj:hover{transform:translateY(-5px);border-color:var(--line-2)} .proj.hide{display:none}
   .proj .ph{aspect-ratio:16/10;position:relative;overflow:hidden;background:var(--graphite);border-bottom:1px solid var(--line)}
   .proj .ph img{width:100%;height:100%;object-fit:cover;filter:saturate(.92) contrast(1.02);transition:transform .6s} .proj:hover .ph img{transform:scale(1.05)}
+  .proj .ph img.contain,.proj .ph img[style*="contain"]{object-fit:contain;padding:14px;background:radial-gradient(ellipse at 50% 42%,rgba(255,90,31,.07),transparent 62%),var(--graphite)}
   .proj .noimg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--fmono);font-size:12px;letter-spacing:.16em;color:var(--steel);text-transform:uppercase;background:repeating-linear-gradient(135deg,rgba(255,255,255,.012) 0 10px,transparent 10px 20px),radial-gradient(ellipse at 60% 30%,rgba(255,90,31,.13),transparent 62%),var(--graphite)}
   .proj .pbadge{position:absolute;top:12px;left:12px;font-family:var(--fmono);font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:rgba(14,15,18,.82);color:var(--orange);border:1px solid rgba(255,90,31,.4);padding:5px 9px;border-radius:6px}
   .proj .b{padding:20px;display:flex;flex-direction:column;flex:1}
@@ -226,28 +229,13 @@
   .btn:active,.nav-cta:active,.fbtn:active{transform:scale(.97)}
   .skip{position:absolute;left:-9999px;top:10px;z-index:100;background:var(--orange);color:#fff;padding:10px 16px;border-radius:8px;font-family:var(--fhead);font-weight:600}
   .skip:focus{left:16px}
-  /* ---- Premium polish pass (1-8) ---- */
-  body::after{content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.03;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  /* ---- Premium polish pass ---- */
   .hero{position:relative;overflow:hidden}
-  .hero::before{content:"";position:absolute;inset:-25%;z-index:0;background:radial-gradient(ellipse 42% 42% at 68% 32%,rgba(255,90,31,.11),transparent 60%);animation:drift 20s ease-in-out infinite alternate}
-  @keyframes drift{to{transform:translate(-7%,9%) scale(1.18)}}
+  .hero::before{content:"";position:absolute;inset:-25%;z-index:0;background:radial-gradient(ellipse 46% 46% at 74% 34%,rgba(255,90,31,.10),transparent 60%)}
   .hero .wrap{position:relative;z-index:1}
-  /* ===== TEMP: hero photo hidden until a new portrait is ready — delete these 3 lines to restore ===== */
-  .hero-photo{display:none}
-  .hero-grid{grid-template-columns:1fr}
-  .hero-intro{max-width:960px}
-  .hero-photo{position:relative;max-width:400px;margin-left:auto}
-  .hero-photo .portrait{max-width:none;margin:0;width:100%}
-  .hero-photo .portrait .cap{z-index:3}
-  .hero-photo .portrait::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(120% 80% at 80% 12%,rgba(255,90,31,.10),transparent 55%)}
-  .hero-photo .fc{position:absolute;width:20px;height:20px;border:2px solid var(--orange);z-index:4}
-  .hero-photo .fc.tl{top:-7px;left:-7px;border-right:0;border-bottom:0}.hero-photo .fc.tr{top:-7px;right:-7px;border-left:0;border-bottom:0}
-  .hero-photo .fc.bl{bottom:-7px;left:-7px;border-right:0;border-top:0}.hero-photo .fc.br{bottom:-7px;right:-7px;border-left:0;border-top:0}
-  .hero-photo .fr-tag{position:absolute;top:12px;left:12px;z-index:4;font-family:var(--fmono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);background:rgba(14,15,18,.72);padding:4px 8px;border-radius:5px;border:1px solid rgba(255,90,31,.35)}
-  @media(max-width:900px){.hero-photo{max-width:320px;margin:0 auto}}
-  body{counter-reset:secnum}
-  .sec-head{counter-increment:secnum}
-  .sec-head::before{content:counter(secnum,decimal-leading-zero) " / 07";display:block;font-family:var(--fmono);font-size:11px;letter-spacing:.2em;color:var(--muted);margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+  /* Hero — full-width single column, thesis-led */
+  .hero-intro{max-width:1000px}
+  .sec-head{padding-bottom:18px;border-bottom:1px solid var(--line)}
   .proj,.svc,.skill-cat,.award,.pub{box-shadow:0 1px 2px rgba(0,0,0,.25)}
   .proj:hover,.svc:hover,.skill-cat:hover,.award:hover,.pub:hover{box-shadow:0 18px 40px rgba(0,0,0,.35)}
   .proj .ph .pcat{position:absolute;top:12px;right:12px;z-index:2;font-family:var(--fmono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);background:rgba(14,15,18,.7);padding:4px 8px;border-radius:5px}
@@ -280,6 +268,7 @@
 </style>
 </head>
 <body>
+<!--SEO:BODY:START--><!--SEO:BODY:END-->
 <a class="skip" href="#projects">Skip to projects</a>
 <div id="progress"></div>
 
@@ -302,18 +291,15 @@
 </nav>
 
 <section id="home" class="hero"><div class="wrap">
-  <div class="hero-grid">
-    <div class="hero-intro">
-      <span class="badge reveal" id="hero-badge"><span class="dot"></span></span>
-      <h1 class="reveal">Hi, I'm <span class="o" id="hero-name"></span></h1>
-      <div class="roles reveal">I'm a <span class="tw" id="tw"></span><span class="cur">|</span></div>
-      <div class="hero-now reveal" id="hero-now"></div>
-      <p class="desc reveal" id="hero-desc"></p>
-      <div class="cta-row reveal"><a class="btn solid" href="#services">Hire me →</a><a class="btn ghost" href="#projects">View projects</a></div>
-      <div class="socials reveal" id="hero-socials"></div>
-      <div class="stats reveal" id="hero-stats" style="margin-top:36px"></div>
-    </div>
-    <div class="hero-photo reveal"><span class="fr-tag">JT · Physical-AI</span><i class="fc tl"></i><i class="fc tr"></i><i class="fc bl"></i><i class="fc br"></i><div class="portrait" id="hero-portrait"></div></div>
+  <div class="hero-intro">
+    <span class="badge reveal" id="hero-badge"><span class="dot"></span></span>
+    <h1 class="reveal" id="hero-thesis"></h1>
+    <div class="ident reveal">I'm <b id="hero-name"></b> — <span class="tw" id="tw"></span><span class="cur">|</span></div>
+    <div class="hero-now reveal" id="hero-now"></div>
+    <p class="desc reveal" id="hero-desc"></p>
+    <div class="cta-row reveal"><a class="btn solid" href="#services">Hire me →</a><a class="btn ghost" href="#projects">View projects</a></div>
+    <div class="socials reveal" id="hero-socials"></div>
+    <div class="stats reveal" id="hero-stats" style="margin-top:36px"></div>
   </div>
 </div></section>
 
@@ -330,7 +316,7 @@
   <div class="proj-grid" id="projects-grid"></div>
 </div></section>
 
-<section id="experience" class="sec"><div class="wrap">
+<section id="experience" class="sec sec-alt"><div class="wrap">
   <div class="sec-head reveal"><span class="kicker">Experience</span><h2>Work <span class="accent">experience</span></h2></div>
   <div class="timeline" id="timeline"></div>
 </div></section>
@@ -350,7 +336,7 @@
   <div class="xp-console reveal"><div class="xp-list" id="xp-list"></div><div class="xp-panel" id="xp-panel"></div></div>
 </div></section>
 
-<section id="services" class="sec"><div class="wrap">
+<section id="services" class="sec sec-alt"><div class="wrap">
   <div class="sec-head reveal"><span class="kicker">Services</span><h2>What I can <span class="accent">build for you</span></h2><p class="subtitle">Available for consulting, freelance projects, and full-time opportunities worldwide.</p></div>
   <div class="svc-grid" id="services-grid"></div>
   <div class="proc-sub reveal"><span class="kicker">How I work</span><p>A clear, structured approach so you always know what to expect.</p></div>
@@ -378,8 +364,9 @@
 </div>
 
 <script type="module">
-import { loadContent, byOrder, onlyFeatured, formatDateRange, escapeHTML, resolveContactMethods } from '../shared/content-loader.js';
-const BASE = '../';
+// Location-aware base: same file works at project root (index.html) and in /design-options/.
+const BASE = location.pathname.includes('/design-options/') ? '../' : './';
+const { loadContent, byOrder, onlyFeatured, formatDateRange, escapeHTML, resolveContactMethods } = await import(BASE + 'shared/content-loader.js');
 const $ = (s)=>document.querySelector(s);
 const esc = escapeHTML;
 const asset = (s)=> s ? BASE + String(s).replace(/^\.?\//,'') : '';
@@ -398,10 +385,12 @@ const SOCIAL_SVG = {
   try { data = await loadContent(BASE); }
   catch(e){ document.getElementById('loaderr').style.display='block'; return; }
   document.getElementById('site').hidden = false;
+  document.getElementById('seo-prerender')?.remove(); // JS present → drop the crawler-only static block
 
   const p = data.profile || {};
   // HERO
   $('#hero-badge').innerHTML = '<span class="dot"></span> Available for ' + ((p.availability?.for||['Freelance','Consulting']).slice(0,2).map(cap).join(' & '));
+  $('#hero-thesis').innerHTML = esc(p.tagline||'').replace(/\*(.+?)\*/g,'<span class="o">$1</span>');
   $('#hero-name').textContent = p.name || 'Jiten Topiwala';
   $('#hero-desc').textContent = p.short_bio || p.long_bio || '';
   (p.social||[]).forEach(s=>{
@@ -411,8 +400,7 @@ const SOCIAL_SVG = {
     $('#hero-socials').appendChild(a);
   });
 
-  // HERO photo + stats (About merged into hero)
-  $('#hero-portrait').innerHTML = `<img src="${asset(p.photo)}" alt="${esc(p.name||'')}"><div class="cap"><span class="d">●</span> ${esc(p.name||'')} · ${esc([p.location?.city,p.location?.country].filter(Boolean).join(', '))}</div>`;
+  // HERO stats (single-column, no portrait)
   $('#hero-stats').innerHTML = (p.stats||[]).map(s=>`<div class="stat"><div class="v"><span class="cnt" data-target="${esc(String(s.value))}">0</span><span class="s">${esc(s.suffix||'')}</span></div><div class="l">${esc(s.label)}</div></div>`).join('');
 
   // SKILLS
@@ -444,7 +432,8 @@ const SOCIAL_SVG = {
   const projs = onlyFeatured(byOrder(data.projects?.projects||[]));
   $('#projects-grid').innerHTML = projs.map(pr=>{
     const m = (pr.media||[])[0];
-    const img = m ? `<img src="${asset(m.thumb||m.src)}" alt="${esc(m.alt||pr.title)}" loading="lazy">` : `<div class="noimg">// ${esc((pr.title||'').toUpperCase())}</div>`;
+    const fit = m && m.fit ? ` style="object-fit:${esc(m.fit)}"` : '';
+    const img = m ? `<img src="${asset(m.thumb||m.src)}" alt="${esc(m.alt||pr.title)}" loading="lazy"${fit}>` : `<div class="noimg">// ${esc((pr.title||'').toUpperCase())}</div>`;
     const badge = pr.badge ? `<span class="pbadge">${esc(pr.badge)}</span>` : '';
     const tech = (pr.tech||[]).slice(0,4).map(t=>`<span>${esc(t)}</span>`).join('');
     const lk = (pr.links||[])[0];
@@ -453,6 +442,15 @@ const SOCIAL_SVG = {
     const view = lk ? `<span class="view">${esc(lk.label||'View')} →</span>` : '';
     return `<${tag} class="proj reveal" data-category="${esc(pr.category||'')}" ${href}><div class="ph">${badge}<span class="pcat">${esc(pr.category||'')}</span>${img}${view}</div><div class="b"><h3>${esc(pr.title)}</h3>${pr.subtitle?`<div class="sub">${esc(pr.subtitle)}</div>`:''}${pr.impact?`<div class="imp">${esc(pr.impact)}</div>`:''}<div class="ptech">${tech}</div></div></${tag}>`;
   }).join('');
+  // Auto-fit: portrait / near-square images (ratio < box) get `contain` so they aren't zoom-cropped.
+  // Card box is 16/10 (1.6); anything squarer than PORTRAITISH looks over-zoomed under `cover`.
+  // Explicit media.fit (inline style) always wins — this only fills the gap for untagged images.
+  const PORTRAITISH = 1.2;
+  document.querySelectorAll('#projects-grid .ph img').forEach(im=>{
+    if(im.getAttribute('style')) return; // author set an explicit fit — respect it
+    const check=()=>{ if(im.naturalWidth && im.naturalWidth/im.naturalHeight < PORTRAITISH) im.classList.add('contain'); };
+    if(im.complete && im.naturalWidth) check(); else im.addEventListener('load',check,{once:true});
+  });
 
   // PUBLICATIONS
   $('#pub-grid').innerHTML = byOrder(data.publications?.publications||[]).map(pb=>
@@ -493,7 +491,7 @@ const SOCIAL_SVG = {
   }
 
   // FOOTER
-  $('#foot-tag').textContent = p.tagline || '';
+  $('#foot-tag').textContent = (p.tagline||'').replace(/\*/g,'');
   $('#foot-loc').innerHTML = esc([p.location?.city,p.location?.country].filter(Boolean).join(', ')) + ' <span class="d">·</span> ' + new Date().getFullYear();
 
   // typewriter

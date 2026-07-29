@@ -70,7 +70,9 @@
       "media": [
         { "type": "image", "src": "Images/agmove-rover.webp", "thumb": "Images/agmove-rover.webp", "alt": "Agmove Farm Guardian autonomous agricultural rover in a vineyard" }
       ],
-      "links": [],
+      "links": [
+        { "label": "Agmove Robotics", "url": "https://agmove.in/", "type": "website" }
+      ],
       "award_ids": [],
       "patent_id": null,
       "publication_ids": []
@@ -415,7 +417,9 @@
       "media": [
         { "type": "image", "src": "Images/Vertical_Indexing_conveyor.webp", "thumb": "Images/Vertical_Indexing_conveyor.webp", "alt": "Vertical indexing conveyor" }
       ],
-      "links": [],
+      "links": [
+        { "label": "View on IndiaMART", "url": "https://www.indiamart.com/vrushabhnathindustries/?pid=5741294388&c_id=841&mid=8219&pn=Roller%20Type%20Conveyor&cui=1", "type": "website" }
+      ],
       "award_ids": [],
       "patent_id": null,
       "publication_ids": []
@@ -450,7 +454,7 @@
     {
       "id": "mujoco-quadruped-humanoid",
       "order": 15,
-      "featured": true,
+      "featured": false,
       "title": "MuJoCo Quadruped & Humanoid Simulation",
       "subtitle": "Freelance — client in Slovenia",
       "category": "freelance",
