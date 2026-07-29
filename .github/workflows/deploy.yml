@@ -13,6 +13,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Bake SEO from content JSON
+        run: node scripts/seo-build.js   # regenerates meta/JSON-LD/crawler block/llms.txt/robots/sitemap into the published output
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
