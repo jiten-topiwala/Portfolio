@@ -395,9 +395,46 @@ filterBtns.forEach(btn => {
     });
 });
 
-// ===== CONTACT FORM =====
-// Form submission is handled by FormSubmit.co (see index.html)
-// No JavaScript needed - the HTML form POSTs directly to FormSubmit
+// ===== CONTACT FORM (AJAX Submission) =====
+const legacyContactForm = document.getElementById('contact-form');
+if (legacyContactForm && !legacyContactForm.dataset.ajaxBound) {
+    legacyContactForm.dataset.ajaxBound = 'true';
+    legacyContactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = legacyContactForm.querySelector('button[type="submit"]');
+        let statusEl = document.getElementById('contact-status') || document.getElementById('form-status');
+        if (!statusEl) {
+            statusEl = document.createElement('div');
+            statusEl.id = 'contact-status';
+            statusEl.style.marginTop = '12px';
+            statusEl.style.fontSize = '14px';
+            legacyContactForm.appendChild(statusEl);
+        }
+        if (btn) { btn.disabled = true; btn.style.opacity = '0.7'; }
+        statusEl.style.color = '#00d4ff';
+        statusEl.textContent = 'Sending message...';
+
+        try {
+            const response = await fetch(legacyContactForm.action, {
+                method: 'POST',
+                body: new FormData(legacyContactForm),
+                headers: { 'Accept': 'application/json' }
+            });
+            if (response.ok) {
+                statusEl.style.color = '#00ff88';
+                statusEl.textContent = "Thanks! Your message has been sent. I'll reply within 24 hours.";
+                legacyContactForm.reset();
+            } else {
+                throw new Error('Response not ok');
+            }
+        } catch (err) {
+            statusEl.style.color = '#ff5555';
+            statusEl.textContent = "Something went wrong. Please try again or email directly.";
+        } finally {
+            if (btn) { btn.disabled = false; btn.style.opacity = '1'; }
+        }
+    });
+}
 
 // ===== SMOOTH SCROLL FOR ANCHOR LINKS =====
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {

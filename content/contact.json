@@ -51,7 +51,7 @@
     "recipient": "jitentopiwala7@gmail.com",
     "hidden_fields": [
       { "name": "_subject", "value": "New Portfolio Contact!" },
-      { "name": "_captcha", "value": "true" },
+      { "name": "_captcha", "value": "false" },
       { "name": "_template", "value": "table" },
       { "name": "_next", "value": "https://jitentopiwala.github.io/Portfolio/" }
     ],
