@@ -14,7 +14,7 @@ Add this form to your HTML.
     *   `id="contact-form"`: Important for selection in JavaScript.
 
 ```html
-<form id="contact-form" action="https://formsubmit.co/your-email@example.com" method="POST">
+<form id="contact-form" action="https://formsubmit.co/ajax/your-email@example.com" method="POST">
   
   <!-- Configuration -->
   <input type="hidden" name="_captcha" value="false">
@@ -76,13 +76,17 @@ document.addEventListener("DOMContentLoaded", () => {
       // Update UI to show sending state
       if(statusEl) statusEl.textContent = "Sending...";
 
-      // Send Data
+      // Send Data as JSON to FormSubmit AJAX endpoint
+      const payload = {};
+      formData.forEach((value, key) => payload[key] = value);
+
       fetch(form.action, {
         method: "POST",
-        body: formData,
         headers: {
-          'Accept': 'application/json' // Important: requests JSON response
-        }
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(payload)
       })
       .then(response => {
         if (response.ok) {

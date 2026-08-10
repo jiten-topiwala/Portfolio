@@ -46,14 +46,13 @@
   "form": {
     "enabled": true,
     "provider": "formsubmit",
-    "action_url": "https://formsubmit.co/jitentopiwala7@gmail.com",
+    "action_url": "https://formsubmit.co/ajax/jitentopiwala7@gmail.com",
     "method": "POST",
     "recipient": "jitentopiwala7@gmail.com",
     "hidden_fields": [
       { "name": "_subject", "value": "New Portfolio Contact!" },
       { "name": "_captcha", "value": "false" },
-      { "name": "_template", "value": "table" },
-      { "name": "_next", "value": "https://jitentopiwala.github.io/Portfolio/" }
+      { "name": "_template", "value": "table" }
     ],
     "fields": [
       {

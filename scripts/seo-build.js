@@ -30,6 +30,8 @@ const projects = read('projects.json');
 const pubs = read('publications.json');
 const exp = read('experience.json');
 const services = read('services.json');
+const awards = read('awards.json');
+const education = read('education.json');
 
 const esc = (s) => String(s == null ? '' : s)
   .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -54,7 +56,14 @@ const graph = [
       '@type': 'PostalAddress', addressLocality: profile.location?.city,
       addressRegion: profile.location?.state, addressCountry: profile.location?.country
     },
-    sameAs, knowsAbout: allSkills
+    sameAs, knowsAbout: allSkills,
+    hasOccupation: { '@type': 'Occupation', name: role },
+    alumniOf: byOrder(education.education || []).map((e) => ({ '@type': 'CollegeOrUniversity', name: e.institution })),
+    award: byOrder((awards.awards || []).filter((a) => a.featured !== false)).map((a) => a.title),
+    makesOffer: byOrder(services.services || []).map((s) => ({
+      '@type': 'Offer',
+      itemOffered: { '@type': 'Service', name: s.title, description: s.description || '', serviceType: s.title, provider: { '@id': SITE + '#person' }, areaServed: 'Worldwide' }
+    }))
   },
   { '@type': 'WebSite', '@id': SITE + '#website', url: SITE, name: title, description: desc, author: { '@id': SITE + '#person' } },
   {

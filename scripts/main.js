@@ -415,17 +415,26 @@ if (legacyContactForm && !legacyContactForm.dataset.ajaxBound) {
         statusEl.textContent = 'Sending message...';
 
         try {
-            const response = await fetch(legacyContactForm.action, {
+            const actionUrl = legacyContactForm.action.includes('/ajax/') ? legacyContactForm.action : legacyContactForm.action.replace('formsubmit.co/', 'formsubmit.co/ajax/');
+            const formData = new FormData(legacyContactForm);
+            const payload = {};
+            formData.forEach((val, key) => { payload[key] = val; });
+
+            const response = await fetch(actionUrl, {
                 method: 'POST',
-                body: new FormData(legacyContactForm),
-                headers: { 'Accept': 'application/json' }
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(payload)
             });
-            if (response.ok) {
+            const json = await response.json().catch(() => ({}));
+            if (response.ok && (json.success === "true" || json.success === true || !json.error)) {
                 statusEl.style.color = '#00ff88';
                 statusEl.textContent = "Thanks! Your message has been sent. I'll reply within 24 hours.";
                 legacyContactForm.reset();
             } else {
-                throw new Error('Response not ok');
+                throw new Error(json.message || 'Response not ok');
             }
         } catch (err) {
             statusEl.style.color = '#ff5555';
