@@ -46,6 +46,7 @@
       "id": "agmove-rover",
       "order": 2,
       "featured": true,
+      "feature_large": true,
       "title": "Sub-20HP Autonomous Agricultural Rover",
       "subtitle": "Founding-engineer-led farm automation platform",
       "category": "robotics",
