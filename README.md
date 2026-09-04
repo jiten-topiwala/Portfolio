@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="Images/agmove-rover.webp" alt="Farm Guardian — autonomous sub-20HP agricultural rover, built at Agmove Robotics" width="840">
+<img src="Images/trackbeltmode.webp" alt="Manpackable transformable surveillance robot — wheel/track mode" width="840">
 
 # 🤖 Jiten Topiwala — Portfolio
 

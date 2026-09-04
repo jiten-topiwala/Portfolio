@@ -12,11 +12,11 @@
   ],
   "tagline": "*Physical AI*, built to survive the real world.",
   "short_bio": "Robotics Engineer with a Mechanical Engineering degree, combining hardware expertise with software intelligence to create machines that matter.",
-  "long_bio": "I'm a Robotics Engineer currently serving as Founding Robotics Engineer at Agmove Robotics, where I lead autonomous navigation, embedded systems, and control software for sub-20HP agricultural rovers. My journey blends mechanical design, robotics software (ROS2, Nav2, perception), and embedded firmware — with a portfolio spanning award-winning competition robots, industrial inspection systems, agricultural automation, surveillance robots (with a patent in process), and published research in IEEE and IJIRT. I enjoy bridging the gap between research and real-world deployable systems.",
+  "long_bio": "I'm a Robotics Engineer with a Mechanical Engineering degree, blending mechanical design, robotics software (ROS2, Nav2, perception), and embedded firmware. I've taken autonomous ground robots from concept to field deployment — including founding-engineer work in agricultural robotics — alongside award-winning competition robots, industrial inspection systems, and surveillance robots (with a patent in process), plus published research in IEEE and IJIRT. I enjoy turning research into real-world, deployable systems, and I'm available for freelance and consulting work.",
   "current_role": {
-    "title": "Founding Robotics Engineer",
-    "company": "Agmove Robotics",
-    "since": "2025-07"
+    "title": "Freelance Robotics Engineer & Consultant",
+    "company": null,
+    "since": "2026-08"
   },
   "availability": {
     "status": "available",
@@ -64,7 +64,6 @@
   "stats": [
     { "label": "Projects Built", "value": 10, "suffix": "+" },
     { "label": "Publications", "value": 2, "suffix": "" },
-    { "label": "Awards Won", "value": 8, "suffix": "+" },
-    { "label": "Years Experience", "value": 3, "suffix": "+" }
+    { "label": "Awards Won", "value": 8, "suffix": "+" }
   ]
 }
