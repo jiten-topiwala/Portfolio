@@ -21,7 +21,7 @@ const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
 const SITE = 'https://jiten-topiwala.github.io/Portfolio/';
-const OG_IMAGE = 'Images/agmove-rover.webp'; // striking, correct OG ratio (1280x720)
+const OG_IMAGE = 'Images/trackbeltmode.webp'; // personal project (surveillance robot) — safe share image
 
 const read = (f) => JSON.parse(fs.readFileSync(path.join(ROOT, 'content', f), 'utf8'));
 const profile = read('profile.json');

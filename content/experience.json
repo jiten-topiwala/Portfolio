@@ -5,27 +5,24 @@
       "order": 1,
       "featured": true,
       "role": "Founding Robotics Engineer",
+      "title_progression": ["Robotics Engineer", "Senior Robotics Engineer", "Robotics Lead"],
       "company": "Agmove Robotics",
       "company_url": "https://agmove.in/",
       "type": "full-time",
       "location": "Pune, India",
       "start_date": "2025-07",
-      "end_date": null,
-      "current": true,
-      "summary": "Spearheading the development of autonomous navigation and control systems for sub-20HP agricultural rovers to automate labor-intensive farming tasks.",
+      "end_date": "2026-08",
+      "current": false,
+      "summary": "Contributed to the development of autonomous navigation and control systems for agricultural robotics platforms that automate labour-intensive farming operations.",
       "highlights": [
-        "Led initial mechanical design, then expanded scope to robotics software and electronics ownership.",
-        "Architected and implemented ROS2 (Humble/Jazzy) navigation stacks using GNSS RTK, IMU, camera, and odometry for precise path planning in unstructured farm environments.",
-        "Used Nav2 with Livox Mid-360, VSLAM (incl. NVIDIA Isaac ROS VSLAM), and FAST-LIO2; designed reliable robot architecture, sensor fusion for obstacle detection, image-processing-based human follow, vineyard row-following autonomous and semi-autonomous navigation.",
-        "Integrated Cube Orange Plus with PX4 / ArduPilot and MAVROS for flight-controller-style telemetry on ground rovers.",
-        "Developed STM32 firmware to interface motor drivers, linear actuators, and sensors via CAN, RS485, and I2C.",
-        "Integrated NVIDIA Jetson platforms for sensor fusion and high-level decision-making.",
-        "Validated robot behaviours in Gazebo and Ignition simulation (Docker-based workflows) to accelerate hardware deployment cycles.",
-        "Designed modular software pipelines connecting high-level ROS2 nodes with low-level embedded hardware via CAN and micro-ROS.",
-        "Built a web interface for robot control with an MQTT bridge (Mosquitto), full frontend and backend for fleet management and a robot cockpit / mission planner."
+        "Developed autonomous navigation, localization, and path-planning capabilities for challenging agricultural environments.",
+        "Integrated embedded systems, sensors, actuators, and robotics control hardware.",
+        "Worked on perception, sensor fusion, and high-level robotic decision-making.",
+        "Developed and validated robotic behaviors through simulation and field testing.",
+        "Contributed to modular, scalable robotics software architecture supporting reliable communication across the systems."
       ],
-      "tech": ["ROS2 Humble/Jazzy", "Nav2", "FAST-LIO2", "VSLAM", "NVIDIA Isaac ROS", "Livox Mid-360", "Cube Orange Plus", "PX4", "ArduPilot", "MAVROS", "micro-ROS", "STM32", "CAN", "RS485", "I2C", "NVIDIA Jetson", "Gazebo", "Ignition", "Docker", "MQTT", "Mosquitto"],
-      "image": null,
+      "tech": ["Autonomous Navigation", "Localization", "Path Planning", "Perception", "Sensor Fusion", "Embedded Systems", "Simulation"],
+      "image": "Images/agmove-rover.webp",
       "links": []
     },
     {
@@ -50,7 +47,7 @@
         "Designed parts and assemblies across 3D-printing, sheet-metal, moulding, and FRP processes."
       ],
       "tech": ["SolidWorks", "Fusion 360", "Sheet Metal", "3D Printing", "Moulding", "FRP", "DFM", "Tolerance Analysis", "PLM"],
-      "image": null,
+      "image": "Images/peppermint-robotics.webp",
       "links": []
     },
     {
