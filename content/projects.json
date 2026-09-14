@@ -1,11 +1,29 @@
 {
   "categories": [
-    { "id": "all", "label": "All" },
-    { "id": "robotics", "label": "Robotics" },
-    { "id": "industrial", "label": "Industrial" },
-    { "id": "research", "label": "Research" },
-    { "id": "competition", "label": "Competition" },
-    { "id": "freelance", "label": "Freelance" }
+    {
+      "id": "all",
+      "label": "All"
+    },
+    {
+      "id": "robotics",
+      "label": "Robotics"
+    },
+    {
+      "id": "industrial",
+      "label": "Industrial"
+    },
+    {
+      "id": "research",
+      "label": "Research"
+    },
+    {
+      "id": "competition",
+      "label": "Competition"
+    },
+    {
+      "id": "freelance",
+      "label": "Freelance"
+    }
   ],
   "projects": [
     {
@@ -15,10 +33,17 @@
       "title": "Manpackable Transformable Surveillance Robot",
       "subtitle": "Wheel-Track Transformable Surveillance Robot — single-actuator Modified Watt II six-bar linkage",
       "category": "robotics",
-      "tags": ["surveillance", "patent", "award-winning"],
+      "tags": [
+        "surveillance",
+        "patent",
+        "award-winning"
+      ],
       "badge": "Award Winning",
       "impact": "Single-actuator wheel↔track transformation · patent in process · multi-award winner",
-      "dates": { "start": "2023-08", "end": "2024-05" },
+      "dates": {
+        "start": "2023-08",
+        "end": "2024-05"
+      },
       "description": "A compact, rugged, man-packable surveillance robot that transforms between wheel mode and track-belt mode using a single-actuator Modified Watt II six-bar linkage. Designed for search-and-rescue, reconnaissance, and disaster-response operations in confined or hazardous environments.",
       "long_description": "Designed a compact, rugged, terrain-adaptive rescue robot with a transformable wheel-track mechanism using a single actuator (Modified Watt II six-bar linkage), enabling reliable traversal across diverse terrains. Intended for critical applications in search and rescue, reconnaissance, and disaster response, the robot is compact, lightweight, and optimised for rapid deployment in confined or hazardous environments. Validated dynamic system performance through motion and torque simulations in SolidWorks, MotionGen, MATLAB, and Abaqus (FEA). Integrated ROS2, ESP32-CAM, and sensors (IMU, DHT11) for real-time video streaming and remote control. Prototyping via additive manufacturing and sheet-metal fabrication. Designed using DFMA principles for ease of manufacturing and assembly.",
       "features": [
@@ -30,51 +55,42 @@
         "DFMA-driven design — additive manufacturing and sheet-metal fabrication",
         "Validated via motion + torque simulations in SolidWorks, MotionGen, MATLAB, and Abaqus FEA"
       ],
-      "tech": ["SolidWorks", "MotionGen", "Abaqus", "FEA", "MATLAB", "Python", "ROS2", "ESP32-CAM", "IMU", "DHT11", "3D Printing", "Sheet Metal"],
+      "tech": [
+        "SolidWorks",
+        "MotionGen",
+        "Abaqus",
+        "FEA",
+        "MATLAB",
+        "Python",
+        "ROS2",
+        "ESP32-CAM",
+        "IMU",
+        "DHT11",
+        "3D Printing",
+        "Sheet Metal"
+      ],
       "role": "Design Lead",
       "team_size": null,
       "media": [
-        { "type": "image", "src": "Images/trackbeltmode.webp", "thumb": "Images/trackbeltmode.webp", "alt": "Track belt mode" },
-        { "type": "image", "src": "Images/WhatsApp Image 2023-10-28 at 14.19.37_9e6e37e8.webp", "thumb": "Images/WhatsApp Image 2023-10-28 at 14.19.37_9e6e37e8.webp", "alt": "Surveillance robot view" }
+        {
+          "type": "image",
+          "src": "Images/trackbeltmode.webp",
+          "thumb": "Images/trackbeltmode.webp",
+          "alt": "Track belt mode"
+        },
+        {
+          "type": "image",
+          "src": "Images/WhatsApp Image 2023-10-28 at 14.19.37_9e6e37e8.webp",
+          "thumb": "Images/WhatsApp Image 2023-10-28 at 14.19.37_9e6e37e8.webp",
+          "alt": "Surveillance robot view"
+        }
       ],
       "links": [],
-      "award_ids": ["innovation-excellence-ug-2024", "robotex-entrepreneurship-2nd-2024"],
+      "award_ids": [
+        "innovation-excellence-ug-2024",
+        "robotex-entrepreneurship-2nd-2024"
+      ],
       "patent_id": "transformable-surveillance-robot",
-      "publication_ids": []
-    },
-    {
-      "id": "agmove-rover",
-      "order": 2,
-      "featured": false,
-      "title": "Sub-20HP Autonomous Agricultural Rover",
-      "subtitle": "Founding-engineer-led farm automation platform",
-      "category": "robotics",
-      "tags": ["agriculture", "ros2", "production"],
-      "badge": "Current Work",
-      "impact": "Full-stack robotics: mechanical → embedded → ROS2 → cloud",
-      "dates": { "start": "2025-07", "end": null },
-      "description": "Sub-20HP agricultural rover automating labour-intensive farming tasks. End-to-end ownership: mechanical design, ROS2 navigation stack (Nav2 + FAST-LIO2 + Isaac ROS VSLAM), STM32 firmware over CAN/RS485, Jetson-based perception, Docker-based simulation, web-based fleet management.",
-      "long_description": "Architecting and implementing the full robotics stack at Agmove Robotics. ROS2 (Humble/Jazzy) navigation stacks using GNSS RTK, IMU, camera, and odometry; Nav2 with Livox Mid-360, FAST-LIO2, and NVIDIA Isaac ROS VSLAM; reliable robot architecture with sensor-fusion obstacle detection, image-processing-based human follow, and vineyard row-following navigation. Cube Orange Plus with PX4/ArduPilot/MAVROS. STM32 firmware to interface motor drivers, linear actuators, and sensors via CAN, RS485, I2C. NVIDIA Jetson for sensor fusion and high-level decisions. Docker-based simulation and deployment workflows. Modular software pipelines connecting high-level ROS2 nodes with low-level embedded hardware via micro-ROS. Web interface for robot control with MQTT bridge (Mosquitto), full frontend/backend for fleet management and a robot cockpit / mission planner.",
-      "features": [
-        "ROS2 Nav2 stack with FAST-LIO2 and NVIDIA Isaac ROS VSLAM on Livox Mid-360",
-        "GNSS RTK + IMU + camera + odometry sensor fusion",
-        "Vineyard row-following + image-based human-follow modes",
-        "STM32 firmware over CAN, RS485, I2C; micro-ROS bridge to high-level nodes",
-        "NVIDIA Jetson for perception and decision making",
-        "Docker-based Gazebo / Ignition simulation workflows",
-        "Web cockpit with MQTT bridge for fleet management"
-      ],
-      "tech": ["ROS2 Humble/Jazzy", "Nav2", "FAST-LIO2", "NVIDIA Isaac ROS", "VSLAM", "Livox Mid-360", "Cube Orange Plus", "PX4", "ArduPilot", "MAVROS", "micro-ROS", "STM32", "CAN", "RS485", "I2C", "NVIDIA Jetson", "Gazebo", "Ignition", "Docker", "MQTT"],
-      "role": "Founding Robotics Engineer",
-      "team_size": null,
-      "media": [
-        { "type": "image", "src": "Images/agmove-rover.webp", "thumb": "Images/agmove-rover.webp", "alt": "Agmove Farm Guardian autonomous agricultural rover in a vineyard" }
-      ],
-      "links": [
-        { "label": "Agmove Robotics", "url": "https://agmove.in/", "type": "website" }
-      ],
-      "award_ids": [],
-      "patent_id": null,
       "publication_ids": []
     },
     {
@@ -84,10 +100,17 @@
       "title": "LiftTerra",
       "subtitle": "Revolutionising Construction & Maintenance",
       "category": "robotics",
-      "tags": ["construction", "startup", "automation"],
+      "tags": [
+        "construction",
+        "startup",
+        "automation"
+      ],
       "badge": "Startup",
       "impact": "50 kg+ payload · autonomous navigation & follow-me mode",
-      "dates": { "start": null, "end": null },
+      "dates": {
+        "start": null,
+        "end": null
+      },
       "description": "Robotic platform designed to automate heavy lifting and material transport on construction sites — reducing physical strain on workers and increasing efficiency.",
       "long_description": "LiftTerra is a robotic platform designed to automate heavy lifting and material transport on construction sites. By reducing physical strain on workers and increasing efficiency, LiftTerra aims to modernise the construction industry. Features heavy payload capacity (50 kg+), autonomous navigation in cluttered environments, follow-me mode for worker assistance, robust outdoor chassis, and long battery life.",
       "features": [
@@ -97,16 +120,41 @@
         "Robust outdoor chassis",
         "Long battery life"
       ],
-      "tech": ["ROS2", "Navigation Stack", "LIDAR", "Industrial Design", "React"],
+      "tech": [
+        "ROS2",
+        "Navigation Stack",
+        "LIDAR",
+        "Industrial Design",
+        "React"
+      ],
       "role": "Co-founder / Robotics",
       "team_size": null,
       "media": [
-        { "type": "image", "src": "Images/LiftTerra 1.webp", "thumb": "Images/LiftTerra 1.webp", "alt": "LiftTerra robot view 1" },
-        { "type": "image", "src": "Images/LiftTerra 2.webp", "thumb": "Images/LiftTerra 2.webp", "alt": "LiftTerra robot view 2" },
-        { "type": "image", "src": "Images/Enterprenurship.webp", "thumb": "Images/Enterprenurship.webp", "alt": "Entrepreneurship" }
+        {
+          "type": "image",
+          "src": "Images/LiftTerra 1.webp",
+          "thumb": "Images/LiftTerra 1.webp",
+          "alt": "LiftTerra robot view 1"
+        },
+        {
+          "type": "image",
+          "src": "Images/LiftTerra 2.webp",
+          "thumb": "Images/LiftTerra 2.webp",
+          "alt": "LiftTerra robot view 2"
+        },
+        {
+          "type": "image",
+          "src": "Images/Enterprenurship.webp",
+          "thumb": "Images/Enterprenurship.webp",
+          "alt": "Entrepreneurship"
+        }
       ],
       "links": [
-        { "label": "Visit Website", "url": "https://jiten-topiwala.github.io/LiftTerra/", "type": "website" }
+        {
+          "label": "Visit Website",
+          "url": "https://jiten-topiwala.github.io/LiftTerra/",
+          "type": "website"
+        }
       ],
       "award_ids": [],
       "patent_id": null,
@@ -119,10 +167,17 @@
       "title": "Robocon 2024 — Harvest Day",
       "subtitle": "Two collaborative robots for ball shooting and seedling placement",
       "category": "competition",
-      "tags": ["robocon", "award-winning", "team-lead"],
+      "tags": [
+        "robocon",
+        "award-winning",
+        "team-lead"
+      ],
       "badge": "MathWorks Award",
       "impact": "₹70K total prize money · 3rd in league among 56 national teams",
-      "dates": { "start": "2023-09", "end": "2024-08" },
+      "dates": {
+        "start": "2023-09",
+        "end": "2024-08"
+      },
       "description": "Designed two collaborative robots for the 'Harvest Day' theme — a semi-autonomous robot for picking/shooting coloured balls and placing seedling-like poles, and a fully autonomous robot for ball detection and basket placement.",
       "long_description": "Participated in Robocon 2024 under the 'Harvest Day' theme. Challenge involved designing two collaborative robots: a semi-autonomous robot that picked and shot coloured balls and placed seedling-like poles, and a fully autonomous robot that navigated the field, detected coloured balls, and placed them into matching baskets without any human intervention. Contributed to the mechanical design of custom shooting and seedling-handling mechanisms in Fusion 360 and SolidWorks; integrated IMUs, colour sensors, and proximity sensors. Developed autonomous navigation and control algorithms using ROS2, Gazebo, Python, and MATLAB; performed extensive simulation and testing for precise coordination. Led a group within the team.",
       "features": [
@@ -132,16 +187,45 @@
         "Fusion 360 / SolidWorks mechanical design",
         "Sensor fusion: IMU, colour sensors, proximity sensors"
       ],
-      "tech": ["ROS2", "Gazebo", "Python", "MATLAB", "Fusion 360", "SolidWorks", "IMU", "Colour Sensors"],
+      "tech": [
+        "ROS2",
+        "Gazebo",
+        "Python",
+        "MATLAB",
+        "Fusion 360",
+        "SolidWorks",
+        "IMU",
+        "Colour Sensors"
+      ],
       "role": "Team / Sub-group Lead",
       "team_size": null,
       "media": [
-        { "type": "image", "src": "Images/Robocon 24.webp", "thumb": "Images/Robocon 24.webp", "alt": "Robocon 2024" },
-        { "type": "image", "src": "Images/matlab24.webp", "thumb": "Images/matlab24.webp", "alt": "MATLAB Modelling Award 2024" },
-        { "type": "image", "src": "Images/fusion.webp", "thumb": "Images/fusion.webp", "alt": "Autodesk Fusion Design Award" }
+        {
+          "type": "image",
+          "src": "Images/Robocon 24.webp",
+          "thumb": "Images/Robocon 24.webp",
+          "alt": "Robocon 2024"
+        },
+        {
+          "type": "image",
+          "src": "Images/matlab24.webp",
+          "thumb": "Images/matlab24.webp",
+          "alt": "MATLAB Modelling Award 2024"
+        },
+        {
+          "type": "image",
+          "src": "Images/fusion.webp",
+          "thumb": "Images/fusion.webp",
+          "alt": "Autodesk Fusion Design Award"
+        }
       ],
       "links": [],
-      "award_ids": ["mathworks-modelling-2024", "fusion-design-2024", "rsi-award-2024", "robocon-2024-league-3rd"],
+      "award_ids": [
+        "mathworks-modelling-2024",
+        "fusion-design-2024",
+        "rsi-award-2024",
+        "robocon-2024-league-3rd"
+      ],
       "patent_id": null,
       "publication_ids": []
     },
@@ -152,10 +236,17 @@
       "title": "Robocon 2023 — Ring Toss",
       "subtitle": "Two robots for ring shooting on poles using dual-roller mechanism",
       "category": "competition",
-      "tags": ["robocon", "award-winning", "matlab"],
+      "tags": [
+        "robocon",
+        "award-winning",
+        "matlab"
+      ],
       "badge": "5th All-India",
       "impact": "5th all-India · 2nd at MATLAB Modelling Award · automated shooting via simulation-derived data",
-      "dates": { "start": "2022-10", "end": "2023-05" },
+      "dates": {
+        "start": "2022-10",
+        "end": "2023-05"
+      },
       "description": "Built two robots for the ring-toss-on-pole game. Finalised a dual-roller ring-shooting mechanism after iterative prototyping; one robot used mecanum wheels, the other omni wheels. Automated the shooting task in MATLAB using simulation-derived datasets.",
       "long_description": "Participated in Robocon 2023 (ring toss in pole game). Brainstormed many mechanism concepts, prototyped the strongest candidates, then finalised a dual-roller ring-shooting mechanism for accuracy and precision. Used CNC machining, sheet-metal working, and 3D printing — and designed parts as per each manufacturing process. Designed an internal-gripper for picking ring stacks. One robot used mecanum wheels, the other omni wheels. Performed MATLAB and Simulink modelling of both robots — generated motion, tested shooting mechanisms for design validation, simulated base drives for path-planning, and integrated contact forces and other physical parameters so the simulation matched the real robot. Automated shooting in MATLAB: ran simulations to capture the ring's estimated trajectory, then used data analysis to choose input parameters that put the ring into the pole automatically based on its position and the detected pole position. Built laser-and-camera-based pole detection and top-most-ring colour detection via image processing. Built the control system in MATLAB; the robots were semi-autonomous. Team finished 5th all-India and 2nd at the MATLAB Modelling Award.",
       "features": [
@@ -167,14 +258,32 @@
         "Laser + camera pole detection and ring-colour detection (image processing)",
         "Multi-process manufacturing: CNC, sheet metal, 3D printing"
       ],
-      "tech": ["SolidWorks", "Fusion 360", "MATLAB", "Simulink", "Image Processing", "CNC Machining", "Sheet Metal", "3D Printing", "Ultimaker Cura"],
+      "tech": [
+        "SolidWorks",
+        "Fusion 360",
+        "MATLAB",
+        "Simulink",
+        "Image Processing",
+        "CNC Machining",
+        "Sheet Metal",
+        "3D Printing",
+        "Ultimaker Cura"
+      ],
       "role": "Mechanism + Control + Vision",
       "team_size": null,
       "media": [
-        { "type": "image", "src": "Images/Matlab23.webp", "thumb": "Images/Matlab23.webp", "alt": "MATLAB Modelling Award 2023" }
+        {
+          "type": "image",
+          "src": "Images/Matlab23.webp",
+          "thumb": "Images/Matlab23.webp",
+          "alt": "MATLAB Modelling Award 2023"
+        }
       ],
       "links": [],
-      "award_ids": ["robocon-2023-5th", "mathworks-modelling-2023-2nd"],
+      "award_ids": [
+        "robocon-2023-5th",
+        "mathworks-modelling-2023-2nd"
+      ],
       "patent_id": null,
       "publication_ids": []
     },
@@ -185,10 +294,16 @@
       "title": "Robocon 2025",
       "subtitle": "Latest Robocon cycle",
       "category": "competition",
-      "tags": ["robocon", "in-progress"],
+      "tags": [
+        "robocon",
+        "in-progress"
+      ],
       "badge": "In Progress",
       "impact": null,
-      "dates": { "start": "2024-09", "end": null },
+      "dates": {
+        "start": "2024-09",
+        "end": null
+      },
       "description": "Working on innovative robot designs for the Robocon 2025 cycle.",
       "long_description": "",
       "features": [],
@@ -196,7 +311,12 @@
       "role": null,
       "team_size": null,
       "media": [
-        { "type": "image", "src": "Images/Robocon 2025.webp", "thumb": "Images/Robocon 2025.webp", "alt": "Robocon 2025" }
+        {
+          "type": "image",
+          "src": "Images/Robocon 2025.webp",
+          "thumb": "Images/Robocon 2025.webp",
+          "alt": "Robocon 2025"
+        }
       ],
       "links": [],
       "award_ids": [],
@@ -210,10 +330,18 @@
       "title": "e-Yantra Robotics — Hologlyph Bots",
       "subtitle": "Custom omni-wheel robots with overhead-camera vision feedback",
       "category": "competition",
-      "tags": ["eyrc", "ros2", "computer-vision", "multi-robot"],
+      "tags": [
+        "eyrc",
+        "ros2",
+        "computer-vision",
+        "multi-robot"
+      ],
       "badge": null,
       "impact": "95% positioning accuracy via ArUco · 30% faster sim-to-hardware transition",
-      "dates": { "start": "2023-08", "end": "2024-03" },
+      "dates": {
+        "start": "2023-08",
+        "end": "2024-03"
+      },
       "description": "Designed and programmed three custom omni-wheel robots (continuous servo-driven, holonomic) tracked in real time by an overhead camera using ArUco markers. Used ROS2 + micro-ROS for multi-robot coordination and Gazebo 11 for simulation; visualised in RViz and Foxglove.",
       "long_description": "Worked on the Hologlyph Bots theme of e-Yantra Robotics Competition (eYRC) 2023-24. Engineered and programmed a multi-robot system with omni-wheel robots for autonomous geoglyph creation, using continuous servo motors with overhead-camera feedback for precise control. Developed real-time localisation with ArUco marker detection and an overhead camera, achieving 95% accuracy in robot positioning and optimising task execution using ROS2 and micro-ROS. Designed and tested control algorithms in Gazebo, with system visualisation in RViz and Foxglove — reducing simulation-to-hardware transition time by 30% and ensuring faster, more reliable system performance. Significantly enhanced skills in real-time feedback systems, robot kinematics, control algorithms, and simulation-to-hardware integration. Successfully completed all online tasks, advancing just before the offline stage.",
       "features": [
@@ -223,14 +351,33 @@
         "Gazebo simulation with RViz + Foxglove visualisation — 30% faster sim-to-hardware transition",
         "Custom kinematics for omni-directional motion"
       ],
-      "tech": ["ROS2", "micro-ROS", "OpenCV", "ArUco", "Gazebo 11", "RViz", "Foxglove", "Python", "Continuous Servos"],
+      "tech": [
+        "ROS2",
+        "micro-ROS",
+        "OpenCV",
+        "ArUco",
+        "Gazebo 11",
+        "RViz",
+        "Foxglove",
+        "Python",
+        "Continuous Servos"
+      ],
       "role": "Team Member",
       "team_size": null,
       "media": [
-        { "type": "image", "src": "Images/eyrc.webp", "thumb": "Images/eyrc.webp", "alt": "e-Yantra Hologlyph Bots" }
+        {
+          "type": "image",
+          "src": "Images/eyrc.webp",
+          "thumb": "Images/eyrc.webp",
+          "alt": "e-Yantra Hologlyph Bots"
+        }
       ],
       "links": [
-        { "label": "GitHub Repo", "url": "https://github.com/vaishnavimulik25/eyrc23_hb_1520", "type": "github" }
+        {
+          "label": "GitHub Repo",
+          "url": "https://github.com/vaishnavimulik25/eyrc23_hb_1520",
+          "type": "github"
+        }
       ],
       "award_ids": [],
       "patent_id": null,
@@ -243,10 +390,17 @@
       "title": "Pipe Inspection Robot (400–900 mm)",
       "subtitle": "Variable-diameter inspection robot — IIT Roorkee research",
       "category": "research",
-      "tags": ["industrial", "research", "iit-roorkee"],
+      "tags": [
+        "industrial",
+        "research",
+        "iit-roorkee"
+      ],
       "badge": null,
       "impact": "Pipe diameters 400–900 mm · CFD-validated thrust design",
-      "dates": { "start": "2024-05", "end": "2024-07" },
+      "dates": {
+        "start": "2024-05",
+        "end": "2024-07"
+      },
       "description": "Versatile robotic system for navigation and inspection of pipelines with varying characteristics, diameters (400–900 mm), and fluid dynamics. Scissor-mechanism-based geometry adjustment with thruster-based propulsion.",
       "long_description": "Researched many pipe-inspection-robot architectures, then designed a versatile system capable of seamless navigation and inspection of pipelines with varying characteristics, diameters (400–900 mm), and fluid dynamics. Conceptual design and analysis/simulation of a scissor-mechanism robotic module. Control system used Raspberry Pi as navigator, Xbox controller as remote operator; ArduSub + QGroundControl + BlueOS + Cockpit for vehicle setup, configuration, and navigation. Tried multiple actuator-control techniques including sign-magnitude PWM (Cytron driver), locked anti-phase PWM (brushed ESC), relays, and direct MOSFET drive. Tested individual and integrated components. Did MATLAB modelling and CFD analysis to optimise motion dynamics and thrust force requirements during design verification. Improved inspection efficiency and reduced manual intervention.",
       "features": [
@@ -256,11 +410,25 @@
         "MATLAB modelling + CFD analysis for thrust optimisation",
         "Multi-strategy motor-driver evaluation (PWM modes, relays, MOSFETs)"
       ],
-      "tech": ["Raspberry Pi", "ArduSub", "QGroundControl", "BlueOS", "Cockpit", "MATLAB", "CFD", "Cytron Driver"],
+      "tech": [
+        "Raspberry Pi",
+        "ArduSub",
+        "QGroundControl",
+        "BlueOS",
+        "Cockpit",
+        "MATLAB",
+        "CFD",
+        "Cytron Driver"
+      ],
       "role": "Research Intern",
       "team_size": null,
       "media": [
-        { "type": "image", "src": "Images/Pipe Inspectoin Robot.webp", "thumb": "Images/Pipe Inspectoin Robot.webp", "alt": "Variable-diameter pipe inspection robot (400-900 mm)" }
+        {
+          "type": "image",
+          "src": "Images/Pipe Inspectoin Robot.webp",
+          "thumb": "Images/Pipe Inspectoin Robot.webp",
+          "alt": "Variable-diameter pipe inspection robot (400-900 mm)"
+        }
       ],
       "links": [],
       "award_ids": [],
@@ -274,10 +442,18 @@
       "title": "Miniature Pipe Inspection Robot (35–95 mm)",
       "subtitle": "Gear-based transformable miniature inspector — ATtiny85 control",
       "category": "research",
-      "tags": ["industrial", "research", "iit-roorkee", "miniaturisation"],
+      "tags": [
+        "industrial",
+        "research",
+        "iit-roorkee",
+        "miniaturisation"
+      ],
       "badge": null,
       "impact": "35–95 mm pipe diameter · ATtiny85-based feedback controller, PCB designed in EasyEDA",
-      "dates": { "start": "2024-05", "end": "2024-07" },
+      "dates": {
+        "start": "2024-05",
+        "end": "2024-07"
+      },
       "description": "Miniature variant of the pipe-inspection robot for 35–95 mm pipes using a gear-based transformation mechanism, with a custom ATtiny85-based feedback controller and PCB schematic designed in EasyEDA, forwarded for validation and manufacturing.",
       "long_description": "Conceptual design of a miniature pipe-inspection robot for 35–95 mm diameter pipes using a gear-based transformation mechanism. Did analysis and simulation, then designed a feedback controller for the miniature unit under tight component-size constraints. Studied multiple control methods, designed the conceptual layout and PCB schematic in EasyEDA using an ATtiny85 microcontroller, and forwarded it for validation and manufacturing — focusing on compactness and control precision.",
       "features": [
@@ -285,11 +461,23 @@
         "Feedback controller designed under tight size constraints",
         "PCB schematic in EasyEDA with ATtiny85 microcontroller"
       ],
-      "tech": ["Mechanism Design", "Control Theory", "EasyEDA", "ATtiny85", "PCB Design", "Microcontrollers"],
+      "tech": [
+        "Mechanism Design",
+        "Control Theory",
+        "EasyEDA",
+        "ATtiny85",
+        "PCB Design",
+        "Microcontrollers"
+      ],
       "role": "Research Intern",
       "team_size": null,
       "media": [
-        { "type": "image", "src": "Images/Pipe inspection robot 2.webp", "thumb": "Images/Pipe inspection robot 2.webp", "alt": "Miniature gear-based pipe inspection robot (35-95 mm)" }
+        {
+          "type": "image",
+          "src": "Images/Pipe inspection robot 2.webp",
+          "thumb": "Images/Pipe inspection robot 2.webp",
+          "alt": "Miniature gear-based pipe inspection robot (35-95 mm)"
+        }
       ],
       "links": [],
       "award_ids": [],
@@ -303,10 +491,17 @@
       "title": "Agricultural Gantry System",
       "subtitle": "Rope-driven farm-coverage robot",
       "category": "research",
-      "tags": ["agriculture", "research", "published"],
+      "tags": [
+        "agriculture",
+        "research",
+        "published"
+      ],
       "badge": "Published",
       "impact": "Published in IJIRT (Vol. 11, Issue 4)",
-      "dates": { "start": "2023-06", "end": "2024-08" },
+      "dates": {
+        "start": "2023-06",
+        "end": "2024-08"
+      },
       "description": "Gantry-style farming robot moving on a rope along one axis (rope tensioned by a cable winch) and on two base drives along the perpendicular axis. Carries an arm, tank, and sensors for various farm operations; base-drive endpoints double as water refill / charging / storage stations.",
       "long_description": "Developed a gantry-based agricultural robotic system for farm coverage with strong use-case advantages over both traditional and other advanced systems. Robot moves along one axis on a rope (attached to a cable winch for adjustment) and on two base drives along the perpendicular axis. Carries an arm for various operations, a tank, and appropriate sensors for navigation and applications. Base drives at the field ends also act as water-refill, charging, and storage points. Published as: 'Design of an Agricultural Robotic System for Farm Coverage', IJIRT, Vol. 11, Issue 4, pp. 109–115 (2024).",
       "features": [
@@ -315,18 +510,33 @@
         "Endpoint base drives as water-refill / charging / storage stations",
         "Published research validating the architecture"
       ],
-      "tech": ["Mechanism Design", "Robotics", "Field Robotics"],
+      "tech": [
+        "Mechanism Design",
+        "Robotics",
+        "Field Robotics"
+      ],
       "role": "Lead Author / Designer",
       "team_size": null,
       "media": [
-        { "type": "image", "src": "Images/ArOne.webp", "thumb": "Images/ArOne.webp", "alt": "Agricultural gantry system — rope-driven farm-coverage robot (ArOne)" }
+        {
+          "type": "image",
+          "src": "Images/ArOne.webp",
+          "thumb": "Images/ArOne.webp",
+          "alt": "Agricultural gantry system — rope-driven farm-coverage robot (ArOne)"
+        }
       ],
       "links": [
-        { "label": "Read Paper (IJIRT)", "url": "https://ijirt.org/publishedpaper/IJIRT167610_PAPER.pdf", "type": "paper" }
+        {
+          "label": "Read Paper (IJIRT)",
+          "url": "https://ijirt.org/publishedpaper/IJIRT167610_PAPER.pdf",
+          "type": "paper"
+        }
       ],
       "award_ids": [],
       "patent_id": null,
-      "publication_ids": ["ijirt-agri-gantry-2024"]
+      "publication_ids": [
+        "ijirt-agri-gantry-2024"
+      ]
     },
     {
       "id": "drone-navigation",
@@ -335,10 +545,17 @@
       "title": "Advanced Drone Navigation & Landing — Parrot MiniDrone",
       "subtitle": "Multi-algorithm integration for autonomous landing",
       "category": "research",
-      "tags": ["drone", "ieee", "published"],
+      "tags": [
+        "drone",
+        "ieee",
+        "published"
+      ],
       "badge": "IEEE Published",
       "impact": "Published & presented at IEEE PuneCon 2024",
-      "dates": { "start": "2023-06", "end": "2024-12" },
+      "dates": {
+        "start": "2023-06",
+        "end": "2024-12"
+      },
       "description": "Multi-algorithm-integrated navigation and precision-landing approach for the Parrot MiniDrone platform. Published in IEEE Xplore and presented at the 2024 IEEE Pune Section International Conference (PuneCon).",
       "long_description": "Developed an advanced drone navigation and landing pipeline integrating multiple algorithms for the Parrot MiniDrone platform. Work was published and presented at the 2024 IEEE Pune Section International Conference (PuneCon), Pune, India, December 2024. DOI: 10.1109/PuneCon63413.2024.10895147.",
       "features": [
@@ -346,18 +563,34 @@
         "Precision autonomous landing",
         "Validated on Parrot MiniDrone platform"
       ],
-      "tech": ["MATLAB", "Simulink", "Computer Vision", "Control Systems"],
+      "tech": [
+        "MATLAB",
+        "Simulink",
+        "Computer Vision",
+        "Control Systems"
+      ],
       "role": "Lead Author",
       "team_size": null,
       "media": [
-        { "type": "image", "src": "Images/Matlab_minidrone.webp", "thumb": "Images/Matlab_minidrone.webp", "alt": "MATLAB MiniDrone simulation" }
+        {
+          "type": "image",
+          "src": "Images/Matlab_minidrone.webp",
+          "thumb": "Images/Matlab_minidrone.webp",
+          "alt": "MATLAB MiniDrone simulation"
+        }
       ],
       "links": [
-        { "label": "IEEE Xplore", "url": "https://ieeexplore.ieee.org/document/10895147", "type": "paper" }
+        {
+          "label": "IEEE Xplore",
+          "url": "https://ieeexplore.ieee.org/document/10895147",
+          "type": "paper"
+        }
       ],
       "award_ids": [],
       "patent_id": null,
-      "publication_ids": ["ieee-punecon-drone-2024"]
+      "publication_ids": [
+        "ieee-punecon-drone-2024"
+      ]
     },
     {
       "id": "biped",
@@ -366,10 +599,17 @@
       "title": "Biped — Dynamic Walking Robot",
       "subtitle": "Stable bipedal walker with inverse kinematics + RL gait optimisation",
       "category": "research",
-      "tags": ["bipedal", "control", "reinforcement-learning"],
+      "tags": [
+        "bipedal",
+        "control",
+        "reinforcement-learning"
+      ],
       "badge": "Ongoing",
       "impact": "15% weight reduction · improved stability, energy efficiency, and terrain adaptability",
-      "dates": { "start": "2025-01", "end": null },
+      "dates": {
+        "start": "2025-01",
+        "end": null
+      },
       "description": "Research / personal-project bipedal robot focused on stable dynamic walking. Lightweight mechanical structure, real-time control, inverse kinematics, embedded feedback, and gait optimisation via MATLAB simulations and reinforcement learning.",
       "long_description": "Designed and prototyped a stable biped robot, integrating lightweight mechanical structures with real-time control systems for dynamic walking. Implemented inverse kinematics and feedback control on embedded systems, and explored gait optimisation using MATLAB simulations and reinforcement learning. Reduced weight by 15% and improved overall stability, energy efficiency, and terrain adaptability through iterative mechanical and control-system refinement.",
       "features": [
@@ -379,12 +619,29 @@
         "Improved stability, energy efficiency, and terrain adaptability",
         "Real-time control loop"
       ],
-      "tech": ["SolidWorks", "MATLAB", "Reinforcement Learning", "Inverse Kinematics", "Embedded Systems", "C++"],
+      "tech": [
+        "SolidWorks",
+        "MATLAB",
+        "Reinforcement Learning",
+        "Inverse Kinematics",
+        "Embedded Systems",
+        "C++"
+      ],
       "role": "Designer / Builder",
       "team_size": null,
       "media": [
-        { "type": "image", "src": "Images/Biped 1.webp", "thumb": "Images/Biped 1.webp", "alt": "Biped robot view 1" },
-        { "type": "image", "src": "Images/Biped 2.webp", "thumb": "Images/Biped 2.webp", "alt": "Biped robot view 2" }
+        {
+          "type": "image",
+          "src": "Images/Biped 1.webp",
+          "thumb": "Images/Biped 1.webp",
+          "alt": "Biped robot view 1"
+        },
+        {
+          "type": "image",
+          "src": "Images/Biped 2.webp",
+          "thumb": "Images/Biped 2.webp",
+          "alt": "Biped robot view 2"
+        }
       ],
       "links": [],
       "award_ids": [],
@@ -398,10 +655,16 @@
       "title": "Vertical Indexing Conveyor",
       "subtitle": "Chain-sprocket-driven industrial system",
       "category": "industrial",
-      "tags": ["automation", "industrial"],
+      "tags": [
+        "automation",
+        "industrial"
+      ],
       "badge": null,
       "impact": "±0.5 mm indexing precision · PLC integrated",
-      "dates": { "start": null, "end": null },
+      "dates": {
+        "start": null,
+        "end": null
+      },
       "description": "Robust vertical conveyor for space-efficient buffering and indexing in automated assembly lines. Precision chain-sprocket drive with synchronised motion control.",
       "long_description": "A robust vertical conveyor system designed for space-efficient buffering and indexing of parts in an automated assembly line. Features a precision chain-sprocket drive and synchronised motion control. Space-saving vertical design, ±0.5 mm indexing, PLC integration, safety interlocks, modular palette system.",
       "features": [
@@ -411,14 +674,28 @@
         "Safety interlocks",
         "Modular palette system"
       ],
-      "tech": ["Automation", "PLC Programming", "CAD", "Pneumatics"],
+      "tech": [
+        "Automation",
+        "PLC Programming",
+        "CAD",
+        "Pneumatics"
+      ],
       "role": null,
       "team_size": null,
       "media": [
-        { "type": "image", "src": "Images/Vertical_Indexing_conveyor.webp", "thumb": "Images/Vertical_Indexing_conveyor.webp", "alt": "Vertical indexing conveyor" }
+        {
+          "type": "image",
+          "src": "Images/Vertical_Indexing_conveyor.webp",
+          "thumb": "Images/Vertical_Indexing_conveyor.webp",
+          "alt": "Vertical indexing conveyor"
+        }
       ],
       "links": [
-        { "label": "View on IndiaMART", "url": "https://www.indiamart.com/vrushabhnathindustries/?pid=5741294388&c_id=841&mid=8219&pn=Roller%20Type%20Conveyor&cui=1", "type": "website" }
+        {
+          "label": "View on IndiaMART",
+          "url": "https://www.indiamart.com/vrushabhnathindustries/?pid=5741294388&c_id=841&mid=8219&pn=Roller%20Type%20Conveyor&cui=1",
+          "type": "website"
+        }
       ],
       "award_ids": [],
       "patent_id": null,
@@ -431,10 +708,16 @@
       "title": "Early RSC Robots — Soccer Shooter & Pick-Place",
       "subtitle": "First-year hands-on robotics builds",
       "category": "robotics",
-      "tags": ["mechanism-design", "early-work"],
+      "tags": [
+        "mechanism-design",
+        "early-work"
+      ],
       "badge": null,
       "impact": "Early hands-on mechanism design (cam-follower shooter, four-bar pick-place, catapult)",
-      "dates": { "start": "2021-12", "end": "2022-06" },
+      "dates": {
+        "start": "2021-12",
+        "end": "2022-06"
+      },
       "description": "Hands-on small-competition robots built as a first-year RSC member: a soccer-playing robot with a cam-follower-based shooting mechanism, and a pick-and-place robot using a four-bar linkage with a catapult-style ball-shooting mechanism.",
       "long_description": "First hands-on robots built after joining the Robot Study Circle (RSC) in December 2021. Built a robot for soccer-playing competition with a cam-follower-based ball-shooting mechanism. Built a pick-and-place robot using a four-bar linkage to handle boxes, with a catapult-style ball-shooting mechanism.",
       "features": [
@@ -442,7 +725,10 @@
         "Four-bar linkage for pick-and-place",
         "Catapult-style shooting"
       ],
-      "tech": ["Mechanism Design", "Prototyping"],
+      "tech": [
+        "Mechanism Design",
+        "Prototyping"
+      ],
       "role": "Builder",
       "team_size": null,
       "media": [],
@@ -458,14 +744,25 @@
       "title": "MuJoCo Quadruped & Humanoid Simulation",
       "subtitle": "Freelance — client in Slovenia",
       "category": "freelance",
-      "tags": ["simulation", "mujoco", "freelance"],
+      "tags": [
+        "simulation",
+        "mujoco",
+        "freelance"
+      ],
       "badge": "Freelance",
       "impact": "Physical-AI sim for a quadruped + humanoid · delivered to an international client",
-      "dates": { "start": null, "end": null },
+      "dates": {
+        "start": null,
+        "end": null
+      },
       "description": "Built a MuJoCo simulation for a quadruped and a humanoid robot for a Slovenian client.",
       "long_description": "Side / consultancy project: built a MuJoCo simulation environment for a quadruped and a humanoid robot, delivered to a client based in Slovenia.",
       "features": [],
-      "tech": ["MuJoCo", "Python", "Robot Simulation"],
+      "tech": [
+        "MuJoCo",
+        "Python",
+        "Robot Simulation"
+      ],
       "role": "Freelance Engineer",
       "team_size": null,
       "media": [],
@@ -481,10 +778,18 @@
       "title": "Mobile Manipulator Motion Planning",
       "subtitle": "MORPH-I pick & place · freelance (obotx, Poland)",
       "category": "freelance",
-      "tags": ["motion-planning", "mujoco", "physical-ai", "freelance"],
+      "tags": [
+        "motion-planning",
+        "mujoco",
+        "physical-ai",
+        "freelance"
+      ],
       "badge": "Freelance",
       "impact": "OMPL pick-and-place for a mobile manipulator in MuJoCo — base, 8-DOF arm & 11-DOF gripper all motion-planned",
-      "dates": { "start": null, "end": null },
+      "dates": {
+        "start": null,
+        "end": null
+      },
       "description": "End-to-end autonomous pick & place for the MORPH-I mobile manipulator using OMPL motion planning in MuJoCo. Base navigation, arm grasp, and gripper open/close are each solved by OMPL with their own collision-aware state space — planned, not scripted.",
       "long_description": "Freelance project (client in Poland, obotx). Built an end-to-end OMPL motion-planning pipeline for the MORPH-I mobile manipulator in MuJoCo: RRT-based (x, y, yaw) planning for the mecanum base, an 8-DOF parallel-manipulator planner with per-state MuJoCo collision checks for the arm grasp, and RRT-Connect over the 11-DOF gripper joint space. Whole-body motion economy (wrist to arm to base priority), closed-loop control (measured per-finger contact forces, position-feedback placement servo, base correction from the measured residual), and predictable, honest failure handling. One press runs the full cycle: drive to object, plan and execute the grasp, transport, place on the shelf slot, and return to HOME. Dockerised on Ubuntu 22.04.",
       "features": [
@@ -494,14 +799,32 @@
         "Closed-loop: contact-force grasp confirmation + position-feedback placement",
         "Whole-body motion economy (wrist to arm to base) with clean failure handling"
       ],
-      "tech": ["MuJoCo", "OMPL", "RRT / RRT-Connect", "Python", "Docker", "Mobile Manipulator", "Motion Planning", "Closed-loop Control"],
+      "tech": [
+        "MuJoCo",
+        "OMPL",
+        "RRT / RRT-Connect",
+        "Python",
+        "Docker",
+        "Mobile Manipulator",
+        "Motion Planning",
+        "Closed-loop Control"
+      ],
       "role": "Freelance Engineer",
       "team_size": null,
       "media": [
-        { "type": "image", "src": "Images/obotx-motion-planning.webp", "thumb": "Images/obotx-motion-planning.webp", "alt": "MORPH-I mobile manipulator planning an OMPL grasp in a MuJoCo shelf-picking simulation" }
+        {
+          "type": "image",
+          "src": "Images/obotx-motion-planning.webp",
+          "thumb": "Images/obotx-motion-planning.webp",
+          "alt": "MORPH-I mobile manipulator planning an OMPL grasp in a MuJoCo shelf-picking simulation"
+        }
       ],
       "links": [
-        { "label": "GitHub Repo", "url": "https://github.com/obotx/motion-planning", "type": "github" }
+        {
+          "label": "GitHub Repo",
+          "url": "https://github.com/obotx/motion-planning",
+          "type": "github"
+        }
       ],
       "award_ids": [],
       "patent_id": null,
