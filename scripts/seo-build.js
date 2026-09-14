@@ -9,7 +9,7 @@
  *   - <body>: a crawler-only static content block (#seo-prerender) — read by AI bots that don't run JS,
  *             removed at runtime once JS loads (so humans never see it).
  *   - llms.txt        — plain-language summary for AI crawlers
- *   - robots.txt      — allows search + AI bots, points at the sitemap
+ *   - robots.txt      — allows all crawlers, points at the sitemap
  *   - sitemap.xml     — with today's lastmod
  *
  * The site itself stays data-driven; this only writes static mirrors of that data so
@@ -84,6 +84,8 @@ const ld = { '@context': 'https://schema.org', '@graph': graph };
 
 // ---------- <head> block ----------
 const head = [
+  `<meta name="google-site-verification" content="37MTHAONhGKmH8Ze8dDyFiRhaO-V2WGtgDwmf_oLFLc">`,
+  `<meta name="msvalidate.01" content="008A37F5FF9B150AD1476F6AAB46A602">`,
   `<meta name="description" content="${esc(desc)}">`,
   `<meta name="keywords" content="${esc(allSkills.slice(0, 25).join(', '))}">`,
   `<meta name="author" content="${esc(profile.name)}">`,
@@ -155,12 +157,9 @@ ${(profile.social || []).map((s) => `- ${s.label}: ${s.url}`).join('\n')}
 `;
 fs.writeFileSync(path.join(ROOT, 'llms.txt'), llms);
 
-// ---------- robots.txt (search + AI bots welcome) ----------
-const aiBots = ['GPTBot', 'ChatGPT-User', 'OAI-SearchBot', 'ClaudeBot', 'anthropic-ai', 'Claude-Web', 'PerplexityBot', 'Google-Extended', 'CCBot', 'Applebot-Extended'];
+// ---------- robots.txt (all crawlers allowed) ----------
 const robots = `User-agent: *
 Allow: /
-
-${aiBots.map((b) => `User-agent: ${b}\nAllow: /`).join('\n\n')}
 
 Sitemap: ${SITE}sitemap.xml
 `;
@@ -178,5 +177,5 @@ fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), sitemap);
 console.log(`SEO baked:
   index.html   head meta + Open Graph + Twitter + JSON-LD (${graph.length} nodes), crawler block (${featured.length} projects)
   llms.txt     ${llms.length} bytes
-  robots.txt   ${aiBots.length} AI bots + search allowed
+  robots.txt   all crawlers allowed
   sitemap.xml  lastmod ${today}`);

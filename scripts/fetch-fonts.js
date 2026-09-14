@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * fetch-fonts.js — self-host the webfonts (taste-skill §3.A: never <link> Google Fonts in production).
+ * fetch-fonts.js — self-host the webfonts (no external font requests: faster, private, no third-party dependency).
  * These three families ship as variable fonts, so we pull ONE latin woff2 per family into ../fonts/
  * and emit a weight-range @font-face. Writes ../fonts/_faces.css. Run:  node scripts/fetch-fonts.js
  */
