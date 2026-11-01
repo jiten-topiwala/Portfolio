@@ -302,7 +302,14 @@
     {
       "role": "Robotics Engineer",
       "team_size": null,
-      "media": [],
+      "media": [
+        {
+          "type": "image",
+          "src": "Images/unitree-go2-locomotion.webp",
+          "thumb": "Images/unitree-go2-locomotion.webp",
+          "alt": "Unitree Go2 quadruped standing in the unitree_mujoco simulator"
+        }
+      ],
       "award_ids": [],
       "patent_id": null,
       "publication_ids": [],
