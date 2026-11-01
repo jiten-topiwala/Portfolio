@@ -1,14 +1,10 @@
 <div align="center">
 
-<img src="Images/trackbeltmode.webp" alt="Manpackable transformable surveillance robot — wheel/track mode" width="840">
-
 # 🤖 Jiten Topiwala — Portfolio
 
-**Robotics Engineer** · Founding Robotics Engineer @ Agmove Robotics
+**Robotics Engineer & Automation Consultant** · KENEVOR
 
-Award-winning competition robots · industrial inspection · agricultural automation · published IEEE / IJIRT research
-
-<br>
+Legged & humanoid control · motion planning · ROS 2 simulation · industrial automation · published IEEE / IJIRT research
 
 [![Live Site](https://img.shields.io/badge/Live-Portfolio-FF5A1F?style=for-the-badge&logo=github&logoColor=white)](https://jiten-topiwala.github.io/Portfolio/)
 [![Project Pages](https://img.shields.io/badge/Case-Studies-1C1E22?style=for-the-badge&logo=readthedocs&logoColor=white)](https://jiten-topiwala.github.io/Portfolio/#projects)
@@ -17,6 +13,10 @@ Award-winning competition robots · industrial inspection · agricultural automa
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
 ![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-222?style=flat-square&logo=github&logoColor=white)
+
+<br>
+
+<img src="Images/trackbeltmode.webp" alt="Manpackable transformable surveillance robot — wheel/track mode" width="420">
 
 </div>
 
