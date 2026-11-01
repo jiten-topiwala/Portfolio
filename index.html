@@ -560,13 +560,18 @@ const SOCIAL_SVG = {
       cform.addEventListener('submit', async (e) => {
         e.preventDefault();
         const btn = cform.querySelector('button[type=submit]');
-        const ajax = (f.action_url || '').replace('formsubmit.co/', 'formsubmit.co/ajax/');
+        // action_url may already be the /ajax/ endpoint — only insert it when missing, never twice
+        const base = f.action_url || '';
+        const ajax = base.includes('/ajax/') ? base : base.replace('formsubmit.co/', 'formsubmit.co/ajax/');
         fstatus.className = 'form-status sending'; fstatus.textContent = msgs.sending || 'Sending…'; btn.disabled = true;
         try {
           const res = await fetch(ajax, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(cform) });
-          if (!res.ok) throw new Error(res.status);
+          // the service answers 200 even when it refuses — the body carries the real result
+          const out = await res.json().catch(() => ({}));
+          if (!res.ok || String(out.success) !== 'true') throw new Error(out.message || ('HTTP ' + res.status));
           fstatus.className = 'form-status ok'; fstatus.textContent = msgs.success || 'Thanks — your message has been sent.'; cform.reset();
         } catch (err) {
+          console.error('contact form:', err && err.message);
           fstatus.className = 'form-status err'; fstatus.textContent = msgs.error || 'Something went wrong. Please email me directly.';
         } finally { btn.disabled = false; }
       });
