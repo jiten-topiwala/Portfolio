@@ -141,7 +141,14 @@
     {
       "role": "Robotics Engineer",
       "team_size": null,
-      "media": [],
+      "media": [
+        {
+          "type": "image",
+          "src": "Images/obotx-isaac-sim.webp",
+          "thumb": "Images/obotx-isaac-sim.webp",
+          "alt": "MORPH-I mobile manipulator placing an item on a shelf in NVIDIA Isaac Sim"
+        }
+      ],
       "award_ids": [],
       "patent_id": null,
       "publication_ids": [],
@@ -233,7 +240,7 @@
           "type": "image",
           "src": "Images/obotx-motion-planning.webp",
           "thumb": "Images/obotx-motion-planning.webp",
-          "alt": "MORPH-I mobile manipulator planning an OMPL grasp in a MuJoCo shelf-picking simulation"
+          "alt": "MORPH-I mobile manipulator grasping an object in a MuJoCo shelf-picking simulation"
         }
       ],
       "links": [

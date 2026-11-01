@@ -27,7 +27,7 @@
   <p class="sub">MORPH-I tripod manipulator in MuJoCo · obotx, Poland</p>
   <p class="impact">Base, 8-DOF arm and 11-DOF gripper all motion-planned</p>
   <p class="meta">Robotics Engineer  ·  consulting</p>
-  <figure><img src="../Images/obotx-motion-planning.webp" alt="MORPH-I mobile manipulator planning an OMPL grasp in a MuJoCo shelf-picking simulation" loading="lazy"></figure>
+  <figure><img src="../Images/obotx-motion-planning.webp" alt="MORPH-I mobile manipulator grasping an object in a MuJoCo shelf-picking simulation" loading="lazy"></figure>
   <h2>Overview</h2>
   <p>Freelance project (client in Poland, obotx). Built an end-to-end OMPL motion-planning pipeline for the MORPH-I mobile manipulator in MuJoCo: RRT-based (x, y, yaw) planning for the mecanum base, an 8-DOF parallel-manipulator planner with per-state MuJoCo collision checks for the arm grasp, and RRT-Connect over the 11-DOF gripper joint space. Whole-body motion economy (wrist to arm to base priority), closed-loop control (measured per-finger contact forces, position-feedback placement servo, base correction from the measured residual), and predictable, honest failure handling. One press runs the full cycle: drive to object, plan and execute the grasp, transport, place on the shelf slot, and return to HOME. Dockerised on Ubuntu 22.04.</p>
   <h2>What it does</h2><ul><li>OMPL RRT base navigation (x, y, yaw) for a mecanum mobile base</li><li>8-DOF arm grasp planner with per-state MuJoCo collision checks</li><li>RRT-Connect gripper (11-DOF) open/close trajectory planning</li><li>Closed-loop: contact-force grasp confirmation + position-feedback placement</li><li>Whole-body motion economy (wrist to arm to base) with clean failure handling</li></ul>
