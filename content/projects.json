@@ -336,17 +336,17 @@
       "id": "unitree-go2-locomotion",
       "order": 6,
       "featured": true,
-      "title": "Unitree Go2 — Stand & Walk Controller",
-      "subtitle": "Quadruped stand-up and trot in MuJoCo · client delivery",
+      "title": "Quadruped Locomotion Control — Unitree Go2",
+      "subtitle": "Gait control for a Unitree Go2 in MuJoCo · client delivery",
       "tags": [
         "legged",
         "mujoco",
         "locomotion",
         "freelance"
       ],
-      "impact": "Stand-up and trot gait with live IMU and joint telemetry — CPU only, no GPU",
-      "description": "Stand-up and trot-forward controller for the Unitree Go2 quadruped in unitree_mujoco, with live IMU and joint-state telemetry.",
-      "long_description": "Controller that brings a Unitree Go2 quadruped from a resting pose to a stable stand and then a forward trot, running in the unitree_mujoco simulator over the Unitree DDS interface. Built to run on CPU alone with no GPU requirement, and reports IMU and joint-state telemetry live so the gait can be inspected while it runs. Delivered with run scripts and setup instructions.",
+      "impact": "Stand-up and forward trot with live IMU and joint telemetry — CPU only, no GPU",
+      "description": "Locomotion controller bringing a Unitree Go2 quadruped from rest to a stable stand and a forward trot in the unitree_mujoco simulator, with live IMU and joint-state telemetry.",
+      "long_description": "Locomotion control for a Unitree Go2 quadruped, running in the unitree_mujoco simulator over the Unitree DDS interface. The controller takes the robot from a resting pose to a stable stand and then a forward trot, and reports IMU and joint-state telemetry live so the gait can be inspected while it runs. Built to run on CPU alone with no GPU requirement, and delivered with run scripts and setup instructions.",
       "features": [
         "Stand-up sequence to a stable standing pose",
         "Forward trot gait",
