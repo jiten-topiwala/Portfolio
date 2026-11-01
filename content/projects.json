@@ -257,7 +257,14 @@
     {
       "role": "Robotics Engineer",
       "team_size": null,
-      "media": [],
+      "media": [
+        {
+          "type": "image",
+          "src": "Images/conversational-humanoid-r1.webp",
+          "thumb": "Images/conversational-humanoid-r1.webp",
+          "alt": "Unitree R1 humanoid robot in a red and gold livery"
+        }
+      ],
       "award_ids": [],
       "patent_id": null,
       "publication_ids": [],
