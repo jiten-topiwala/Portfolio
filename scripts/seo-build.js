@@ -140,10 +140,12 @@ const body = `<section id="seo-prerender">
 const indexPath = path.join(ROOT, 'index.html');
 let html = fs.readFileSync(indexPath, 'utf8');
 if (!html.includes('<!--SEO:HEAD:START-->') || !html.includes('<!--SEO:BODY:START-->')) {
-  console.error('ERROR: index.html is missing SEO markers. Re-copy it from design-options/option-10-machined-graphite.html first.');
+  console.error('ERROR: index.html is missing its SEO markers (<!--SEO:HEAD:START--> / <!--SEO:BODY:START-->). Restore them before building.');
   process.exit(1);
 }
 html = html.replace(/<!--SEO:HEAD:START-->[\s\S]*?<!--SEO:HEAD:END-->/, `<!--SEO:HEAD:START-->\n${head}\n<!--SEO:HEAD:END-->`);
+// title is content, not markup — it comes from content/site.json
+html = html.replace(/<title>[\s\S]*?<\/title>/, `<title>${esc(site.meta.title)}</title>`);
 html = html.replace(/<!--SEO:BODY:START-->[\s\S]*?<!--SEO:BODY:END-->/, `<!--SEO:BODY:START-->${body}<!--SEO:BODY:END-->`);
 fs.writeFileSync(indexPath, html);
 

@@ -1,6 +1,6 @@
 # Portfolio Content Schema
 
-This is the **single source of truth** for all content shown across every portfolio design (`/index.html` and `/design-options/*.html`). When you want to update a project, add an experience, or fix a typo — you edit a JSON file in [`/content/`](../content/), and every design that uses the loader picks it up automatically.
+This is the **single source of truth** for all content shown on the site (`/index.html` and the generated project pages in `/p/`). When you want to update a project, add an experience, or fix a typo — you edit a JSON file in [`/content/`](../content/), and every design that uses the loader picks it up automatically.
 
 The folder layout is:
 
@@ -197,7 +197,7 @@ Sketch (any design's HTML can do this):
 <script type="module">
   import { loadContent, byOrder, onlyFeatured, awardsForProject } from '../shared/content-loader.js';
 
-  const data = await loadContent('../');   // '../' because we're in /design-options/
+  const data = await loadContent('./');    // './' at the project root
 
   // Hero
   document.querySelector('#name').textContent = data.profile.name;

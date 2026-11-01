@@ -13,8 +13,7 @@
  *     // data.certifications, data.memberships, data.services, data.education
  *   </script>
  *
- * If a design lives at the project root (e.g. /index.html), pass basePath as './'.
- * If it lives at /design-options/option-1.html, pass basePath as '../'.
+ * A page at the project root (/index.html) passes './'; a page one level down passes '../'.
  */
 
 const FILES = [
