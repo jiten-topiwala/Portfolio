@@ -269,7 +269,7 @@
           "type": "image",
           "src": "Images/conversational-humanoid-r1.webp",
           "thumb": "Images/conversational-humanoid-r1.webp",
-          "alt": "Unitree R1 humanoid robot in a red and gold livery"
+          "alt": "Unitree R1 reference model running gesture dispatch in a MuJoCo simulation"
         }
       ],
       "award_ids": [],
