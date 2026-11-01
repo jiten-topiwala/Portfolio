@@ -19,7 +19,8 @@
       "title": "Jiten Topiwala | Robotics Engineer & Innovator",
       "description": "Robotics Engineer, Mechanical Designer, and Entrepreneur. Explore my award-winning projects in robotics and automation.",
       "image": "https://jiten-topiwala.github.io/Portfolio/Images/pic.webp"
-    }
+    },
+    "bing_site_verification": "008A37F5FF9B150AD1476F6AAB46A602"
   },
   "favicon": {
     "type": "image/svg+xml",
@@ -39,17 +40,36 @@
   "fonts": [
     {
       "family": "Orbitron",
-      "weights": [400, 500, 600, 700, 800, 900],
+      "weights": [
+        400,
+        500,
+        600,
+        700,
+        800,
+        900
+      ],
       "source": "google"
     },
     {
       "family": "Rajdhani",
-      "weights": [300, 400, 500, 600, 700],
+      "weights": [
+        300,
+        400,
+        500,
+        600,
+        700
+      ],
       "source": "google"
     },
     {
       "family": "Space Grotesk",
-      "weights": [300, 400, 500, 600, 700],
+      "weights": [
+        300,
+        400,
+        500,
+        600,
+        700
+      ],
       "source": "google"
     }
   ],
@@ -69,13 +89,41 @@
   "nav": {
     "logo_text": "G10",
     "items": [
-      { "label": "Home", "href": "#home", "external": false },
-      { "label": "About", "href": "#about", "external": false },
-      { "label": "Skills", "href": "#skills", "external": false },
-      { "label": "Services", "href": "#services", "external": false },
-      { "label": "Projects", "href": "#projects", "external": false },
-      { "label": "Publications", "href": "#publications", "external": false },
-      { "label": "Contact", "href": "#contact", "external": false }
+      {
+        "label": "Home",
+        "href": "#home",
+        "external": false
+      },
+      {
+        "label": "About",
+        "href": "#about",
+        "external": false
+      },
+      {
+        "label": "Skills",
+        "href": "#skills",
+        "external": false
+      },
+      {
+        "label": "Services",
+        "href": "#services",
+        "external": false
+      },
+      {
+        "label": "Projects",
+        "href": "#projects",
+        "external": false
+      },
+      {
+        "label": "Publications",
+        "href": "#publications",
+        "external": false
+      },
+      {
+        "label": "Contact",
+        "href": "#contact",
+        "external": false
+      }
     ]
   },
   "footer": {
@@ -85,10 +133,22 @@
     "copyright_suffix": "All rights reserved.",
     "version": "1.0.1",
     "links": [
-      { "label": "Home", "href": "#home" },
-      { "label": "About", "href": "#about" },
-      { "label": "Projects", "href": "#projects" },
-      { "label": "Contact", "href": "#contact" }
+      {
+        "label": "Home",
+        "href": "#home"
+      },
+      {
+        "label": "About",
+        "href": "#about"
+      },
+      {
+        "label": "Projects",
+        "href": "#projects"
+      },
+      {
+        "label": "Contact",
+        "href": "#contact"
+      }
     ],
     "show_social": true
   },
@@ -97,5 +157,11 @@
     "scroll_indicator_text": "Scroll to explore",
     "hero_badge_text": "Available for Freelance & Consulting",
     "floating_contact_label": "Get in Touch"
+  },
+  "brand": {
+    "org": "KENEVOR",
+    "descriptor": "Robotics · Automation · AI",
+    "footer": "KENEVOR · Jiten Anup Topiwala",
+    "og_image": "Images/trackbeltmode.webp"
   }
 }
