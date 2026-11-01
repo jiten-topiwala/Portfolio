@@ -96,7 +96,14 @@
     {
       "role": "Robotics Engineer",
       "team_size": null,
-      "media": [],
+      "media": [
+        {
+          "type": "image",
+          "src": "Images/plc-hmi-simulator.webp",
+          "thumb": "Images/plc-hmi-simulator.webp",
+          "alt": "Illustration: a training simulator driving an operator HMI panel on a plant test bench"
+        }
+      ],
       "award_ids": [],
       "patent_id": null,
       "publication_ids": [],
@@ -141,7 +148,14 @@
     {
       "role": "Robotics Engineer",
       "team_size": null,
-      "media": [],
+      "media": [
+        {
+          "type": "image",
+          "src": "Images/obotx-isaac-sim.webp",
+          "thumb": "Images/obotx-isaac-sim.webp",
+          "alt": "MORPH-I mobile manipulator placing an item on a shelf in NVIDIA Isaac Sim"
+        }
+      ],
       "award_ids": [],
       "patent_id": null,
       "publication_ids": [],
@@ -233,7 +247,7 @@
           "type": "image",
           "src": "Images/obotx-motion-planning.webp",
           "thumb": "Images/obotx-motion-planning.webp",
-          "alt": "MORPH-I mobile manipulator planning an OMPL grasp in a MuJoCo shelf-picking simulation"
+          "alt": "MORPH-I mobile manipulator grasping an object in a MuJoCo shelf-picking simulation"
         }
       ],
       "links": [
@@ -250,7 +264,14 @@
     {
       "role": "Robotics Engineer",
       "team_size": null,
-      "media": [],
+      "media": [
+        {
+          "type": "image",
+          "src": "Images/conversational-humanoid-r1.webp",
+          "thumb": "Images/conversational-humanoid-r1.webp",
+          "alt": "Unitree R1 humanoid robot in a red and gold livery"
+        }
+      ],
       "award_ids": [],
       "patent_id": null,
       "publication_ids": [],
@@ -295,7 +316,14 @@
     {
       "role": "Robotics Engineer",
       "team_size": null,
-      "media": [],
+      "media": [
+        {
+          "type": "image",
+          "src": "Images/unitree-go2-locomotion.webp",
+          "thumb": "Images/unitree-go2-locomotion.webp",
+          "alt": "Unitree Go2 quadruped standing in the unitree_mujoco simulator"
+        }
+      ],
       "award_ids": [],
       "patent_id": null,
       "publication_ids": [],
