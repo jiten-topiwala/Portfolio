@@ -187,6 +187,12 @@ fs.writeFileSync(path.join(ROOT, 'robots.txt'), robots);
 // ---------- project pages (generated from the same JSON) ----------
 require('child_process').execSync('node ' + path.join(__dirname, 'build-pages.js'), { stdio: 'inherit' });
 
+// ---------- IndexNow ownership key (served at the site root) ----------
+for (const old of fs.readdirSync(ROOT)) {
+  if (/^[0-9a-f]{32}\.txt$/.test(old) && old !== site.meta.indexnow_key + '.txt') fs.unlinkSync(path.join(ROOT, old));
+}
+if (site.meta.indexnow_key) fs.writeFileSync(path.join(ROOT, site.meta.indexnow_key + '.txt'), site.meta.indexnow_key);
+
 // ---------- sitemap.xml ----------
 const today = new Date().toISOString().slice(0, 10);
 const projectUrls = featured.map((p) =>

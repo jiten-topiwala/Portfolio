@@ -26,3 +26,10 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./
           exclude_assets: '.github,*.md,contact_form_guide.md'
+
+      - name: Notify IndexNow of changed URLs
+        if: success()
+        continue-on-error: true          # never fail a deploy because a search engine was unreachable
+        run: |
+          sleep 45                       # let the published site go live before the URLs are fetched
+          node scripts/indexnow.js
