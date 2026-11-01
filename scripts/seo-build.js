@@ -47,6 +47,19 @@ const role = profile.current_role?.title || profile.headline || 'Robotics Engine
 const title = `${profile.name} — ${role}`;
 const sameAs = (profile.social || []).map((s) => s.url).filter((u) => u && /^https?:/.test(u));
 
+// ---------- asset versions (content hash per image) ----------
+// Images keep stable filenames, so a changed image would otherwise be hidden behind a
+// cached copy. Each file gets ?v=<hash of its bytes>: change one image, only that URL changes.
+const crypto = require('crypto');
+const IMG_DIR = path.join(ROOT, 'Images');
+const assetV = {};
+for (const file of fs.readdirSync(IMG_DIR)) {
+  if (!/\.(webp|png|jpe?g|gif|svg)$/i.test(file)) continue;
+  const hash = crypto.createHash('md5').update(fs.readFileSync(path.join(IMG_DIR, file))).digest('hex').slice(0, 8);
+  assetV['Images/' + file] = hash;
+}
+const ver = (src) => (src && assetV[src] ? `${src}?v=${assetV[src]}` : src);
+
 // ---------- JSON-LD (@graph: Person + WebSite + project ItemList + publications) ----------
 const graph = [
   {
@@ -114,12 +127,13 @@ const head = [
   `<meta property="og:title" content="${esc(title)}">`,
   `<meta property="og:description" content="${esc(desc)}">`,
   `<meta property="og:url" content="${SITE}">`,
-  `<meta property="og:image" content="${abs(OG_IMAGE)}">`,
+  `<meta property="og:image" content="${abs(ver(OG_IMAGE))}">`,
   `<meta name="twitter:card" content="summary_large_image">`,
   `<meta name="twitter:title" content="${esc(title)}">`,
   `<meta name="twitter:description" content="${esc(desc)}">`,
-  `<meta name="twitter:image" content="${abs(OG_IMAGE)}">`,
+  `<meta name="twitter:image" content="${abs(ver(OG_IMAGE))}">`,
   `<style>#seo-prerender{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}</style>`,
+  `<script>window.__av=${JSON.stringify(assetV)}</script>`,
   `<script type="application/ld+json">${JSON.stringify(ld)}</script>`
 ].join('\n');
 

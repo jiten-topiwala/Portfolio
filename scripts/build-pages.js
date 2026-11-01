@@ -24,6 +24,14 @@ const projects = read('projects.json');
 const esc = (s) => String(s == null ? '' : s)
   .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const abs = (p) => (p ? SITE + String(p).replace(/^\.?\//, '') : '');
+const crypto = require('crypto');
+const assetV = {};
+for (const file of fs.readdirSync(path.join(ROOT, 'Images'))) {
+  if (!/\.(webp|png|jpe?g|gif|svg)$/i.test(file)) continue;
+  assetV['Images/' + file] = crypto.createHash('md5').update(fs.readFileSync(path.join(ROOT, 'Images', file))).digest('hex').slice(0, 8);
+}
+const ver = (src) => (src && assetV[src] ? `${src}?v=${assetV[src]}` : src);
+
 const featured = (projects.projects || []).filter((p) => p.featured === true)
   .sort((a, b) => (a.order ?? 999) - (b.order ?? 999));
 
@@ -84,7 +92,7 @@ const page = (pr) => {
         '@type': 'CreativeWork', '@id': url + '#work', name: pr.title, headline: pr.title,
         description: pr.description || undefined, abstract: pr.impact || undefined,
         keywords: (pr.tech || []).join(', ') || undefined, url,
-        image: img ? abs(img.src) : undefined,
+        image: img ? abs(ver(img.src)) : undefined,
         creator: { '@type': 'Person', '@id': SITE + '#person', name: profile.name },
         about: (pr.tags || []).join(', ') || undefined
       },
@@ -110,7 +118,7 @@ const page = (pr) => {
 <link rel="canonical" href="${url}">
 <meta property="og:type" content="article"><meta property="og:title" content="${esc(pr.title)}">
 <meta property="og:description" content="${esc(desc)}"><meta property="og:url" content="${url}">
-${img ? `<meta property="og:image" content="${abs(img.src)}">` : ''}
+${img ? `<meta property="og:image" content="${abs(ver(img.src))}">` : ''}
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="project.css">
 <script type="application/ld+json">${JSON.stringify(ld)}</script>
@@ -132,7 +140,7 @@ ${img ? `<meta property="og:image" content="${abs(img.src)}">` : ''}
   ${pr.subtitle ? `<p class="sub">${esc(pr.subtitle)}</p>` : ''}
   ${pr.impact ? `<p class="impact">${esc(pr.impact)}</p>` : ''}
   ${metaBits ? `<p class="meta">${metaBits}</p>` : ''}
-  ${img ? `<figure><img src="../${esc(img.src)}" alt="${esc(img.alt || pr.title)}" loading="lazy"></figure>` : ''}
+  ${img ? `<figure><img src="../${esc(ver(img.src))}" alt="${esc(img.alt || pr.title)}" loading="lazy"></figure>` : ''}
   <h2>Overview</h2>
   <p>${esc(pr.long_description || pr.description || '')}</p>
   ${feats ? `<h2>What it does</h2><ul>${feats}</ul>` : ''}
