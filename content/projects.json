@@ -21,8 +21,8 @@
       "label": "Competition"
     },
     {
-      "id": "freelance",
-      "label": "Freelance"
+      "id": "consulting",
+      "label": "Consulting"
     }
   ],
   "projects": [
@@ -94,8 +94,250 @@
       "publication_ids": []
     },
     {
-      "id": "liftterra",
+      "role": "Robotics Engineer",
+      "team_size": null,
+      "media": [],
+      "award_ids": [],
+      "patent_id": null,
+      "publication_ids": [],
+      "dates": {
+        "start": null,
+        "end": null
+      },
+      "badge": "Client Project",
+      "category": "consulting",
+      "id": "plc-hmi-simulator",
+      "order": 2,
+      "featured": true,
+      "title": "PLC Training Simulator — Industrial Water Treatment",
+      "subtitle": "Modbus TCP simulator behind a live operator HMI · US automation client",
+      "tags": [
+        "industrial",
+        "simulation",
+        "plc",
+        "freelance"
+      ],
+      "impact": "Operators train startup, fault injection and recovery with no plant hardware",
+      "description": "Windows simulator that acts as the PLC backend for an existing operator HMI, driving training scenarios — startup, fault injection and recovery — without requiring real plant equipment.",
+      "long_description": "Built a Windows-based Modbus TCP simulator that stands in for the PLC behind a water-treatment client's existing operator HMI, so staff can be trained without tying up real plant equipment. The simulator runs a sequence-of-operations state machine with a packed alarm catalogue, and serves all four Modbus register spaces from one shared cache. Every address the HMI binds is either published or has a recorded reason not to be, enforced by an automated coverage test against the client's own tag database. Instructor controls let any home-screen process value be held, and the held value is folded into ground truth before the physics reads it, so the simulated plant genuinely responds to it. A live parameter view exposes the controller's data table in the operators' own order, with the settable rows editable in place. The build runs an automated wire-level acceptance pass against the executable it just produced, so a broken build cannot ship.",
+      "features": [
+        "Sequence-of-operations state machine with a packed alarm catalogue",
+        "Modbus TCP server across all four register spaces from one shared cache",
+        "HMI tag-binding coverage enforced by automated tests against the client tag database",
+        "Instructor hold controls folded into ground truth so the plant responds to them",
+        "Automated wire-level acceptance run by the build against the produced executable"
+      ],
+      "tech": [
+        "Modbus TCP",
+        "Python",
+        "Windows",
+        "PLC / HMI Integration",
+        "State Machines",
+        "Industrial Automation",
+        "pytest"
+      ],
+      "links": []
+    },
+    {
+      "role": "Robotics Engineer",
+      "team_size": null,
+      "media": [],
+      "award_ids": [],
+      "patent_id": null,
+      "publication_ids": [],
+      "dates": {
+        "start": null,
+        "end": null
+      },
+      "badge": "Client Project",
+      "category": "consulting",
+      "id": "mobile-manipulator-isaac-sim",
       "order": 3,
+      "featured": true,
+      "title": "Mobile Manipulator Pick & Place — NVIDIA Isaac Sim",
+      "subtitle": "MORPH-I tripod manipulator in NVIDIA Isaac Sim · obotx, Poland",
+      "tags": [
+        "isaac-sim",
+        "motion-planning",
+        "physical-ai",
+        "freelance"
+      ],
+      "impact": "Closed-chain arm stock planners cannot model — solved with OMPL and a custom validity checker",
+      "description": "Pick-and-place for the MORPH-I tripod mobile manipulator rebuilt in NVIDIA Isaac Sim on OpenUSD, planning with OMPL because the arm's closed kinematic chain defeats stock planners.",
+      "long_description": "Second build for the same mobile manipulator, this time in NVIDIA Isaac Sim on OpenUSD. The MORPH-I arm is a closed kinematic chain, which stock planners such as MoveIt, Lula and cuMotion cannot model — so planning runs on OMPL with a custom state-validity checker written against the robot's real structure. The grasp is friction-only: the object is held by contact rather than being attached to the gripper in software, so the simulation reflects whether the grasp would actually hold. Plans are re-validated against measured state at checkpoints during execution rather than trusted once at planning time. Delivered and accepted September 2026.",
+      "features": [
+        "OMPL planning with a custom validity checker for a closed-chain arm",
+        "Friction-only grasp — held by contact, not a software attach",
+        "Checkpoint re-validation against measured state during execution",
+        "OpenUSD scene and robot description in NVIDIA Isaac Sim",
+        "Stock planners (MoveIt, Lula, cuMotion) ruled out and worked around"
+      ],
+      "tech": [
+        "NVIDIA Isaac Sim",
+        "OpenUSD",
+        "OMPL",
+        "Python",
+        "Motion Planning",
+        "Mobile Manipulator"
+      ],
+      "links": [
+        {
+          "label": "GitHub Repo",
+          "url": "https://github.com/obotx/nvidia-isaac-sim-openusd",
+          "type": "github"
+        }
+      ]
+    },
+    {
+      "id": "mobile-manipulator-mujoco",
+      "order": 4,
+      "featured": true,
+      "title": "Mobile Manipulator Pick & Place — MuJoCo",
+      "subtitle": "MORPH-I tripod manipulator in MuJoCo · obotx, Poland",
+      "category": "consulting",
+      "tags": [
+        "motion-planning",
+        "mujoco",
+        "physical-ai",
+        "freelance"
+      ],
+      "badge": "Client Project",
+      "impact": "Base, 8-DOF arm and 11-DOF gripper all motion-planned",
+      "dates": {
+        "start": null,
+        "end": null
+      },
+      "description": "End-to-end autonomous pick & place for the MORPH-I mobile manipulator using OMPL motion planning in MuJoCo. Base navigation, arm grasp, and gripper open/close are each solved by OMPL with their own collision-aware state space — planned, not scripted.",
+      "long_description": "Freelance project (client in Poland, obotx). Built an end-to-end OMPL motion-planning pipeline for the MORPH-I mobile manipulator in MuJoCo: RRT-based (x, y, yaw) planning for the mecanum base, an 8-DOF parallel-manipulator planner with per-state MuJoCo collision checks for the arm grasp, and RRT-Connect over the 11-DOF gripper joint space. Whole-body motion economy (wrist to arm to base priority), closed-loop control (measured per-finger contact forces, position-feedback placement servo, base correction from the measured residual), and predictable, honest failure handling. One press runs the full cycle: drive to object, plan and execute the grasp, transport, place on the shelf slot, and return to HOME. Dockerised on Ubuntu 22.04.",
+      "features": [
+        "OMPL RRT base navigation (x, y, yaw) for a mecanum mobile base",
+        "8-DOF arm grasp planner with per-state MuJoCo collision checks",
+        "RRT-Connect gripper (11-DOF) open/close trajectory planning",
+        "Closed-loop: contact-force grasp confirmation + position-feedback placement",
+        "Whole-body motion economy (wrist to arm to base) with clean failure handling"
+      ],
+      "tech": [
+        "MuJoCo",
+        "OMPL",
+        "RRT / RRT-Connect",
+        "Python",
+        "Docker",
+        "Mobile Manipulator",
+        "Motion Planning",
+        "Closed-loop Control"
+      ],
+      "role": "Robotics Engineer",
+      "team_size": null,
+      "media": [
+        {
+          "type": "image",
+          "src": "Images/obotx-motion-planning.webp",
+          "thumb": "Images/obotx-motion-planning.webp",
+          "alt": "MORPH-I mobile manipulator planning an OMPL grasp in a MuJoCo shelf-picking simulation"
+        }
+      ],
+      "links": [
+        {
+          "label": "GitHub Repo",
+          "url": "https://github.com/obotx/motion-planning",
+          "type": "github"
+        }
+      ],
+      "award_ids": [],
+      "patent_id": null,
+      "publication_ids": []
+    },
+    {
+      "role": "Robotics Engineer",
+      "team_size": null,
+      "media": [],
+      "award_ids": [],
+      "patent_id": null,
+      "publication_ids": [],
+      "dates": {
+        "start": null,
+        "end": null
+      },
+      "badge": "Client Project",
+      "category": "consulting",
+      "id": "conversational-humanoid-r1",
+      "order": 5,
+      "featured": true,
+      "title": "Conversational Humanoid for Live Events — Unitree R1",
+      "subtitle": "Cloned voice, camera awareness and gesture dispatch on a 26-DOF robot · US client",
+      "tags": [
+        "humanoid",
+        "voice",
+        "computer-vision",
+        "freelance"
+      ],
+      "impact": "Holds a conversation with a crowd and gestures while it speaks — run from a phone page",
+      "description": "A character system for a Unitree R1 humanoid used at live events: it listens, answers in a cloned voice, looks at and responds to the people in front of it, and performs matching gestures.",
+      "long_description": "Built and deployed an interactive character system on a 26-DOF Unitree R1 humanoid for live event performances. The robot listens through a directional microphone with adaptive noise handling, answers in a cloned voice, uses its camera to answer questions about the people and things in front of it, and dispatches matching gestures while it speaks. Gesture dispatch was proven against the robot model in MuJoCo before ever moving real joints, then brought to hardware in stages — tethered, reduced speed, then full. The operator drives everything from a phone web page: persona and topic notes, speech, movement toggles and audio routing. Shipped as a compiled on-robot build with a written handoff and run sheet.",
+      "features": [
+        "Cloned-voice speech with adaptive microphone noise handling",
+        "Camera-based look responses to people and objects in view",
+        "Gesture dispatch proven in MuJoCo simulation before running on hardware",
+        "Phone web interface for persona, speech, movement and audio routing",
+        "Compiled on-robot deployment with handoff documentation and run sheet"
+      ],
+      "tech": [
+        "Unitree R1",
+        "Unitree SDK2",
+        "MuJoCo",
+        "Python",
+        "Speech / TTS",
+        "Computer Vision",
+        "NVIDIA Jetson Orin"
+      ],
+      "links": []
+    },
+    {
+      "role": "Robotics Engineer",
+      "team_size": null,
+      "media": [],
+      "award_ids": [],
+      "patent_id": null,
+      "publication_ids": [],
+      "dates": {
+        "start": null,
+        "end": null
+      },
+      "badge": "Client Project",
+      "category": "consulting",
+      "id": "unitree-go2-locomotion",
+      "order": 6,
+      "featured": true,
+      "title": "Unitree Go2 — Stand & Walk Controller",
+      "subtitle": "Quadruped stand-up and trot in MuJoCo · client delivery",
+      "tags": [
+        "legged",
+        "mujoco",
+        "locomotion",
+        "freelance"
+      ],
+      "impact": "Stand-up and trot gait with live IMU and joint telemetry — CPU only, no GPU",
+      "description": "Stand-up and trot-forward controller for the Unitree Go2 quadruped in unitree_mujoco, with live IMU and joint-state telemetry.",
+      "long_description": "Controller that brings a Unitree Go2 quadruped from a resting pose to a stable stand and then a forward trot, running in the unitree_mujoco simulator over the Unitree DDS interface. Built to run on CPU alone with no GPU requirement, and reports IMU and joint-state telemetry live so the gait can be inspected while it runs. Delivered with run scripts and setup instructions.",
+      "features": [
+        "Stand-up sequence to a stable standing pose",
+        "Forward trot gait",
+        "Live IMU and joint-state telemetry readout",
+        "Runs on CPU alone — no GPU required",
+        "Delivered with run scripts and setup instructions"
+      ],
+      "tech": [
+        "Unitree Go2",
+        "MuJoCo",
+        "Python",
+        "CycloneDDS",
+        "Legged Locomotion"
+      ],
+      "links": []
+    },
+    {
+      "id": "liftterra",
+      "order": 7,
       "featured": true,
       "title": "LiftTerra",
       "subtitle": "Revolutionising Construction & Maintenance",
@@ -162,7 +404,7 @@
     },
     {
       "id": "robocon-2024",
-      "order": 4,
+      "order": 8,
       "featured": true,
       "title": "Robocon 2024 — Harvest Day",
       "subtitle": "Two collaborative robots for ball shooting and seedling placement",
@@ -231,7 +473,7 @@
     },
     {
       "id": "robocon-2023",
-      "order": 5,
+      "order": 9,
       "featured": true,
       "title": "Robocon 2023 — Ring Toss",
       "subtitle": "Two robots for ring shooting on poles using dual-roller mechanism",
@@ -288,44 +530,8 @@
       "publication_ids": []
     },
     {
-      "id": "robocon-2025",
-      "order": 6,
-      "featured": false,
-      "title": "Robocon 2025",
-      "subtitle": "Latest Robocon cycle",
-      "category": "competition",
-      "tags": [
-        "robocon",
-        "in-progress"
-      ],
-      "badge": "In Progress",
-      "impact": null,
-      "dates": {
-        "start": "2024-09",
-        "end": null
-      },
-      "description": "Working on innovative robot designs for the Robocon 2025 cycle.",
-      "long_description": "",
-      "features": [],
-      "tech": [],
-      "role": null,
-      "team_size": null,
-      "media": [
-        {
-          "type": "image",
-          "src": "Images/Robocon 2025.webp",
-          "thumb": "Images/Robocon 2025.webp",
-          "alt": "Robocon 2025"
-        }
-      ],
-      "links": [],
-      "award_ids": [],
-      "patent_id": null,
-      "publication_ids": []
-    },
-    {
       "id": "eyrc-hologlyph",
-      "order": 7,
+      "order": 10,
       "featured": true,
       "title": "e-Yantra Robotics — Hologlyph Bots",
       "subtitle": "Custom omni-wheel robots with overhead-camera vision feedback",
@@ -385,7 +591,7 @@
     },
     {
       "id": "pipe-inspection",
-      "order": 8,
+      "order": 11,
       "featured": true,
       "title": "Pipe Inspection Robot (400–900 mm)",
       "subtitle": "Variable-diameter inspection robot — IIT Roorkee research",
@@ -437,7 +643,7 @@
     },
     {
       "id": "micro-pipe",
-      "order": 9,
+      "order": 12,
       "featured": true,
       "title": "Miniature Pipe Inspection Robot (35–95 mm)",
       "subtitle": "Gear-based transformable miniature inspector — ATtiny85 control",
@@ -486,7 +692,7 @@
     },
     {
       "id": "agricultural-gantry",
-      "order": 10,
+      "order": 13,
       "featured": true,
       "title": "Agricultural Gantry System",
       "subtitle": "Rope-driven farm-coverage robot",
@@ -540,7 +746,7 @@
     },
     {
       "id": "drone-navigation",
-      "order": 11,
+      "order": 14,
       "featured": true,
       "title": "Advanced Drone Navigation & Landing — Parrot MiniDrone",
       "subtitle": "Multi-algorithm integration for autonomous landing",
@@ -594,7 +800,7 @@
     },
     {
       "id": "biped",
-      "order": 12,
+      "order": 15,
       "featured": true,
       "title": "Biped — Dynamic Walking Robot",
       "subtitle": "Stable bipedal walker with inverse kinematics + RL gait optimisation",
@@ -650,7 +856,7 @@
     },
     {
       "id": "vertical-conveyor",
-      "order": 13,
+      "order": 16,
       "featured": true,
       "title": "Vertical Indexing Conveyor",
       "subtitle": "Chain-sprocket-driven industrial system",
@@ -702,8 +908,44 @@
       "publication_ids": []
     },
     {
+      "id": "robocon-2025",
+      "order": 17,
+      "featured": false,
+      "title": "Robocon 2025",
+      "subtitle": "Latest Robocon cycle",
+      "category": "competition",
+      "tags": [
+        "robocon",
+        "in-progress"
+      ],
+      "badge": "In Progress",
+      "impact": null,
+      "dates": {
+        "start": "2024-09",
+        "end": null
+      },
+      "description": "Working on innovative robot designs for the Robocon 2025 cycle.",
+      "long_description": "",
+      "features": [],
+      "tech": [],
+      "role": null,
+      "team_size": null,
+      "media": [
+        {
+          "type": "image",
+          "src": "Images/Robocon 2025.webp",
+          "thumb": "Images/Robocon 2025.webp",
+          "alt": "Robocon 2025"
+        }
+      ],
+      "links": [],
+      "award_ids": [],
+      "patent_id": null,
+      "publication_ids": []
+    },
+    {
       "id": "early-rsc-robots",
-      "order": 14,
+      "order": 18,
       "featured": false,
       "title": "Early RSC Robots — Soccer Shooter & Pick-Place",
       "subtitle": "First-year hands-on robotics builds",
@@ -739,17 +981,17 @@
     },
     {
       "id": "mujoco-quadruped-humanoid",
-      "order": 15,
+      "order": 19,
       "featured": false,
       "title": "MuJoCo Quadruped & Humanoid Simulation",
       "subtitle": "Freelance — client in Slovenia",
-      "category": "freelance",
+      "category": "consulting",
       "tags": [
         "simulation",
         "mujoco",
         "freelance"
       ],
-      "badge": "Freelance",
+      "badge": "Client Project",
       "impact": "Physical-AI sim for a quadruped + humanoid · delivered to an international client",
       "dates": {
         "start": null,
@@ -763,69 +1005,10 @@
         "Python",
         "Robot Simulation"
       ],
-      "role": "Freelance Engineer",
+      "role": "Robotics Engineer",
       "team_size": null,
       "media": [],
       "links": [],
-      "award_ids": [],
-      "patent_id": null,
-      "publication_ids": []
-    },
-    {
-      "id": "obotx-motion-planning",
-      "order": 16,
-      "featured": true,
-      "title": "Mobile Manipulator Motion Planning",
-      "subtitle": "MORPH-I pick & place · freelance (obotx, Poland)",
-      "category": "freelance",
-      "tags": [
-        "motion-planning",
-        "mujoco",
-        "physical-ai",
-        "freelance"
-      ],
-      "badge": "Freelance",
-      "impact": "OMPL pick-and-place for a mobile manipulator in MuJoCo — base, 8-DOF arm & 11-DOF gripper all motion-planned",
-      "dates": {
-        "start": null,
-        "end": null
-      },
-      "description": "End-to-end autonomous pick & place for the MORPH-I mobile manipulator using OMPL motion planning in MuJoCo. Base navigation, arm grasp, and gripper open/close are each solved by OMPL with their own collision-aware state space — planned, not scripted.",
-      "long_description": "Freelance project (client in Poland, obotx). Built an end-to-end OMPL motion-planning pipeline for the MORPH-I mobile manipulator in MuJoCo: RRT-based (x, y, yaw) planning for the mecanum base, an 8-DOF parallel-manipulator planner with per-state MuJoCo collision checks for the arm grasp, and RRT-Connect over the 11-DOF gripper joint space. Whole-body motion economy (wrist to arm to base priority), closed-loop control (measured per-finger contact forces, position-feedback placement servo, base correction from the measured residual), and predictable, honest failure handling. One press runs the full cycle: drive to object, plan and execute the grasp, transport, place on the shelf slot, and return to HOME. Dockerised on Ubuntu 22.04.",
-      "features": [
-        "OMPL RRT base navigation (x, y, yaw) for a mecanum mobile base",
-        "8-DOF arm grasp planner with per-state MuJoCo collision checks",
-        "RRT-Connect gripper (11-DOF) open/close trajectory planning",
-        "Closed-loop: contact-force grasp confirmation + position-feedback placement",
-        "Whole-body motion economy (wrist to arm to base) with clean failure handling"
-      ],
-      "tech": [
-        "MuJoCo",
-        "OMPL",
-        "RRT / RRT-Connect",
-        "Python",
-        "Docker",
-        "Mobile Manipulator",
-        "Motion Planning",
-        "Closed-loop Control"
-      ],
-      "role": "Freelance Engineer",
-      "team_size": null,
-      "media": [
-        {
-          "type": "image",
-          "src": "Images/obotx-motion-planning.webp",
-          "thumb": "Images/obotx-motion-planning.webp",
-          "alt": "MORPH-I mobile manipulator planning an OMPL grasp in a MuJoCo shelf-picking simulation"
-        }
-      ],
-      "links": [
-        {
-          "label": "GitHub Repo",
-          "url": "https://github.com/obotx/motion-planning",
-          "type": "github"
-        }
-      ],
       "award_ids": [],
       "patent_id": null,
       "publication_ids": []

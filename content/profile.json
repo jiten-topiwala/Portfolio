@@ -11,16 +11,20 @@
     "Entrepreneur"
   ],
   "tagline": "*Physical AI*, built to survive the real world.",
-  "short_bio": "Robotics Engineer with a Mechanical Engineering degree, combining hardware expertise with software intelligence to create machines that matter.",
+  "short_bio": "Robotics engineer who takes systems from idea to deployed hardware — mechanical, embedded and software. Delivering for clients across the US and Europe.",
   "long_bio": "I'm a Robotics Engineer with a Mechanical Engineering degree, blending mechanical design, robotics software (ROS2, Nav2, perception), and embedded firmware. I've taken autonomous ground robots from concept to field deployment — including founding-engineer work in agricultural robotics — alongside award-winning competition robots, industrial inspection systems, and surveillance robots (with a patent in process), plus published research in IEEE and IJIRT. I enjoy turning research into real-world, deployable systems, and I'm available for freelance and consulting work.",
   "current_role": {
-    "title": "Freelance Robotics Engineer & Consultant",
-    "company": null,
-    "since": "2026-08"
+    "title": "Founder & Robotics Engineer",
+    "company": "KENEVOR",
+    "since": "2026-09"
   },
   "availability": {
     "status": "available",
-    "for": ["freelance", "consulting", "full-time opportunities"],
+    "for": [
+      "freelance",
+      "consulting",
+      "full-time opportunities"
+    ],
     "response_time": "Usually responds within 24 hours"
   },
   "location": {
@@ -62,8 +66,20 @@
     }
   ],
   "stats": [
-    { "label": "Projects Built", "value": 10, "suffix": "+" },
-    { "label": "Publications", "value": 2, "suffix": "" },
-    { "label": "Awards Won", "value": 8, "suffix": "+" }
+    {
+      "label": "Projects Built",
+      "value": 15,
+      "suffix": "+"
+    },
+    {
+      "label": "Publications",
+      "value": 2,
+      "suffix": ""
+    },
+    {
+      "label": "Awards Won",
+      "value": 8,
+      "suffix": "+"
+    }
   ]
 }

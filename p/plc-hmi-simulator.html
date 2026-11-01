@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PLC Training Simulator — Industrial Water Treatment — Jiten Topiwala</title>
+<meta name="description" content="Windows simulator that acts as the PLC backend for an existing operator HMI, driving training scenarios — startup, fault injection and recovery — without requiring real plant equipment.">
+<link rel="canonical" href="https://jiten-topiwala.github.io/Portfolio/p/plc-hmi-simulator.html">
+<meta property="og:type" content="article"><meta property="og:title" content="PLC Training Simulator — Industrial Water Treatment">
+<meta property="og:description" content="Windows simulator that acts as the PLC backend for an existing operator HMI, driving training scenarios — startup, fault injection and recovery — without requiring real plant equipment."><meta property="og:url" content="https://jiten-topiwala.github.io/Portfolio/p/plc-hmi-simulator.html">
+
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="project.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CreativeWork","@id":"https://jiten-topiwala.github.io/Portfolio/p/plc-hmi-simulator.html#work","name":"PLC Training Simulator — Industrial Water Treatment","headline":"PLC Training Simulator — Industrial Water Treatment","description":"Windows simulator that acts as the PLC backend for an existing operator HMI, driving training scenarios — startup, fault injection and recovery — without requiring real plant equipment.","abstract":"Operators train startup, fault injection and recovery with no plant hardware","keywords":"Modbus TCP, Python, Windows, PLC / HMI Integration, State Machines, Industrial Automation, pytest","url":"https://jiten-topiwala.github.io/Portfolio/p/plc-hmi-simulator.html","creator":{"@type":"Person","@id":"https://jiten-topiwala.github.io/Portfolio/#person","name":"Jiten Topiwala"},"about":"industrial, simulation, plc, freelance"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Projects","item":"https://jiten-topiwala.github.io/Portfolio/#projects"},{"@type":"ListItem","position":2,"name":"PLC Training Simulator — Industrial Water Treatment","item":"https://jiten-topiwala.github.io/Portfolio/p/plc-hmi-simulator.html"}]}]}</script>
+</head><body>
+<header><div class="wrap">
+  <a href="../index.html" style="text-decoration:none"><div class="nm">Jiten Topiwala</div><div class="mk">Robotics <span class="d">·</span> Automation <span class="d">·</span> AI</div></a>
+  <nav>
+    <a href="../index.html#projects">Projects</a>
+    <a href="../index.html#experience">Experience</a>
+    <a href="../index.html#publications">Publications</a>
+    <a href="../index.html#skills">Stack</a>
+    <a href="../index.html#services">Services</a>
+    <a class="cta" href="../index.html#contact">Contact</a>
+  </nav>
+</div></header>
+<main class="wrap">
+  <span class="kicker">Client Project</span>
+  <h1>PLC Training Simulator — Industrial Water Treatment</h1>
+  <p class="sub">Modbus TCP simulator behind a live operator HMI · US automation client</p>
+  <p class="impact">Operators train startup, fault injection and recovery with no plant hardware</p>
+  <p class="meta">Robotics Engineer  ·  consulting</p>
+  
+  <h2>Overview</h2>
+  <p>Built a Windows-based Modbus TCP simulator that stands in for the PLC behind a water-treatment client's existing operator HMI, so staff can be trained without tying up real plant equipment. The simulator runs a sequence-of-operations state machine with a packed alarm catalogue, and serves all four Modbus register spaces from one shared cache. Every address the HMI binds is either published or has a recorded reason not to be, enforced by an automated coverage test against the client's own tag database. Instructor controls let any home-screen process value be held, and the held value is folded into ground truth before the physics reads it, so the simulated plant genuinely responds to it. A live parameter view exposes the controller's data table in the operators' own order, with the settable rows editable in place. The build runs an automated wire-level acceptance pass against the executable it just produced, so a broken build cannot ship.</p>
+  <h2>What it does</h2><ul><li>Sequence-of-operations state machine with a packed alarm catalogue</li><li>Modbus TCP server across all four register spaces from one shared cache</li><li>HMI tag-binding coverage enforced by automated tests against the client tag database</li><li>Instructor hold controls folded into ground truth so the plant responds to them</li><li>Automated wire-level acceptance run by the build against the produced executable</li></ul>
+  <h2>Tech</h2><div class="chips"><span>Modbus TCP</span><span>Python</span><span>Windows</span><span>PLC / HMI Integration</span><span>State Machines</span><span>Industrial Automation</span><span>pytest</span></div>
+  <div class="links"><a class="btn solid" href="../index.html#contact">Discuss a project →</a></div>
+</main>
+<footer><div class="wrap">
+  <span>KENEVOR <span class="d">·</span> Jiten Anup Topiwala</span>
+  <span><a href="../index.html#projects" style="text-decoration:none">← All projects</a></span>
+  <span>Pune, India <span class="d">·</span> 2026</span>
+</div></footer>
+</body></html>

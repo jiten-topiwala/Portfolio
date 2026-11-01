@@ -1,11 +1,45 @@
 {
   "experience": [
     {
+      "id": "kenevor-founder",
+      "order": 0,
+      "featured": true,
+      "role": "Founder & Robotics Engineer",
+      "company": "KENEVOR",
+      "company_url": null,
+      "type": "self-employed",
+      "location": "Pune, India · remote worldwide",
+      "start_date": "2026-09",
+      "end_date": null,
+      "current": true,
+      "summary": "Independent robotics and automation practice — simulation, motion planning, legged and humanoid control, and industrial automation delivered for clients internationally.",
+      "highlights": [
+        "Delivered motion planning and pick-and-place for a mobile manipulator in both MuJoCo and NVIDIA Isaac Sim.",
+        "Built and deployed a conversational humanoid system on a 26-DOF robot for live events.",
+        "Built a Modbus TCP training simulator standing in for the PLC behind an industrial operator HMI.",
+        "Clients across the US and Europe, delivered remotely end to end."
+      ],
+      "tech": [
+        "Robot Simulation",
+        "Motion Planning",
+        "Legged & Humanoid Control",
+        "Industrial Automation",
+        "ROS 2",
+        "Python"
+      ],
+      "image": null,
+      "links": []
+    },
+    {
       "id": "agmove-founding",
       "order": 1,
       "featured": true,
       "role": "Founding Robotics Engineer",
-      "title_progression": ["Robotics Engineer", "Senior Robotics Engineer", "Robotics Lead"],
+      "title_progression": [
+        "Robotics Engineer",
+        "Senior Robotics Engineer",
+        "Robotics Lead"
+      ],
       "company": "Agmove Robotics",
       "company_url": "https://agmove.in/",
       "type": "full-time",
@@ -21,7 +55,15 @@
         "Developed and validated robotic behaviors through simulation and field testing.",
         "Contributed to modular, scalable robotics software architecture supporting reliable communication across the systems."
       ],
-      "tech": ["Autonomous Navigation", "Localization", "Path Planning", "Perception", "Sensor Fusion", "Embedded Systems", "Simulation"],
+      "tech": [
+        "Autonomous Navigation",
+        "Localization",
+        "Path Planning",
+        "Perception",
+        "Sensor Fusion",
+        "Embedded Systems",
+        "Simulation"
+      ],
       "image": "Images/agmove-rover.webp",
       "links": []
     },
@@ -46,7 +88,17 @@
         "Contributed to development of a clean-room-certified robot variant.",
         "Designed parts and assemblies across 3D-printing, sheet-metal, moulding, and FRP processes."
       ],
-      "tech": ["SolidWorks", "Fusion 360", "Sheet Metal", "3D Printing", "Moulding", "FRP", "DFM", "Tolerance Analysis", "PLM"],
+      "tech": [
+        "SolidWorks",
+        "Fusion 360",
+        "Sheet Metal",
+        "3D Printing",
+        "Moulding",
+        "FRP",
+        "DFM",
+        "Tolerance Analysis",
+        "PLM"
+      ],
       "image": "Images/peppermint-robotics.webp",
       "links": []
     },
@@ -70,7 +122,16 @@
         "Led and managed team activities, guiding 50+ junior members in system integration, design validation, and iterative prototyping.",
         "Oversaw project planning, task delegation, financial management, and key decision-making — fostering technical leadership, collaboration, and sustainable knowledge transfer within the club."
       ],
-      "tech": ["SolidWorks", "Fusion 360", "MATLAB", "Simulink", "ROS2", "Gazebo", "Manufacturing", "Team Leadership"],
+      "tech": [
+        "SolidWorks",
+        "Fusion 360",
+        "MATLAB",
+        "Simulink",
+        "ROS2",
+        "Gazebo",
+        "Manufacturing",
+        "Team Leadership"
+      ],
       "image": null,
       "links": []
     },
@@ -98,7 +159,21 @@
         "Performed MATLAB simulations and CFD analysis to optimise motion dynamics and thrust force requirements.",
         "Integrated sensors for real-time imaging and fault detection within complex pipe networks."
       ],
-      "tech": ["Raspberry Pi", "ATtiny85", "EasyEDA", "ArduSub", "QGroundControl", "BlueOS", "Cockpit", "MATLAB", "CFD", "PCB Design", "Cytron Motor Driver", "BLDC", "Brushed ESC"],
+      "tech": [
+        "Raspberry Pi",
+        "ATtiny85",
+        "EasyEDA",
+        "ArduSub",
+        "QGroundControl",
+        "BlueOS",
+        "Cockpit",
+        "MATLAB",
+        "CFD",
+        "PCB Design",
+        "Cytron Motor Driver",
+        "BLDC",
+        "Brushed ESC"
+      ],
       "image": "Images/Pipe Inspectoin Robot.webp",
       "links": []
     },
@@ -121,7 +196,12 @@
         "Conducted on-field testing to assess performance under real-world conditions.",
         "Delivered technical documentation and contributed to post-testing analysis and improvements."
       ],
-      "tech": ["CAD", "Prototyping", "Vendor Management", "Field Testing"],
+      "tech": [
+        "CAD",
+        "Prototyping",
+        "Vendor Management",
+        "Field Testing"
+      ],
       "image": null,
       "links": []
     }

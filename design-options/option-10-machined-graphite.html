@@ -23,7 +23,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jiten Topiwala · Physical-AI Systems</title>
+<title>Jiten Topiwala · Robotics · Automation · AI</title>
 <!--SEO:HEAD:START--><!--SEO:HEAD:END-->
 <!-- Fonts self-hosted (see scripts/fetch-fonts.js) — no external Google Fonts request -->
 <style>
@@ -84,7 +84,7 @@
   @keyframes blink{50%{opacity:0}}
   .hero .desc{font-size:clamp(0.9375rem,1.6vw,1.125rem);color:var(--soft);max-width:62ch;margin-top:20px}
   .hero-now{display:inline-flex;align-items:center;gap:10px;margin-top:18px;font-size:0.9375rem;color:var(--soft);background:var(--panel-2);border:1px solid var(--line);border-radius:10px;padding:11px 18px}
-  .hero-now b{color:var(--text);font-weight:600} .hero-now .co{color:var(--orange);font-weight:600}
+  .hero-now b{color:var(--text);font-weight:600} .hero-now .co{color:var(--text);font-family:var(--fhead);font-weight:700;letter-spacing:.10em}
   .hero-now .d{width:8px;height:8px;border-radius:50%;background:var(--orange);flex:none;box-shadow:0 0 0 3px rgba(255,90,31,.16);animation:blinkDot 1.8s infinite}
   .cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
   .btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--fhead);font-weight:600;font-size:0.9375rem;padding:13px 22px;border-radius:9px;transition:all .2s}
@@ -152,7 +152,7 @@
   .proj .ph img{width:100%;height:100%;object-fit:cover;filter:saturate(.92) contrast(1.02);transition:transform .6s} .proj:hover .ph img{transform:scale(1.05)}
   .proj .ph img.contain,.proj .ph img[style*="contain"]{object-fit:contain;padding:14px;background:radial-gradient(ellipse at 50% 42%,rgba(255,90,31,.07),transparent 62%),var(--graphite)}
   .proj .noimg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--fmono);font-size:0.75rem;letter-spacing:.16em;color:var(--steel);text-transform:uppercase;background:repeating-linear-gradient(135deg,rgba(255,255,255,.012) 0 10px,transparent 10px 20px),radial-gradient(ellipse at 60% 30%,rgba(255,90,31,.13),transparent 62%),var(--graphite)}
-  .proj .pbadge{position:absolute;top:12px;left:12px;font-family:var(--fmono);font-size:0.625rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:rgba(14,15,18,.82);color:var(--orange);border:1px solid rgba(255,90,31,.4);padding:5px 9px;border-radius:6px}
+  .proj .pbadge{position:absolute;top:12px;left:12px;z-index:2;font-family:var(--fmono);font-size:0.625rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:rgba(14,15,18,.82);color:var(--orange);border:1px solid rgba(255,90,31,.4);padding:5px 9px;border-radius:6px}
   .proj .b{padding:20px;display:flex;flex-direction:column;flex:1}
   .proj h3{font-family:var(--fhead);font-weight:600;font-size:1.1875rem} .proj .sub{color:var(--muted);font-size:0.8125rem;margin-top:3px}
   .proj .imp{color:var(--orange);font-family:var(--fmono);font-size:0.75rem;margin-top:11px;line-height:1.5}
@@ -316,7 +316,7 @@
 <div id="site" hidden>
 <nav>
   <div class="row">
-    <div class="brand"><div class="nm">Jiten Topiwala</div><div class="mk"><span class="d">·</span> Physical-AI Systems</div></div>
+    <div class="brand"><div class="nm">Jiten Topiwala</div><div class="mk">Robotics <span class="d">·</span> Automation <span class="d">·</span> AI</div></div>
     <div class="nav-links">
       <a href="#home">Home</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#publications">Publications</a><a href="#skills">Stack</a><a href="#services">Services</a>
       <a class="nav-cta" href="#contact">Contact</a>
@@ -393,7 +393,7 @@
 
 <a id="totop" href="#home" aria-label="Back to top">↑</a>
 <footer><div class="wrap row">
-  <span>Jiten Topiwala <span class="d">·</span> Physical-AI Systems</span>
+  <span>KENEVOR <span class="d">·</span> Jiten Anup Topiwala</span>
   <span id="foot-tag"></span>
   <span id="foot-loc"></span>
 </div></footer>
@@ -472,10 +472,9 @@ const SOCIAL_SVG = {
     const img = m ? `<img src="${asset(m.thumb||m.src)}" alt="${esc(m.alt||pr.title)}" loading="lazy"${fit}>` : `<div class="noimg">// ${esc((pr.title||'').toUpperCase())}</div>`;
     const badge = pr.badge ? `<span class="pbadge">${esc(pr.badge)}</span>` : '';
     const tech = (pr.tech||[]).slice(0,4).map(t=>`<span>${esc(t)}</span>`).join('');
-    const lk = (pr.links||[])[0];
-    const href = lk ? `href="${esc(lk.url)}" ${/^https?:/.test(lk.url)?'target="_blank" rel="noopener"':''}` : '';
-    const tag = lk ? 'a' : 'article';
-    const view = lk ? `<span class="view">${esc(lk.label||'View')} →</span>` : '';
+    const href = `href="${BASE}p/${esc(pr.id)}.html"`;
+    const tag = 'a';
+    const view = `<span class="view">View project →</span>`;
     return `<${tag} class="proj reveal${pr.feature_large?' proj--lg':''}" data-category="${esc(pr.category||'')}" ${href}><div class="ph">${badge}<span class="pcat">${esc(pr.category||'')}</span>${img}${view}</div><div class="b"><h3>${esc(pr.title)}</h3>${pr.subtitle?`<div class="sub">${esc(pr.subtitle)}</div>`:''}${pr.impact?`<div class="imp">${esc(pr.impact)}</div>`:''}<div class="ptech">${tech}</div></div></${tag}>`;
   }).join('');
   // Auto-fit: portrait / near-square images (ratio < box) get `contain` so they aren't zoom-cropped.

@@ -20,8 +20,9 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-const SITE = 'https://jiten-topiwala.github.io/Portfolio/';
-const OG_IMAGE = 'Images/trackbeltmode.webp'; // personal project (surveillance robot) — safe share image
+const site = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'content', 'site.json'), 'utf8'));
+const SITE = site.meta.canonical_url;            // change the domain here, in content/site.json, nowhere else
+const OG_IMAGE = site.brand.og_image;
 
 const read = (f) => JSON.parse(fs.readFileSync(path.join(ROOT, 'content', f), 'utf8'));
 const profile = read('profile.json');
@@ -51,7 +52,7 @@ const graph = [
   {
     '@type': 'Person', '@id': SITE + '#person', name: profile.name, jobTitle: role,
     description: desc, url: SITE, image: abs(profile.photo), email: profile.contact?.email || undefined,
-    worksFor: profile.current_role?.company ? { '@type': 'Organization', name: profile.current_role.company } : undefined,
+    worksFor: profile.current_role?.company ? { '@id': SITE + '#org' } : undefined,
     address: {
       '@type': 'PostalAddress', addressLocality: profile.location?.city,
       addressRegion: profile.location?.state, addressCountry: profile.location?.country
@@ -64,6 +65,22 @@ const graph = [
       '@type': 'Offer',
       itemOffered: { '@type': 'Service', name: s.title, description: s.description || '', serviceType: s.title, provider: { '@id': SITE + '#person' }, areaServed: 'Worldwide' }
     }))
+  },
+  {
+    '@type': 'Organization', '@id': SITE + '#org',
+    name: profile.current_role?.company || undefined,
+    alternateName: site.brand.org + ' Robotics',
+    url: SITE,
+    slogan: site.brand.descriptor,
+    description: 'Independent robotics, automation and AI practice — simulation, motion planning, legged and humanoid control, and industrial automation.',
+    founder: { '@id': SITE + '#person' },
+    employee: { '@id': SITE + '#person' },
+    areaServed: 'Worldwide',
+    knowsAbout: allSkills.slice(0, 30),
+    address: {
+      '@type': 'PostalAddress', addressLocality: profile.location?.city,
+      addressRegion: profile.location?.state, addressCountry: profile.location?.country
+    }
   },
   { '@type': 'WebSite', '@id': SITE + '#website', url: SITE, name: title, description: desc, author: { '@id': SITE + '#person' } },
   {
@@ -84,8 +101,8 @@ const ld = { '@context': 'https://schema.org', '@graph': graph };
 
 // ---------- <head> block ----------
 const head = [
-  `<meta name="google-site-verification" content="37MTHAONhGKmH8Ze8dDyFiRhaO-V2WGtgDwmf_oLFLc">`,
-  `<meta name="msvalidate.01" content="008A37F5FF9B150AD1476F6AAB46A602">`,
+  `<meta name="google-site-verification" content="${site.meta.google_site_verification}">`,
+  `<meta name="msvalidate.01" content="${site.meta.bing_site_verification}">`,
   `<meta name="description" content="${esc(desc)}">`,
   `<meta name="keywords" content="${esc(allSkills.slice(0, 25).join(', '))}">`,
   `<meta name="author" content="${esc(profile.name)}">`,
@@ -165,11 +182,18 @@ Sitemap: ${SITE}sitemap.xml
 `;
 fs.writeFileSync(path.join(ROOT, 'robots.txt'), robots);
 
+// ---------- project pages (generated from the same JSON) ----------
+require('child_process').execSync('node ' + path.join(__dirname, 'build-pages.js'), { stdio: 'inherit' });
+
 // ---------- sitemap.xml ----------
 const today = new Date().toISOString().slice(0, 10);
+const projectUrls = featured.map((p) =>
+  `  <url><loc>${SITE}p/${p.id}.html</loc><lastmod>${today}</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>`
+).join('\n');
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>${SITE}</loc><lastmod>${today}</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>
+${projectUrls}
 </urlset>
 `;
 fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), sitemap);

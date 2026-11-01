@@ -21,7 +21,11 @@
         "PID Control",
         "Reinforcement Learning",
         "micro-ROS",
-        "MoveIt"
+        "MoveIt",
+        "OMPL",
+        "Unitree SDK2",
+        "CycloneDDS",
+        "Legged Locomotion"
       ]
     },
     {
@@ -42,7 +46,9 @@
         "CFD",
         "MotionGen",
         "FEA",
-        "Abaqus"
+        "Abaqus",
+        "NVIDIA Isaac Sim",
+        "OpenUSD"
       ]
     },
     {
@@ -91,7 +97,10 @@
         "EasyEDA",
         "ATtiny85",
         "ESP32 / ESP32-CAM",
-        "Sensor Integration"
+        "Sensor Integration",
+        "Modbus TCP",
+        "PLC / HMI Integration",
+        "Industrial Automation"
       ]
     },
     {
@@ -121,7 +130,9 @@
         "Linux",
         "Docker",
         "Git",
-        "GitHub"
+        "GitHub",
+        "Unitree Go2",
+        "Unitree R1"
       ]
     },
     {
