@@ -11,7 +11,7 @@ Award-winning competition robots · industrial inspection · agricultural automa
 <br>
 
 [![Live Site](https://img.shields.io/badge/Live-Portfolio-FF5A1F?style=for-the-badge&logo=github&logoColor=white)](https://jiten-topiwala.github.io/Portfolio/)
-[![Design Gallery](https://img.shields.io/badge/Design-Gallery-1C1E22?style=for-the-badge&logo=dribbble&logoColor=white)](https://jiten-topiwala.github.io/Portfolio/design-options/)
+[![Project Pages](https://img.shields.io/badge/Case-Studies-1C1E22?style=for-the-badge&logo=readthedocs&logoColor=white)](https://jiten-topiwala.github.io/Portfolio/#projects)
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
@@ -25,9 +25,7 @@ Award-winning competition robots · industrial inspection · agricultural automa
 ## 🔗 Links
 
 - **Main site** — [jiten-topiwala.github.io/Portfolio](https://jiten-topiwala.github.io/Portfolio/)
-- **Design gallery** — [/Portfolio/design-options/](https://jiten-topiwala.github.io/Portfolio/design-options/)
-
-The design gallery is a set of 10 design explorations of the same portfolio — useful for comparing directions and gathering feedback.
+- **Project pages** — one per featured project, generated into [`/p/`](p/)
 
 ## 🛠 Featured work
 
@@ -45,14 +43,13 @@ Full case studies live on the [site](https://jiten-topiwala.github.io/Portfolio/
 
 ```text
 Portfolio/
-├── index.html            # the live portfolio site
-├── styles/               # main.css + responsive.css (live site)
-├── scripts/main.js       # live site behaviour
+├── index.html            # the site — layout only, content comes from content/*.json
 ├── content/              # all site content as JSON (see shared/schema.md)
+├── p/                    # GENERATED project pages — never edit by hand
+├── scripts/              # seo-build.js · build-pages.js · fetch-fonts.js
 ├── shared/
-│   ├── content-loader.js # fetch + render helpers for data-driven designs
+│   ├── content-loader.js # fetch + render helpers
 │   └── schema.md         # content schema — single source of truth
-├── design-options/       # 10 design explorations + gallery index
 ├── Images/               # media referenced from content JSON (relative paths)
 ├── robots.txt, sitemap.xml
 └── .github/              # GitHub Pages workflow
@@ -64,7 +61,7 @@ All portfolio content — projects, experience, publications, awards, skills, se
 
 The full schema (field-by-field, with conventions for images, links, dates, and featured flags) is documented in [`shared/schema.md`](shared/schema.md).
 
-**Data-driven design:** `design-options/option-10-machined-graphite.html` renders entirely from `content/*.json` via [`shared/content-loader.js`](shared/content-loader.js). The current live `index.html` is a static build; the other design options are static mockups.
+**How it renders:** `index.html` is layout only — it loads `content/*.json` at runtime via [`shared/content-loader.js`](shared/content-loader.js). `scripts/build-pages.js` additionally generates one static page per featured project into `p/`, so the content is also readable without JavaScript.
 
 ## Run locally
 
@@ -74,7 +71,7 @@ The data-driven pages fetch JSON, so they must be **served over HTTP** — openi
 # from the repo root
 python3 -m http.server 8000
 # then open http://localhost:8000/
-#   or   http://localhost:8000/design-options/
+#   project pages at http://localhost:8000/p/<project-id>.html
 ```
 
 Or use the VS Code **Live Server** extension. The static `index.html` also works when served.
@@ -91,7 +88,7 @@ The GitHub Action runs this automatically on every deploy, so the published site
 
 ## Deploy
 
-Hosted on **GitHub Pages** via [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml): on push to `main` it bakes SEO, then publishes. Every file is served, so subfolders (like `design-options/`) are reachable at their path (~1 min after push).
+Hosted on **GitHub Pages** via [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml): on push to `main` it bakes SEO, then publishes. Every file is served, so the generated pages under `p/` are reachable at their path (~1 min after push).
 
 > **Contact form:** uses [FormSubmit](https://formsubmit.co). The **first** submission triggers a one-time activation email to the site owner — click it once to start receiving messages.
 
