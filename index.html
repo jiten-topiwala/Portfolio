@@ -98,6 +98,11 @@
   @media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:36px}.hero-photo .portrait{max-width:300px;margin:0}}
   .badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--fmono);font-size:0.75rem;color:var(--soft);background:var(--graphite);border:1px solid var(--line);padding:7px 14px;border-radius:999px}
   .badge .dot{width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 3px rgba(30,158,106,.18)}
+  .badge+.badge{margin-left:10px}
+  .badge--rating{text-decoration:none;transition:border-color .2s}
+  .badge--rating:hover{border-color:rgba(255,90,31,.45)}
+  .badge--rating .stars{color:var(--warn);letter-spacing:1px}
+  .badge--rating b{color:var(--text);font-weight:600}
   .hero h1{font-family:var(--fhead);font-weight:700;font-size:clamp(2.625rem,6.4vw,5.375rem);line-height:1.02;letter-spacing:-.03em;margin:24px 0 8px;text-wrap:balance}
   .hero h1 .o{color:var(--orange)}
   .hero .ident{font-family:var(--fmono);font-size:clamp(0.9375rem,1.9vw,1.3125rem);color:var(--soft);margin-top:16px;min-height:1.4em;overflow-wrap:anywhere}
@@ -359,7 +364,7 @@
 <main>
 <section id="home" class="hero"><div class="wrap">
   <div class="hero-intro">
-    <span class="badge reveal" id="hero-badge"><span class="dot"></span></span>
+    <span class="badge reveal" id="hero-badge"><span class="dot"></span></span><a class="badge badge--rating reveal" id="hero-rating" target="_blank" rel="noopener"></a>
     <h1 class="reveal" id="hero-thesis"></h1>
     <div class="ident reveal">I'm <b id="hero-name"></b> — <span class="tw" id="tw"></span><span class="cur">|</span></div>
     <div class="hero-now reveal" id="hero-now"></div>
@@ -461,6 +466,14 @@ const SOCIAL_SVG = {
   // HERO
   $('#hero-badge').innerHTML = '<span class="dot"></span> Available for ' + ((p.availability?.for||['Freelance','Consulting']).slice(0,2).map(cap).join(' & '));
   $('#hero-thesis').innerHTML = esc(p.tagline||'').replace(/\*(.+?)\*/g,'<span class="o">$1</span>');
+  {
+    const fv = (p.social||[]).find(s=>s.platform==='fiverr');
+    const hr = document.getElementById('hero-rating');
+    if (hr) {
+      if (fv && fv.rating) { hr.href = fv.url; hr.innerHTML = `<span class="stars">★★★★★</span> <b>${esc(fv.rating)}</b> on Fiverr`; }
+      else hr.remove();
+    }
+  }
   $('#hero-name').textContent = p.name || 'Jiten Topiwala';
   $('#hero-desc').textContent = p.short_bio || p.long_bio || '';
   (p.social||[]).forEach(s=>{
