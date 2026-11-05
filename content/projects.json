@@ -885,7 +885,7 @@
     {
       "id": "vertical-conveyor",
       "order": 16,
-      "featured": true,
+      "featured": false,
       "title": "Vertical Indexing Conveyor",
       "subtitle": "Chain-sprocket-driven industrial system",
       "category": "industrial",
